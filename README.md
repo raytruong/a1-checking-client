@@ -1,4 +1,4 @@
-# a1-checking-front
+# app
 
 ## Project setup
 ```
