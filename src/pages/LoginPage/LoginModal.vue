@@ -18,10 +18,10 @@
             tile
             v-for="index in 4" 
             :key="index"
-            color="grey lighten-2"
+            :color="keysEntered === index-1 ? 'grey darken-1' : 'grey lighten-2'"
             class="black--text ml-2"
           >
-          *
+          <h1 v-if="keysEntered >= index">*</h1>
           </v-avatar>
         </v-row>
       </v-container>
@@ -44,18 +44,26 @@ export default {
   name: 'LoginModal',
 
   props: {
-    name: String
+    name: String,
+    keysEntered: Number
   },
 
   data: function() {
     return {
-      //
+      progress: this.keysEntered
+    }
+  },
+
+  computed: {
+    updateKeysEntered: function() {
+      console.log(this.progress);
+      return this.progress;
     }
   },
 
   methods: {
     handleCancel: function() {
-      this.$emit('cancelModal', false) // eventname, payload
+      this.$emit('closeDialog') // (eventname, payload)
     }
   }
 

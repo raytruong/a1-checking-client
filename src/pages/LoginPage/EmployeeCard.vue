@@ -1,6 +1,8 @@
 <template>
   <v-dialog
     v-model="loginDialog"
+    @keydown="handleInput"
+    @update:return-value="closeDialog"
     max-width="300"
   >
     <template v-slot:activator="{ on, attrs }">
@@ -24,7 +26,7 @@
         </v-card-text>
       </v-card>
     </template>
-    <LoginModal :name="name" @cancelModal="cancelModal"/>
+    <LoginModal :name="name" :keysEntered="keysEntered" @closeDialog="closeDialog"/>
   </v-dialog>
 </template>
 
@@ -40,6 +42,13 @@ export default {
 
   props: {
     name: String,
+  },
+
+  data: function() {
+    return {
+      loginDialog: false,
+      keysEntered: 0
+    }
   },
 
   computed: {
@@ -58,14 +67,24 @@ export default {
   },
 
   methods: {
-    cancelModal(payload) {
-      this.loginDialog = payload;
-    }
-  },
-
-  data: function() {
-    return {
-      loginDialog: false
+    handleInput(keydown) {
+      if(
+        keydown.keyCode === 8 && 
+        this.keysEntered !== 0
+      ) {
+          this.keysEntered -= 1;
+      }
+      else if(
+        keydown.keyCode > 47 && 
+        keydown.keyCode < 58 && 
+        this.keysEntered < 4
+      ) {
+          this.keysEntered += 1;
+      }
+    },
+    closeDialog() {
+      this.keysEntered = 0;
+      this.loginDialog = false;
     }
   },
 }
