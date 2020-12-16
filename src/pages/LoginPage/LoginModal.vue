@@ -6,6 +6,7 @@
           {{ name }}
         </v-card-text>
         <v-card-text class="subtitle-1">
+          <font-awesome-icon icon="lock" size="small"/>
           Enter PIN code
         </v-card-text>
         <v-row
