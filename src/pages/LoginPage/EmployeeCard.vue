@@ -70,22 +70,22 @@ export default {
   methods: {
     handleInput(keydown) {
       if(
-        keydown.keyCode === 8 && 
+        keydown.key === 'Backspace' && 
         this.keysEntered !== 0
       ) {
           this.keysEntered -= 1;
       }
       else if(
-        keydown.keyCode > 47 && 
-        keydown.keyCode < 58 && 
+        /^\d+$/.test(keydown.key) && // is number
         this.keysEntered < 4
       ) {
         this.keysEntered += 1;
       }
     },
     closeDialog() {
-      this.keysEntered = 0;
       this.loginDialog = false;
+      this.keysEntered = 0;
+      this.error = false;
     }
   },
 }
