@@ -26,18 +26,18 @@
         </v-card-text>
       </v-card>
     </template>
-    <LoginModal :name="name" :keysEntered="keysEntered" @closeDialog="closeDialog"/>
+    <LoginDialog :name="name" :keysEntered="keysEntered" :error="error" @closeDialog="closeDialog"/>
   </v-dialog>
 </template>
 
 <script>
-import LoginModal from './LoginModal'
+import LoginDialog from './LoginDialog'
 
 export default {
   name: 'EmployeeCard',
 
   components: {
-    LoginModal
+    LoginDialog
   },
 
   props: {
@@ -47,7 +47,8 @@ export default {
   data: function() {
     return {
       loginDialog: false,
-      keysEntered: 0
+      keysEntered: 0,
+      error: false
     }
   },
 
@@ -79,7 +80,7 @@ export default {
         keydown.keyCode < 58 && 
         this.keysEntered < 4
       ) {
-          this.keysEntered += 1;
+        this.keysEntered += 1;
       }
     },
     closeDialog() {

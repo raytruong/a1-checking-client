@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="">
     <v-card-body>
       <v-container>
         <v-card-text class="headline">
@@ -8,6 +8,9 @@
         <v-card-text class="subtitle-1">
           <font-awesome-icon icon="lock" size="small"/>
           Enter PIN code
+        </v-card-text>
+        <v-card-text v-if="error" class="red--text subtitle-1">
+          Incorrect PIN code, try again.
         </v-card-text>
         <v-row
           align="center"
@@ -27,37 +30,31 @@
       </v-container>
     </v-card-body>
     <v-btn
-      color="red lighten-1"
+      color="grey"
       class="white--text"
       flat
       tile
-      v-on:click="handleCancel"
       block
+      v-on:click="handleCancel"
     >
-    Cancel
+    Close
     </v-btn>
   </v-card>
 </template>
 
 <script>
 export default {
-  name: 'LoginModal',
+  name: 'LoginDialog',
 
   props: {
     name: String,
-    keysEntered: Number
+    keysEntered: Number,
+    error: Boolean
   },
 
   data: function() {
     return {
       progress: this.keysEntered
-    }
-  },
-
-  computed: {
-    updateKeysEntered: function() {
-      console.log(this.progress);
-      return this.progress;
     }
   },
 
