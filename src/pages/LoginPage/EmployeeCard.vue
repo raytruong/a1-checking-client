@@ -1,25 +1,42 @@
 <template>
-  <v-card 
-    tile
-    width="256"
+  <v-dialog
+    v-model="dialog"
+    max-width="290"
   >
-    <v-avatar
-      :color="getColorFromName"
-      tile
-      width="256"
-      height="128"
-    >
-      <span class="outlined headline"> {{ getInitials }} </span>
-    </v-avatar>
-    <v-card-text class="title">
-      {{ name }}
-    </v-card-text>
-  </v-card>
+    <template v-slot:activator="{ on, attrs }">
+      <v-card 
+        tile
+        width="256"
+        v-bind="attrs"
+        v-on="on"
+        class="ml-6 mt-6"
+      >
+        <v-avatar
+          :color="getColorFromName"
+          tile
+          width="256"
+          height="128"
+        >
+          <span class="outlined headline"> {{ getInitials }} </span>
+        </v-avatar>
+        <v-card-text class="title">
+          {{ name }}
+        </v-card-text>
+      </v-card>
+    </template>
+    <LoginModal :name="name"/>
+  </v-dialog>
 </template>
 
 <script>
+import LoginModal from './LoginModal'
+
 export default {
   name: 'EmployeeCard',
+
+  components: {
+    LoginModal
+  },
 
   props: {
     name: String,
@@ -32,7 +49,7 @@ export default {
     },
     getColorFromName: function() {
       let hash = 0;
-      for (let i = 0; i < this.name.length; i++) {
+      for (let i in this.name) {
           hash = this.name.charCodeAt(i) + ((hash << 5) - hash);
       }
       let c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
@@ -40,9 +57,12 @@ export default {
     }
   },
 
+  methods: {
+  },
+
   data: function() {
     return {
-
+      loginDialog: false
     }
   },
 }

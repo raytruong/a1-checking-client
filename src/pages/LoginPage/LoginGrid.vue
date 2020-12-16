@@ -5,7 +5,6 @@
         v-for="employee in employees"
         :key="employee"
         :name="employee"
-        class="ml-6 mt-6"
       >
       </EmployeeCard>
     </v-row>
@@ -32,8 +31,8 @@ export default {
 
   data: function() {
     return {
-      // employees: ['Raymond Truong', 'Andy Plank', 'Jon Huber', 'Eric Cummings']
-      employees: names
+      employees: ['Raymond Truong', 'Andy Plank', 'Jon Huber', 'Eric Cummings', 'Jackie Welles', 'Jeremy Harrington', 'Collin Li', 'Jay Rixie', 'Daniel Plue', 'Ihave areally really really really longname']
+      // employees: names
     }
   },
 }
