@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="dialog"
+    v-model="loginDialog"
     max-width="290"
   >
     <template v-slot:activator="{ on, attrs }">
@@ -24,7 +24,7 @@
         </v-card-text>
       </v-card>
     </template>
-    <LoginModal :name="name"/>
+    <LoginModal :name="name" @cancelModal="cancelModal"/>
   </v-dialog>
 </template>
 
@@ -58,6 +58,9 @@ export default {
   },
 
   methods: {
+    cancelModal(payload) {
+      this.loginDialog = payload;
+    }
   },
 
   data: function() {

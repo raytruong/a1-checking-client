@@ -31,7 +31,7 @@
       class="white--text"
       flat
       tile
-      @click="handleClick"
+      v-on:click="handleCancel"
       block
     >
     Cancel
@@ -49,13 +49,13 @@ export default {
 
   data: function() {
     return {
-      showDialog: false
+      //
     }
   },
 
   methods: {
-    handleClick: function() {
-      this.$emit("")
+    handleCancel: function() {
+      this.$emit('cancelModal', false)
     }
   }
 
