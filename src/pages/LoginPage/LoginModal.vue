@@ -11,7 +11,10 @@
 export default {
   name: 'EmployeeCard',
 
-  data: () => ({
-  }),
+  data: function() {
+    return {
+
+    }
+  },
 }
 </script>

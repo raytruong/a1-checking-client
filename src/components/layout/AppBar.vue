@@ -9,7 +9,11 @@
 <script>
   export default {
     name: 'AppBar',
-    data: () => ({
-    }),
+
+    data: function() {
+      return {
+
+      }
+    },
   }
 </script>

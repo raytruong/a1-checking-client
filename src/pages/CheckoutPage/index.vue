@@ -7,7 +7,11 @@
 <script>
   export default {
     name: 'CheckoutPage',
-    data: () => ({
-    }),
+
+    data: function() {
+      return {
+
+      }
+    },
   }
 </script>

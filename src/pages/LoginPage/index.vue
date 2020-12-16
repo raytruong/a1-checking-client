@@ -14,7 +14,10 @@ export default {
     LoginGrid
   },
 
-  data: () => ({
-  }),
+  data: function() {
+    return {
+
+    }
+  },
 }
 </script>
