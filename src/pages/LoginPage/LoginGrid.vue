@@ -14,13 +14,12 @@
 <script>
 import EmployeeCard from './EmployeeCard'
 
-let names = []
-
-for(let i = 0; i < 7; i++) { 
-  let length = 20
-  let random = Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
-  names.push(random);
-}
+// let names = []
+// for(let i = 0; i < 7; i++) { 
+//   let length = 20
+//   let random = Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+//   names.push(random);
+// }
 
 export default {
   name: 'LoginGrid',

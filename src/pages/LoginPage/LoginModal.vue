@@ -55,7 +55,7 @@ export default {
 
   methods: {
     handleCancel: function() {
-      this.$emit('cancelModal', false)
+      this.$emit('cancelModal', false) // eventname, payload
     }
   }
 

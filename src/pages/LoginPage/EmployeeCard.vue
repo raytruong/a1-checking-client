@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="loginDialog"
-    max-width="290"
+    max-width="300"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-card 
