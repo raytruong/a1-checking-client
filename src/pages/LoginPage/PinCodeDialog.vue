@@ -3,7 +3,7 @@
     <v-card-body>
       <v-container>
         <v-card-text class="headline">
-          {{ name }}
+          {{ employeeName }}
         </v-card-text>
         <v-card-text class="subtitle-1">
           <font-awesome-icon icon="lock" size="small"/>
@@ -18,14 +18,14 @@
           justify="center"
         >
           <v-avatar
-            width="36"
-            tile
             v-for="index in 4" 
             :key="index"
             :color="keysEntered === index-1 ? 'grey darken-1' : 'grey lighten-2'"
             class="black--text ml-2"
+            width="36"
+            tile
           >
-          <h1 v-if="keysEntered >= index">*</h1>
+            <h1 v-if="keysEntered >= index">*</h1>
           </v-avatar>
         </v-row>
       </v-container>
@@ -33,9 +33,7 @@
     <v-btn
       color="grey"
       class="white--text"
-      flat
-      tile
-      block
+      flat tile block
       v-on:click="handleCancel"
     >
     Cancel
@@ -48,7 +46,7 @@ export default {
   name: 'PinCodeDialog',
 
   props: {
-    name: String,
+    employeeName: String,
     keysEntered: Number,
     loginMessageEnum: Number
   },
@@ -80,7 +78,7 @@ export default {
 
   methods: {
     handleCancel: function() {
-      this.$emit('closeDialog') // (eventname, payload)
+      this.$emit('cancelButtonClicked')
     }
   }
 
