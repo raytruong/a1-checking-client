@@ -14,7 +14,7 @@ export default {
     name: "EmployeeCard",
 
     props: {
-        employeeName: String
+        employeeName: String,
     },
 
     data: function() {
@@ -37,14 +37,14 @@ export default {
             }
             let c = (hash & 0x00ffffff).toString(16).toUpperCase();
             return `#${"00000".substring(0, 6 - c.length) + c}`;
-        }
+        },
     },
 
     methods: {
         handleClick: function() {
             this.$emit("openDialog", this.employeeName); // (eventname, payload)
-        }
-    }
+        },
+    },
 };
 </script>
 

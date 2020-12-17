@@ -11,7 +11,7 @@ let options = {
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
 };
 
 export default {
@@ -20,8 +20,8 @@ export default {
     data: function() {
         return {
             date: new Date().toLocaleString("en-us", options),
-            user: "Sign In"
+            user: "Sign In",
         };
-    }
+    },
 };
 </script>

@@ -51,7 +51,7 @@ export default {
     props: {
         employeeName: String,
         keysEntered: Number,
-        loginMessageEnum: Number
+        loginMessageEnum: Number,
     },
 
     data: function() {
@@ -59,13 +59,13 @@ export default {
             error: {
                 icon: "exclamation",
                 color: "red",
-                message: "Incorrect PIN code, try again."
+                message: "Incorrect PIN code, try again.",
             },
             success: {
                 icon: "check",
                 color: "green",
-                message: "Successfully logged in."
-            }
+                message: "Successfully logged in.",
+            },
         };
     },
 
@@ -79,13 +79,13 @@ export default {
                 default:
                     return { icon: "", color: "", message: "" };
             }
-        }
+        },
     },
 
     methods: {
         handleCancel: function() {
             this.$emit("cancelButtonClicked");
-        }
-    }
+        },
+    },
 };
 </script>

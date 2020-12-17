@@ -16,11 +16,11 @@ export default {
 
     components: {
         AppBar,
-        LoginPage
+        LoginPage,
     },
 
     data: () => ({
         //
-    })
+    }),
 };
 </script>

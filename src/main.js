@@ -5,7 +5,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
     faLock,
     faCheck,
-    faExclamation
+    faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -19,5 +19,5 @@ Vue.config.productionTip = false;
 
 new Vue({
     vuetify,
-    render: h => h(App)
+    render: h => h(App),
 }).$mount("#app");

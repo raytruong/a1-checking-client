@@ -35,7 +35,7 @@ export default {
 
     components: {
         EmployeeCard,
-        PinCodeDialog
+        PinCodeDialog,
     },
 
     data: function() {
@@ -47,13 +47,13 @@ export default {
                 "Eric Cummings",
                 "Collin Li",
                 "Jay Rixie",
-                "Daniel Plue"
+                "Daniel Plue",
             ],
             showPinCodeDialog: false,
             selectedEmployee: "",
             pin: [],
             keysEntered: 0,
-            loginMessageEnum: 0
+            loginMessageEnum: 0,
         };
     },
 
@@ -84,7 +84,7 @@ export default {
             this.pin = [];
             this.keysEntered = 0;
             this.loginMessageEnum = 0;
-        }
-    }
+        },
+    },
 };
 </script>
