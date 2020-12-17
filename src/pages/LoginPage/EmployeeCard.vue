@@ -2,6 +2,8 @@
   <v-card 
     tile
     width="256"
+    v-on:click="handleClick"
+    class="ml-6 mt-6"
   >
     <v-avatar
       :color="getColorFromName"
@@ -12,37 +14,44 @@
       <span class="outlined headline"> {{ getInitials }} </span>
     </v-avatar>
     <v-card-text class="title">
-      {{ name }}
+      {{ employeeName }}
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+
 export default {
   name: 'EmployeeCard',
 
   props: {
-    name: String,
+    employeeName: String
+  },
+
+  data: function() {
+    return {
+      //
+    }
   },
 
   computed: {
     getInitials: function () {
-      let initials = this.name.match(/\b\w/g) || [];
+      let initials = this.employeeName.match(/\b\w/g) || [];
       return ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
     },
     getColorFromName: function() {
       let hash = 0;
-      for (let i = 0; i < this.name.length; i++) {
-          hash = this.name.charCodeAt(i) + ((hash << 5) - hash);
+      for (let i in this.employeeName) {
+          hash = this.employeeName.charCodeAt(i) + ((hash << 5) - hash);
       }
       let c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
       return `#${"00000".substring(0, 6 - c.length) + c}`;
     }
   },
 
-  data: function() {
-    return {
-
+  methods: {
+    handleClick: function() {
+      this.$emit('openDialog', this.employeeName) // (eventname, payload)
     }
   },
 }
