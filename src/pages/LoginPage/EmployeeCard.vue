@@ -2,7 +2,7 @@
   <v-card 
     tile
     width="256"
-    v-on:click="handleClick"
+    @click.stop="handleClick"
     class="ml-6 mt-6"
   >
     <v-avatar
