@@ -1,5 +1,5 @@
 <template>
-  <v-card class="">
+  <v-card>
     <v-card-body>
       <v-container>
         <v-card-text class="headline">
@@ -9,8 +9,9 @@
           <font-awesome-icon icon="lock" size="small"/>
           Enter PIN code
         </v-card-text>
-        <v-card-text v-if="error" class="red--text subtitle-1">
-          Incorrect PIN code, try again.
+        <v-card-text :class="`${getMessage.color}--text subtitle-1`">
+          <font-awesome-icon :icon="getMessage.icon" size="small"/>
+          {{getMessage.message}}
         </v-card-text>
         <v-row
           align="center"
@@ -37,24 +38,43 @@
       block
       v-on:click="handleCancel"
     >
-    Close
+    Cancel
     </v-btn>
   </v-card>
 </template>
 
 <script>
 export default {
-  name: 'LoginDialog',
+  name: 'PinCodeDialog',
 
   props: {
     name: String,
     keysEntered: Number,
-    error: Boolean
+    loginMessageEnum: Number
   },
 
   data: function() {
     return {
-      progress: this.keysEntered
+      error: {
+        icon: 'exclamation',
+        color: 'red',
+        message: 'Incorrect PIN code, try again.'
+      },
+      success: {
+        icon: 'check',
+        color: 'green',
+        message: 'Successfully logged in.'
+      },
+    }
+  },
+
+  computed: {
+    getMessage: function() {
+      switch(this.loginMessageEnum) {
+        case 1: return this.success;
+        case 2: return this.error;
+        default: return {icon:"", color:"", message:""};
+      }
     }
   },
 

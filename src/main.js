@@ -2,12 +2,12 @@ import Vue from 'vue';
 import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.config.productionTip = false;
 
-library.add(faLock);
+library.add(faLock, faCheck, faExclamation);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

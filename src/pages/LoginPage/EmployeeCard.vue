@@ -26,12 +26,12 @@
         </v-card-text>
       </v-card>
     </template>
-    <LoginDialog :name="name" :keysEntered="keysEntered" :error="error" @closeDialog="closeDialog"/>
+    <LoginDialog :name="name" :keysEntered="keysEntered" :loginMessageEnum="loginMessageEnum" @closeDialog="closeDialog"/>
   </v-dialog>
 </template>
 
 <script>
-import LoginDialog from './LoginDialog'
+import LoginDialog from './PinCodeDialog'
 
 export default {
   name: 'EmployeeCard',
@@ -47,8 +47,9 @@ export default {
   data: function() {
     return {
       loginDialog: false,
+      pin: [],
       keysEntered: 0,
-      error: false
+      loginMessageEnum: 0
     }
   },
 
@@ -71,21 +72,29 @@ export default {
     handleInput(keydown) {
       if(
         keydown.key === 'Backspace' && 
-        this.keysEntered !== 0
+        this.keysEntered > 0
       ) {
-          this.keysEntered -= 1;
+        this.pin.pop(keydown.key);
+        this.keysEntered -= 1;
       }
       else if(
         /^\d+$/.test(keydown.key) && // is number
         this.keysEntered < 4
       ) {
+        this.pin.push(keydown.key);
         this.keysEntered += 1;
+
+        if(this.pin.length == 4) {
+          // TODO: Attempt to login
+          console.log("Login");
+        }
       }
     },
     closeDialog() {
       this.loginDialog = false;
+      this.pin = [];
       this.keysEntered = 0;
-      this.error = false;
+      this.loginMessageEnum = 0;
     }
   },
 }
