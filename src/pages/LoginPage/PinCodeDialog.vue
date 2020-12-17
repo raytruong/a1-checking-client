@@ -66,26 +66,26 @@ export default {
                 color: 'green',
                 message: 'Successfully logged in.'
             }
-        }
+        };
     },
 
     computed: {
         getMessage: function() {
             switch (this.loginMessageEnum) {
                 case 1:
-                    return this.success
+                    return this.success;
                 case 2:
-                    return this.error
+                    return this.error;
                 default:
-                    return { icon: '', color: '', message: '' }
+                    return { icon: '', color: '', message: '' };
             }
         }
     },
 
     methods: {
         handleCancel: function() {
-            this.$emit('cancelButtonClicked')
+            this.$emit('cancelButtonClicked');
         }
     }
-}
+};
 </script>

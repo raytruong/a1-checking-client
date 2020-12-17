@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import AppBar from '@/components/layout/AppBar'
-import LoginPage from '@/pages/LoginPage'
+import AppBar from '@/components/layout/AppBar';
+import LoginPage from '@/pages/LoginPage';
 
 export default {
     name: 'App',
@@ -22,5 +22,5 @@ export default {
     data: () => ({
         //
     })
-}
+};
 </script>

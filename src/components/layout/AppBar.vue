@@ -12,7 +12,7 @@ let options = {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-}
+};
 
 export default {
     name: 'AppBar',
@@ -21,7 +21,7 @@ export default {
         return {
             date: new Date().toLocaleString('en-us', options),
             user: 'Sign In'
-        }
+        };
     }
-}
+};
 </script>
