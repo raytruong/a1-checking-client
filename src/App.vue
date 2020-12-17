@@ -1,26 +1,26 @@
 <template>
-  <v-app>
-    <AppBar/>
-    <v-main>
-      <LoginPage/>
-    </v-main>
-  </v-app>
+    <v-app>
+        <AppBar />
+        <v-main>
+            <LoginPage />
+        </v-main>
+    </v-app>
 </template>
 
 <script>
-import AppBar from "@/components/layout/AppBar"
-import LoginPage from "@/pages/LoginPage"
+import AppBar from '@/components/layout/AppBar'
+import LoginPage from '@/pages/LoginPage'
 
 export default {
-  name: 'App',
+    name: 'App',
 
-  components: {
-    AppBar,
-    LoginPage
-  },
+    components: {
+        AppBar,
+        LoginPage
+    },
 
-  data: () => ({
-    //
-  }),
-};
+    data: () => ({
+        //
+    })
+}
 </script>
