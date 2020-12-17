@@ -34,7 +34,7 @@
       color="grey"
       class="white--text"
       flat tile block
-      v-on:click="handleCancel"
+      @click="handleCancel"
     >
     Cancel
     </v-btn>
