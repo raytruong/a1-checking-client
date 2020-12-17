@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import AppBar from '@/components/layout/AppBar';
-import LoginPage from '@/pages/LoginPage';
+import AppBar from "@/components/layout/AppBar";
+import LoginPage from "@/pages/LoginPage";
 
 export default {
-    name: 'App',
+    name: "App",
 
     components: {
         AppBar,

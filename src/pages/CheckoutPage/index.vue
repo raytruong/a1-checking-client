@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: 'CheckoutPage',
+    name: "CheckoutPage",
 
     data: function() {
         return {

@@ -46,7 +46,7 @@
 
 <script>
 export default {
-    name: 'PinCodeDialog',
+    name: "PinCodeDialog",
 
     props: {
         employeeName: String,
@@ -57,14 +57,14 @@ export default {
     data: function() {
         return {
             error: {
-                icon: 'exclamation',
-                color: 'red',
-                message: 'Incorrect PIN code, try again.'
+                icon: "exclamation",
+                color: "red",
+                message: "Incorrect PIN code, try again."
             },
             success: {
-                icon: 'check',
-                color: 'green',
-                message: 'Successfully logged in.'
+                icon: "check",
+                color: "green",
+                message: "Successfully logged in."
             }
         };
     },
@@ -77,14 +77,14 @@ export default {
                 case 2:
                     return this.error;
                 default:
-                    return { icon: '', color: '', message: '' };
+                    return { icon: "", color: "", message: "" };
             }
         }
     },
 
     methods: {
         handleCancel: function() {
-            this.$emit('cancelButtonClicked');
+            this.$emit("cancelButtonClicked");
         }
     }
 };

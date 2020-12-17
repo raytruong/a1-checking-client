@@ -27,11 +27,11 @@
 </template>
 
 <script>
-import EmployeeCard from './EmployeeCard';
-import PinCodeDialog from './PinCodeDialog';
+import EmployeeCard from "./EmployeeCard";
+import PinCodeDialog from "./PinCodeDialog";
 
 export default {
-    name: 'LoginPage',
+    name: "LoginPage",
 
     components: {
         EmployeeCard,
@@ -41,16 +41,16 @@ export default {
     data: function() {
         return {
             employees: [
-                'Raymond Truong',
-                'Andy Plank',
-                'Jon Huber',
-                'Eric Cummings',
-                'Collin Li',
-                'Jay Rixie',
-                'Daniel Plue'
+                "Raymond Truong",
+                "Andy Plank",
+                "Jon Huber",
+                "Eric Cummings",
+                "Collin Li",
+                "Jay Rixie",
+                "Daniel Plue"
             ],
             showPinCodeDialog: false,
-            selectedEmployee: '',
+            selectedEmployee: "",
             pin: [],
             keysEntered: 0,
             loginMessageEnum: 0
@@ -59,7 +59,7 @@ export default {
 
     methods: {
         handleInput(keydown) {
-            if (keydown.key === 'Backspace' && this.keysEntered > 0) {
+            if (keydown.key === "Backspace" && this.keysEntered > 0) {
                 this.pin.pop(keydown.key);
                 this.keysEntered -= 1;
             } else if (

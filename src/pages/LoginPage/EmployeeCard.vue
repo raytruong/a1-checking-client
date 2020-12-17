@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    name: 'EmployeeCard',
+    name: "EmployeeCard",
 
     props: {
         employeeName: String
@@ -27,7 +27,7 @@ export default {
         getInitials: function() {
             let initials = this.employeeName.match(/\b\w/g) || [];
             return (
-                (initials.shift() || '') + (initials.pop() || '')
+                (initials.shift() || "") + (initials.pop() || "")
             ).toUpperCase();
         },
         getColorFromName: function() {
@@ -36,13 +36,13 @@ export default {
                 hash = this.employeeName.charCodeAt(i) + ((hash << 5) - hash);
             }
             let c = (hash & 0x00ffffff).toString(16).toUpperCase();
-            return `#${'00000'.substring(0, 6 - c.length) + c}`;
+            return `#${"00000".substring(0, 6 - c.length) + c}`;
         }
     },
 
     methods: {
         handleClick: function() {
-            this.$emit('openDialog', this.employeeName); // (eventname, payload)
+            this.$emit("openDialog", this.employeeName); // (eventname, payload)
         }
     }
 };

@@ -8,19 +8,19 @@
 
 <script>
 let options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
 };
 
 export default {
-    name: 'AppBar',
+    name: "AppBar",
 
     data: function() {
         return {
-            date: new Date().toLocaleString('en-us', options),
-            user: 'Sign In'
+            date: new Date().toLocaleString("en-us", options),
+            user: "Sign In"
         };
     }
 };
