@@ -60,7 +60,7 @@ export default {
     methods: {
         handleInput(keydown) {
             if (keydown.key === "Backspace" && this.keysEntered > 0) {
-                this.pin.pop(keydown.key);
+                this.pin.pop();
                 this.keysEntered -= 1;
             } else if (
                 /^\d+$/.test(keydown.key) && // is number
