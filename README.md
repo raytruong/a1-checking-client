@@ -1,4 +1,4 @@
-# A-1 Checking Frontend
+# A-1 Checking Client
 
 Vue application built for employees to log transactions, packaged for offline-first usage through Electron. Intended for usage on a Raspberry Pi running Raspbian.
 
