@@ -40,7 +40,7 @@ export default {
     },
 
     async created() {
-        this.employees = await this.$api.getAllEmployees();
+        this.employees = await this.$db.getAllEmployees();
     },
 
     data: function() {
@@ -69,7 +69,7 @@ export default {
                 this.keysEntered += 1;
 
                 if (this.pin.length == 4) {
-                    let data = await this.$api.getEmployee(
+                    let data = await this.$db.getEmployee(
                         this.selectedEmployeeId,
                     );
                     if (this.pin.join("") === data.pin) {

@@ -17,7 +17,7 @@ local
         console.log(remoteUrl);
     });
 
-const api = {
+const db = {
     getAllEmployees: async function() {
         let data = await local.allDocs({
             include_docs: true,
@@ -33,4 +33,4 @@ const api = {
     },
 };
 
-export default api;
+export default db;

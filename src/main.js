@@ -8,9 +8,9 @@ import {
     faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import api from "@/database";
+import db from "@/services";
 
-Vue.prototype.$api = api;
+Vue.prototype.$db = db;
 
 Vue.config.productionTip = false;
 
