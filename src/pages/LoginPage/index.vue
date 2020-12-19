@@ -40,13 +40,7 @@ export default {
     },
 
     async created() {
-        let data = await this.$db.allDocs({
-            include_docs: true,
-        });
-        this.employees = data.rows.map(row => ({
-            _id: row.doc["_id"],
-            name: row.doc["user"],
-        }));
+        this.employees = await this.$api.getAllEmployees();
     },
 
     data: function() {
@@ -75,7 +69,9 @@ export default {
                 this.keysEntered += 1;
 
                 if (this.pin.length == 4) {
-                    let data = await this.$db.get(this.selectedEmployeeId);
+                    let data = await this.$api.getEmployee(
+                        this.selectedEmployeeId,
+                    );
                     if (this.pin.join("") === data.pin) {
                         this.loginAlertEnum = 1;
                     } else {

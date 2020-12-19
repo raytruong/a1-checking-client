@@ -8,26 +8,9 @@ import {
     faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import PouchDB from "pouchdb-browser";
+import api from "@/database";
 
-const username = process.env.VUE_APP_DB_USER;
-const password = process.env.VUE_APP_DB_PASS;
-const name = process.env.VUE_APP_DB_NAME;
-
-const remoteUrl = `https://${username}:${password}@${username}.cloudantnosqldb.appdomain.cloud/${name}`;
-let remote = new PouchDB(remoteUrl);
-let local = new PouchDB("local");
-
-local
-    .sync(remote, {
-        live: true,
-        retry: false,
-    })
-    .on("error", function() {
-        console.log(remoteUrl);
-    });
-
-Vue.prototype.$db = local;
+Vue.prototype.$api = api;
 
 Vue.config.productionTip = false;
 
