@@ -9,10 +9,14 @@
                     <font-awesome-icon icon="lock" size="small" />
                     Enter PIN code
                 </v-card-text>
-                <v-card-text :class="`${getMessage.color}--text subtitle-1`">
-                    <font-awesome-icon :icon="getMessage.icon" size="small" />
-                    {{ getMessage.message }}
-                </v-card-text>
+                <v-alert
+                    v-if="getAlert"
+                    text
+                    :type="getAlert.type"
+                    :class="`${getAlert.color}--text subtitle-1`"
+                >
+                    {{ getAlert.message }}
+                </v-alert>
                 <v-row align="center" justify="center">
                     <v-avatar
                         v-for="index in 4"
@@ -51,33 +55,31 @@ export default {
     props: {
         employeeName: String,
         keysEntered: Number,
-        loginMessageEnum: Number,
+        loginAlertEnum: Number,
     },
 
     data: function() {
         return {
             error: {
-                icon: "exclamation",
-                color: "red",
-                message: "Incorrect PIN code, try again.",
+                type: "error",
+                message: "Incorrect PIN, try again.",
             },
             success: {
-                icon: "check",
-                color: "green",
+                type: "success",
                 message: "Successfully logged in.",
             },
         };
     },
 
     computed: {
-        getMessage: function() {
-            switch (this.loginMessageEnum) {
+        getAlert: function() {
+            switch (this.loginAlertEnum) {
                 case 1:
                     return this.success;
                 case 2:
                     return this.error;
                 default:
-                    return { icon: "", color: "", message: "" };
+                    return null;
             }
         },
     },

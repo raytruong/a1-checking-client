@@ -15,6 +15,7 @@ export default {
 
     props: {
         employeeName: String,
+        employeeId: String,
     },
 
     data: function() {
@@ -42,7 +43,7 @@ export default {
 
     methods: {
         handleClick: function() {
-            this.$emit("openDialog", this.employeeName); // (eventname, payload)
+            this.$emit("openDialog", this.employeeName, this.employeeId); // (eventname, payload)
         },
     },
 };

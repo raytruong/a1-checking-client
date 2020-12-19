@@ -3,9 +3,10 @@
         <v-row>
             <EmployeeCard
                 v-for="employee in employees"
-                :key="employee"
+                :key="employee._id"
                 @openDialog="openDialog"
-                :employeeName="employee"
+                :employeeName="employee.name"
+                :employeeId="employee._id"
             >
             </EmployeeCard>
             <v-dialog
@@ -16,9 +17,9 @@
             >
                 <PinCodeDialog
                     @cancelButtonClicked="closeDialog"
-                    :employeeName="selectedEmployee"
+                    :employeeName="selectedEmployeeName"
                     :keysEntered="keysEntered"
-                    :loginMessageEnum="loginMessageEnum"
+                    :loginAlertEnum="loginAlertEnum"
                 >
                 </PinCodeDialog>
             </v-dialog>
@@ -38,30 +39,34 @@ export default {
         PinCodeDialog,
     },
 
+    async created() {
+        let data = await this.$db.allDocs({
+            include_docs: true,
+        });
+        this.employees = data.rows.map(row => ({
+            _id: row.doc["_id"],
+            name: row.doc["user"],
+        }));
+    },
+
     data: function() {
         return {
-            employees: [
-                "Raymond Truong",
-                "Andy Plank",
-                "Jon Huber",
-                "Eric Cummings",
-                "Collin Li",
-                "Jay Rixie",
-                "Daniel Plue",
-            ],
+            employees: [],
             showPinCodeDialog: false,
-            selectedEmployee: "",
+            selectedEmployeeName: "",
+            selectedEmployeeId: "",
             pin: [],
             keysEntered: 0,
-            loginMessageEnum: 0,
+            loginAlertEnum: 0,
         };
     },
 
     methods: {
-        handleInput(keydown) {
+        async handleInput(keydown) {
             if (keydown.key === "Backspace" && this.keysEntered > 0) {
                 this.pin.pop();
                 this.keysEntered -= 1;
+                this.loginAlertEnum = 0;
             } else if (
                 /^\d+$/.test(keydown.key) && // is number
                 this.keysEntered < 4
@@ -70,20 +75,25 @@ export default {
                 this.keysEntered += 1;
 
                 if (this.pin.length == 4) {
-                    // TODO: Attempt to login
-                    console.log(this.pin);
+                    let data = await this.$db.get(this.selectedEmployeeId);
+                    if (this.pin.join("") === data.pin) {
+                        this.loginAlertEnum = 1;
+                    } else {
+                        this.loginAlertEnum = 2;
+                    }
                 }
             }
         },
-        openDialog(name) {
+        openDialog(employeeName, employeeId) {
             this.showPinCodeDialog = true;
-            this.selectedEmployee = name;
+            this.selectedEmployeeName = employeeName;
+            this.selectedEmployeeId = employeeId;
         },
         closeDialog() {
             this.showPinCodeDialog = false;
             this.pin = [];
             this.keysEntered = 0;
-            this.loginMessageEnum = 0;
+            this.loginAlertEnum = 0;
         },
     },
 };
