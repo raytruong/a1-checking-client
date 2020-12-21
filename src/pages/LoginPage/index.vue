@@ -68,7 +68,7 @@ export default {
                 this.pin.push(keydown.key);
                 this.keysEntered += 1;
 
-                if (this.pin.length == 4) {
+                if (this.keysEntered == 4) {
                     let data = await this.$db.getEmployee(
                         this.selectedEmployeeId,
                     );
@@ -76,6 +76,8 @@ export default {
                         this.loginAlertEnum = 1;
                     } else {
                         this.loginAlertEnum = 2;
+                        this.keysEntered = 0;
+                        this.pin = [];
                     }
                 }
             }

@@ -24,7 +24,7 @@ const db = {
         });
         return data.rows.map(row => ({
             _id: row.doc["_id"],
-            name: row.doc["user"],
+            name: row.doc["name"],
         }));
     },
     getEmployee: async function(_id) {
