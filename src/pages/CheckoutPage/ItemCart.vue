@@ -25,34 +25,11 @@ export default {
     },
 
     props: {
-        // items: Array,
+        items: Array,
     },
 
     data: function() {
-        return {
-            items: [
-                {
-                    name: "Item Name 1",
-                    price: 23.95,
-                    quantity: 4,
-                },
-                {
-                    name: "Item Name 2",
-                    price: 15.0,
-                    quantity: 1,
-                },
-                {
-                    name: "Item Name 3",
-                    price: 15.0,
-                    quantity: 1,
-                },
-                {
-                    name: "Item Name 4",
-                    price: 15.0,
-                    quantity: 1,
-                },
-            ],
-        };
+        return {};
     },
 
     computed: {},

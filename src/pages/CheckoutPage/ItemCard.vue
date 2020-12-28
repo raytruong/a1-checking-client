@@ -1,5 +1,5 @@
 <template>
-    <v-card tile outlined>
+    <v-card tile outlined class="mt-2">
         <v-card-title>
             {{ name }}
             <v-spacer />
