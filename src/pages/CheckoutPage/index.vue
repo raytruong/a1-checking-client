@@ -1,13 +1,13 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="8">
-                <v-card height="100%" outlined>
+            <v-col>
+                <v-card height="100%" color="grey lighten-3" outlined>
                     Items go here
                 </v-card>
             </v-col>
-            <v-col>
-                <v-card height="100%" outlined max-width="300">
+            <v-col cols="3">
+                <v-card height="100%" color="grey lighten-3" outlined>
                     <ItemCart :items="items" />
                 </v-card>
             </v-col>
