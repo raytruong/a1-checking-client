@@ -6,7 +6,7 @@
                     Items go here
                 </v-card>
             </v-col>
-            <v-col cols="3">
+            <v-col cols="2">
                 <v-card height="100%" color="grey lighten-3" outlined>
                     <ItemCart :items="items" />
                 </v-card>

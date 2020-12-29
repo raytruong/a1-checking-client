@@ -1,28 +1,46 @@
 <template>
-    <v-card tile outlined class="mt-2">
+    <v-card max-width="256" tile outlined class="mt-2">
         <v-card-title>
-            {{ name }}
+            <div>
+                {{ name }}
+            </div>
             <v-spacer />
-            ${{ price }}
+            <div class="green--text">${{ price }}</div>
         </v-card-title>
-        <v-container class="justify-center">
-            <v-btn icon>
-                <font-awesome-icon icon="plus-square" size="small" />
-            </v-btn>
-            <v-btn icon>
-                <font-awesome-icon icon="minus-square" size="small" />
-            </v-btn>
+        <v-container>
+            <v-row justify="center">
+                <v-btn outlined tile>
+                    <font-awesome-icon icon="plus-square" size="large" />
+                </v-btn>
+                <v-avatar tile color="grey darken-3" width="64" max-height="36">
+                    <span class="white--text">{{ quantity }}</span>
+                </v-avatar>
+                <v-btn outlined tile>
+                    <font-awesome-icon icon="minus-square" size="small" />
+                </v-btn>
+            </v-row>
         </v-container>
         <v-card-actions>
-            <v-btn color="orange lighten-2" text>
-                <font-awesome-icon class="mr-1" icon="pen" size="small" />
-                Edit
-            </v-btn>
-            <v-spacer />
-            <v-btn color="red lighten-2" text>
-                <font-awesome-icon class="mr-1" icon="trash" size="small" />
-                Remove
-            </v-btn>
+            <v-container>
+                <v-row justify="center">
+                    <v-btn color="orange" tile outlined>
+                        <font-awesome-icon
+                            class="mr-1"
+                            icon="pen"
+                            size="small"
+                        />
+                        Edit
+                    </v-btn>
+                    <v-btn class="ml-3" color="red lighten-2" tile outlined>
+                        <font-awesome-icon
+                            class="mr-1"
+                            icon="trash"
+                            size="small"
+                        />
+                        Delete
+                    </v-btn>
+                </v-row>
+            </v-container>
         </v-card-actions>
     </v-card>
 </template>
@@ -38,9 +56,7 @@ export default {
     },
 
     data: function() {
-        return {
-            //
-        };
+        return {};
     },
 
     computed: {},
