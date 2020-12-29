@@ -1,14 +1,14 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col>
+    <v-container fill-height>
+        <v-row fill-height>
+            <v-col fill-height>
                 <v-card height="100%" color="grey lighten-3" outlined>
                     Items go here
                 </v-card>
             </v-col>
-            <v-col cols="3">
+            <v-col fill-height cols="3">
                 <v-card height="100%" color="grey lighten-3" outlined>
-                    <ItemCart :items="items" />
+                    <ItemCart :items="empty" />
                 </v-card>
             </v-col>
         </v-row>
