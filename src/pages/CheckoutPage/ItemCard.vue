@@ -1,5 +1,5 @@
 <template>
-    <v-card max-width="256" tile outlined class="mt-2">
+    <v-card tile outlined class="mt-2">
         <v-card-title>
             <div>
                 {{ name }}
