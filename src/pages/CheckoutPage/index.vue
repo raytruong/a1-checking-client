@@ -3,12 +3,12 @@
         <v-row fill-height>
             <v-col fill-height>
                 <v-card height="100%" color="grey lighten-3" outlined>
-                    Items go here
+                    <ItemSelector :items="items" />
                 </v-card>
             </v-col>
             <v-col fill-height cols="3">
                 <v-card height="100%" color="grey lighten-3" outlined>
-                    <ItemCart :items="empty" />
+                    <ItemCart :items="selected" />
                 </v-card>
             </v-col>
         </v-row>
@@ -16,19 +16,27 @@
 </template>
 
 <script>
+import ItemSelector from "./ItemSelector";
 import ItemCart from "./ItemCart";
+
+let items = [];
+for (let i = 0; i < 100; i += 1) {
+    items.push({ name: `Item Name: ${i}` });
+}
 
 export default {
     name: "CheckoutPage",
 
     components: {
+        ItemSelector,
         ItemCart,
     },
 
     data: function() {
         return {
             empty: [],
-            items: [
+            items: items,
+            selected: [
                 {
                     name: "Item Name 1",
                     price: 23.95,

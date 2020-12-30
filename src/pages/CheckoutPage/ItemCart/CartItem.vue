@@ -53,7 +53,7 @@
 
 <script>
 export default {
-    name: "ItemCard",
+    name: "CartItem",
 
     props: {
         name: String,

@@ -2,14 +2,14 @@
     <v-container>
         <v-row>
             <v-col>
-                <ItemCard
+                <CartItem
                     v-for="item in items"
                     :key="item.name"
                     :name="item.name"
                     :price="item.price"
                     :quantity="item.quantity"
                 >
-                </ItemCard>
+                </CartItem>
                 <v-card
                     color="transparent"
                     tile
@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import ItemCard from "./ItemCard";
+import CartItem from "./CartItem";
 export default {
     name: "ItemCart",
 
     components: {
-        ItemCard,
+        CartItem,
     },
 
     props: {
