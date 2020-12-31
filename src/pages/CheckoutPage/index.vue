@@ -2,12 +2,12 @@
     <v-container fill-height>
         <v-row fill-height>
             <v-col fill-height>
-                <v-card height="100%" color="grey lighten-3" outlined>
+                <v-card height="80vh" color="grey lighten-3" outlined>
                     <ItemSelector :items="items" />
                 </v-card>
             </v-col>
             <v-col fill-height cols="3">
-                <v-card height="100%" color="grey lighten-3" outlined>
+                <v-card height="80vh" color="grey lighten-3" outlined>
                     <ItemCart :items="selected" />
                 </v-card>
             </v-col>
@@ -21,7 +21,7 @@ import ItemCart from "./ItemCart";
 
 let items = [];
 for (let i = 0; i < 100; i += 1) {
-    items.push({ name: `Item Name: ${i}` });
+    items.push({ name: `Item #${i}` });
 }
 
 export default {

@@ -1,8 +1,8 @@
 <template>
-    <v-card max-width="256" tile outlined class="mt-2">
-        <v-card-title>
-            {{ name }}
-        </v-card-title>
+    <v-card max-width="256" height="124" tile outlined class="mt-2">
+        <v-card-text class="black--text title">
+            {{ getName }}
+        </v-card-text>
     </v-card>
 </template>
 
@@ -18,7 +18,15 @@ export default {
         return {};
     },
 
-    computed: {},
+    computed: {
+        getName: function() {
+            let name = this.name;
+            for (let i = 0; i < Math.random() * 30; i++) {
+                name += i;
+            }
+            return name;
+        },
+    },
 
     methods: {},
 };
