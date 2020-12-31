@@ -3,6 +3,7 @@
         <v-row>
             <v-col>
                 <v-virtual-scroll
+                    v-if="this.items.length > 0"
                     class="mb-4"
                     :bench="10"
                     :items="items"
@@ -18,6 +19,15 @@
                         />
                     </template>
                 </v-virtual-scroll>
+                <v-card color="transparent" tile flat height="80vh" v-else>
+                    <v-container fill-height fluid>
+                        <v-row class="title" align="center" justify="center">
+                            <div class="black--text">
+                                No items in cart
+                            </div>
+                        </v-row>
+                    </v-container>
+                </v-card>
                 <v-btn block large color="green">
                     <span class="white--text">
                         Next

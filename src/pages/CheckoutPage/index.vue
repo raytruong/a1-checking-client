@@ -14,12 +14,16 @@
                 <ItemCart :items="selected" />
             </v-col>
         </v-row>
+        <v-dialog max-width="45vw" max-height="30vh" v-model="showItemDialog">
+            <ItemDialog />
+        </v-dialog>
     </v-container>
 </template>
 
 <script>
 import ItemSelector from "./ItemSelector";
 import ItemCart from "./ItemCart";
+import ItemDialog from "./ItemDialog";
 
 let items = [];
 for (let i = 0; i < 100; i += 1) {
@@ -37,10 +41,12 @@ export default {
     components: {
         ItemSelector,
         ItemCart,
+        ItemDialog,
     },
 
     data: function() {
         return {
+            showItemDialog: true,
             empty: [],
             items: items,
             selected: selected,
