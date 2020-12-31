@@ -19,7 +19,9 @@
                 >
                     <v-container fill-height fluid>
                         <v-row class="title" align="center" justify="center">
-                            No items in cart
+                            <div class="black--text">
+                                No items in cart
+                            </div>
                         </v-row>
                     </v-container>
                 </v-card>

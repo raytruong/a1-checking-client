@@ -78,7 +78,9 @@
         >
             <v-container fill-height fluid>
                 <v-row class="title" align="center" justify="center">
-                    No items to display
+                    <div class="black--text">
+                        No items to display
+                    </div>
                 </v-row>
             </v-container>
         </v-card>

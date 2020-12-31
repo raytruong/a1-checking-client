@@ -1,15 +1,16 @@
 <template>
     <v-container fill-height>
         <v-row fill-height>
-            <v-col fill-height>
-                <v-card height="80vh" color="grey lighten-3" outlined>
-                    <ItemSelector :items="items" />
-                </v-card>
+            <v-col class="mr-1 grey-background" fill-height>
+                <ItemSelector :items="items" />
             </v-col>
-            <v-col fill-height cols="3">
-                <v-card height="80vh" color="grey lighten-3" outlined>
-                    <ItemCart :items="selected" />
-                </v-card>
+            <v-col
+                class="ml-1 grey-background"
+                fill-height
+                color="grey"
+                cols="3"
+            >
+                <ItemCart :items="selected" />
             </v-col>
         </v-row>
     </v-container>
@@ -57,6 +58,16 @@ export default {
                     price: 15.0,
                     quantity: 1,
                 },
+                {
+                    name: "Item Name 5",
+                    price: 15.0,
+                    quantity: 1,
+                },
+                {
+                    name: "Item Name 6",
+                    price: 15.0,
+                    quantity: 1,
+                },
             ],
         };
     },
@@ -64,3 +75,10 @@ export default {
     methods: {},
 };
 </script>
+
+<style scoped>
+.grey-background {
+    border-radius: 6px;
+    background-color: #eeeeee;
+}
+</style>
