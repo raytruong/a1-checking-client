@@ -26,6 +26,11 @@ for (let i = 0; i < 100; i += 1) {
     items.push({ name: `Item #${i}` });
 }
 
+let selected = [];
+for (let i = 1; i < 4; i += 1) {
+    selected.push({ name: `Item #${i}`, price: 23.95, quantity: 2 });
+}
+
 export default {
     name: "CheckoutPage",
 
@@ -38,48 +43,7 @@ export default {
         return {
             empty: [],
             items: items,
-            selected: [
-                {
-                    name: "Item Name 1",
-                    price: 23.95,
-                    quantity: 4,
-                },
-                {
-                    name: "Item Name 2",
-                    price: 15.0,
-                    quantity: 1,
-                },
-                {
-                    name: "Item Name 3",
-                    price: 15.0,
-                    quantity: 1,
-                },
-                {
-                    name: "Item Name 4",
-                    price: 15.0,
-                    quantity: 1,
-                },
-                {
-                    name: "Item Name 5",
-                    price: 15.0,
-                    quantity: 1,
-                },
-                {
-                    name: "Item Name 6",
-                    price: 15.0,
-                    quantity: 1,
-                },
-                {
-                    name: "Item Name 7",
-                    price: 15.0,
-                    quantity: 1,
-                },
-                {
-                    name: "Item Name 8",
-                    price: 15.0,
-                    quantity: 1,
-                },
-            ],
+            selected: selected,
         };
     },
 

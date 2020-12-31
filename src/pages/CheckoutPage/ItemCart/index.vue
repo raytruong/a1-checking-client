@@ -8,13 +8,12 @@
                     :height="scrollHeight"
                 >
                     <template v-slot:default="{ item }">
-                        <v-list-item>
-                            <CartItem
-                                :name="item.name"
-                                :price="item.price"
-                                :quantity="item.quantity"
-                            />
-                        </v-list-item>
+                        <CartItem
+                            class="mr-2"
+                            :name="item.name"
+                            :price="item.price"
+                            :quantity="item.quantity"
+                        />
                     </template>
                 </v-virtual-scroll>
             </v-col>
