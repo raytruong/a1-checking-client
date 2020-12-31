@@ -3,6 +3,8 @@
         <v-row>
             <v-col>
                 <v-virtual-scroll
+                    class="mb-4"
+                    :bench="10"
                     :items="items"
                     :item-height="200"
                     :height="scrollHeight"
@@ -16,6 +18,11 @@
                         />
                     </template>
                 </v-virtual-scroll>
+                <v-btn block large color="green">
+                    <span class="white--text">
+                        Next
+                    </span>
+                </v-btn>
             </v-col>
         </v-row>
     </v-container>
@@ -36,10 +43,9 @@ export default {
 
     mounted() {
         this.$nextTick(function() {
-            this.scrollHeight = parseInt(
-                document.getElementById("cart-col").clientHeight,
-                0,
-            );
+            this.scrollHeight =
+                parseInt(document.getElementById("cart-col").clientHeight, 0) -
+                100;
         });
     },
 
