@@ -27,8 +27,8 @@ for (let i = 0; i < 100; i += 1) {
 }
 
 let selected = [];
-for (let i = 1; i < 4; i += 1) {
-    selected.push({ name: `Item #${i}`, price: 23.95, quantity: 2 });
+for (let i = 1; i < 8; i += 1) {
+    selected.push({ name: `Item #${i}`, price: 230.95, quantity: 2 });
 }
 
 export default {

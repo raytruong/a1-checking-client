@@ -10,17 +10,25 @@
         >
             <template v-slot:header>
                 <v-toolbar flat dark color="grey darken-3" class="shrink mb-1">
-                    <v-btn
-                        class="ml-2"
-                        outlined
-                        v-for="category in categories"
-                        :key="category.name"
-                        large
-                    >
-                        <div class="title">
-                            {{ category.name }}
-                        </div>
-                    </v-btn>
+                    <v-item-group mandatory>
+                        <v-item
+                            v-slot="{ active, toggle }"
+                            v-for="category in categories"
+                            :key="category.name"
+                        >
+                            <v-btn
+                                :color="active ? 'white' : 'grey darken-1'"
+                                outlined
+                                @click="toggle"
+                                class="ml-2"
+                                large
+                            >
+                                <div class="white--text title">
+                                    {{ category.name }}
+                                </div>
+                            </v-btn>
+                        </v-item>
+                    </v-item-group>
                     <v-spacer />
                     <span
                         class="mr-4

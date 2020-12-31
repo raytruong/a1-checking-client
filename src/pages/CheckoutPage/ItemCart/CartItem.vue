@@ -1,11 +1,21 @@
 <template>
     <v-card tile outlined class="mt-2">
         <v-card-title>
-            <div>
-                {{ name }}
-            </div>
+            <v-tooltip top>
+                <template v-slot:activator="{ on, attrs }">
+                    <span
+                        v-bind="attrs"
+                        v-on="on"
+                        class="d-inline-block text-truncate"
+                        style="max-width: 75%;"
+                    >
+                        {{ getName }}
+                    </span>
+                </template>
+                <span>{{ getName }}</span>
+            </v-tooltip>
             <v-spacer />
-            <div class="green--text">${{ price }}</div>
+            <span class="green--text">${{ price }}</span>
         </v-card-title>
         <v-container>
             <v-row justify="center">
@@ -65,8 +75,25 @@ export default {
         return {};
     },
 
-    computed: {},
+    computed: {
+        getName: function() {
+            let name = this.name;
+            for (let i = 0; i < Math.random() * 50; i++) {
+                name += i;
+            }
+            return name;
+        },
+    },
 
     methods: {},
 };
 </script>
+
+<style scoped>
+.truncate {
+    white-space: nowrap;
+    word-break: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
