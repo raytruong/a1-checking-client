@@ -2,29 +2,21 @@
     <v-container>
         <v-row>
             <v-col>
-                <CartItem
-                    v-for="item in items"
-                    :key="item.name"
-                    :name="item.name"
-                    :price="item.price"
-                    :quantity="item.quantity"
+                <v-virtual-scroll
+                    :items="items"
+                    :item-height="200"
+                    :height="scrollHeight"
                 >
-                </CartItem>
-                <v-card
-                    color="transparent"
-                    tile
-                    flat
-                    height="80vh"
-                    v-if="this.items.length === 0"
-                >
-                    <v-container fill-height fluid>
-                        <v-row class="title" align="center" justify="center">
-                            <div class="black--text">
-                                No items in cart
-                            </div>
-                        </v-row>
-                    </v-container>
-                </v-card>
+                    <template v-slot:default="{ item }">
+                        <v-list-item>
+                            <CartItem
+                                :name="item.name"
+                                :price="item.price"
+                                :quantity="item.quantity"
+                            />
+                        </v-list-item>
+                    </template>
+                </v-virtual-scroll>
             </v-col>
         </v-row>
     </v-container>
@@ -43,8 +35,19 @@ export default {
         items: Array,
     },
 
+    mounted() {
+        this.$nextTick(function() {
+            this.scrollHeight = parseInt(
+                document.getElementById("cart-col").clientHeight,
+                0,
+            );
+        });
+    },
+
     data: function() {
-        return {};
+        return {
+            scrollHeight: 0,
+        };
     },
 
     computed: {},

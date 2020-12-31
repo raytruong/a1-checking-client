@@ -5,6 +5,7 @@
                 <ItemSelector :items="items" />
             </v-col>
             <v-col
+                id="cart-col"
                 class="ml-1 grey-background"
                 fill-height
                 color="grey"
@@ -65,6 +66,16 @@ export default {
                 },
                 {
                     name: "Item Name 6",
+                    price: 15.0,
+                    quantity: 1,
+                },
+                {
+                    name: "Item Name 7",
+                    price: 15.0,
+                    quantity: 1,
+                },
+                {
+                    name: "Item Name 8",
                     price: 15.0,
                     quantity: 1,
                 },
