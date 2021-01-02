@@ -2,7 +2,7 @@
     <v-container>
         <v-data-iterator
             v-if="this.items.length > 0"
-            :items="items"
+            :items="getItems"
             :items-per-page="ipp"
             :page.sync="page"
             hide-default-footer
@@ -59,18 +59,18 @@
                     </v-btn>
                 </v-toolbar>
             </template>
-            <template v-slot:default>
+            <template v-slot:default="props">
                 <v-card height="70vh" color="transparent" tile flat>
                     <v-container>
                         <v-row
                             align="stretch"
                             class="fill-height overflow-auto"
-                            id="container"
+                            id="item-view"
                         >
                             <v-col
-                                v-for="item in getItems"
+                                v-for="item in props.items"
                                 :key="item.name"
-                                :cols="12 / itemsPerRow"
+                                :cols="12 / ipr"
                                 class="py-2"
                             >
                                 <ItemCard :name="item.name" />
@@ -100,15 +100,7 @@
 
 <script>
 import ItemCard from "./ItemCard";
-const category_enum = {
-    "Full Set": "full_set",
-    "Fill In": "fill_in",
-    "Polish Change": "polish_change",
-    Pedicure: "pedicure",
-    Manicure: "manicure",
-    Kids: "kids",
-    Addons: "addons",
-};
+
 export default {
     name: "ItemSelector",
 
@@ -120,58 +112,32 @@ export default {
         items: Array,
     },
 
-    created() {
-        window.addEventListener("resize", () => {
-            this.calcRowsPerPage();
-        });
-    },
+    created() {},
 
     data: function() {
         return {
-            rpp: 4,
+            rpp: 3,
+            ipr: 6,
+            ipp: 18,
             page: 1,
-            busy: false,
-            categories: Object.keys(category_enum),
             selected_category: "",
+            categories: [...new Set(this.items.map(item => item.category))],
         };
     },
     computed: {
         getItems() {
-            let arr = [];
-            for (let i in this.items) {
-                if (
-                    this.items[i].category ===
-                    category_enum[this.selected_category]
-                ) {
-                    arr.push(this.items[i]);
-                }
-            }
-            return arr;
+            return this.items.filter(
+                item => item.category === this.selected_category,
+            );
         },
         numberOfPages() {
-            return Math.ceil(this.items.length / this.ipp);
-        },
-        rowsPerPage() {
-            return this.rpp;
-        },
-        itemsPerRow() {
-            switch (this.$vuetify.breakpoint.name) {
-                case "xs":
-                    return 1;
-                case "sm":
-                    return 2;
-                case "md":
-                    return 3;
-                case "lg":
-                    return 4;
-                case "xl":
-                    return 6;
-                default:
-                    return 3;
-            }
-        },
-        ipp() {
-            return Math.ceil(this.rowsPerPage * this.itemsPerRow);
+            return Math.ceil(
+                this.items.reduce((acc, item) => {
+                    return item.category === this.selected_category
+                        ? (acc += 1)
+                        : acc;
+                }, 0) / this.ipp,
+            );
         },
     },
     methods: {
@@ -182,7 +148,7 @@ export default {
             if (this.page - 1 >= 1) this.page -= 1;
         },
         calcRowsPerPage() {
-            const container = document.getElementById("container");
+            const container = document.getElementById("item-view");
             if (container) {
                 const containerHeight = parseInt(container.clientHeight, 0);
                 const minItemHeight = 160;

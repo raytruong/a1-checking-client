@@ -1,187 +1,187 @@
 {
     "gel_polish_full_set": {
         "name": "Gel Polish",
-        "category": "full_set",
+        "category": "Full Set",
         "price": 3300
     },
-    "regular_polish_full_set": {
+    "regular_polish_full_Set": {
         "name": "Regular Polish",
-        "category": "full_set",
+        "category": "Full Set",
         "price": 2800
     },
     "pink_white_full_set": {
         "name": "Pink & White",
-        "category": "full_set",
+        "category": "Full Set",
         "price": 5500
     },
     "ombre_full_set": {
         "name": "Ombre",
-        "category": "full_set",
+        "category": "Full Set",
         "price": 5500
     },
     "dipping_natural_nail_full_set": {
         "name": "Dipping (Natural Nail)",
-        "category": "full_set",
+        "category": "Full Set",
         "price": 3500
     },
     "dipping_with_tip_full_set": {
         "name": "Dipping (With Tip)",
-        "category": "full_set",
+        "category": "Full Set",
         "price": 4000
     },
     "gel_polish_fill_in": {
         "name": "Gel Polish",
-        "category": "fill_in",
+        "category": "Fill In",
         "price": 3000
     },
     "regular_polish_fill_in": {
         "name": "Regular Polish",
-        "category": "fill_in",
+        "category": "Fill In",
         "price": 2300
     },
     "pink_white_fill_in": {
         "name": "Pink & White",
-        "category": "fill_in",
+        "category": "Fill In",
         "price": 4000
     },
     "ombre_fill_in": {
         "name": "Ombre",
-        "category": "fill_in",
+        "category": "Fill In",
         "price": 4500
     },
     "classic_pedicure": {
         "name": "Classic",
-        "category": "pedicure",
+        "category": "Pedicure",
         "price": 2500
     },
     "signature_pedicure": {
         "name": "Signature",
-        "category": "pedicure",
+        "category": "Pedicure",
         "price": 3000
     },
     "deluxe_pedicure": {
         "name": "Deluxe",
-        "category": "pedicure",
+        "category": "Pedicure",
         "price": 3500
     },
     "hot_stone_pedicure": {
         "name": "Hot Stone",
-        "category": "pedicure",
+        "category": "Pedicure",
         "price": 4000
     },
     "classic_manicure_pedicure": {
         "name": "Classic Pedicure & Manicure",
-        "category": "pedicure",
+        "category": "Pedicure",
         "price": 4000
     },
     "classic_manicure": {
         "name": "Classic",
-        "category": "manicure",
+        "category": "Manicure",
         "price": 2000
     },
     "gel_manicure": {
         "name": "Gel",
-        "category": "manicure",
+        "category": "Manicure",
         "price": 2800
     },
     "manicure_kids": {
         "name": "Manicure",
-        "category": "kids",
+        "category": "Kids",
         "price": 1000
     },
     "pedicure_kids": {
         "name": "Pedicure",
-        "category": "kids",
+        "category": "Kids",
         "price": 1800
     },
     "pedicure_manicure_kids": {
         "name": "Pedicure & Manicure",
-        "category": "kids",
+        "category": "Kids",
         "price": 2500
     },
     "regular_polish_kids": {
         "name": "Regular Polish",
-        "category": "kids",
+        "category": "Kids",
         "price": 500
     },
     "gel_polish_kids": {
         "name": "Gel Polish",
-        "category": "kids",
+        "category": "Kids",
         "price": 1500
     },
     "hand_gel_polish_change": {
         "name": "Hand Gel",
-        "category": "polish_change",
+        "category": "Polish Change",
         "price": 1800
     },
-    "toe_gel_polish_change": {
+    "toe_gel_polis_change": {
         "name": "Toe Gel",
-        "category": "polish_change",
+        "category": "Polish Change",
         "price": 2000
     },
     "hand_regular_polish_change": {
         "name": "Hand Regular",
-        "category": "polish_change",
+        "category": "Polish Change",
         "price": 1000
     },
     "toe_regular_polish_change": {
         "name": "Toe Regular",
-        "category": "polish_change",
+        "category": "Polish Change",
         "price": 1000
     },
     "gel_addon": {
         "name": "Gel",
-        "category": "addons",
+        "category": "Addons",
         "price": 1000
     },
     "white_tip_addon": {
         "name": "White Tip",
-        "category": "addons",
+        "category": "Addons",
         "price": 500
     },
     "gel_powder_addon": {
         "name": "Gel Powder",
-        "category": "addons",
+        "category": "Addons",
         "price": 500
     },
     "repair_addon": {
         "name": "Repair",
-        "category": "addons",
+        "category": "Addons",
         "price": 400
     },
     "cut_down_addon": {
         "name": "Cut Down",
-        "category": "addons",
+        "category": "Addons",
         "price": 300
     },
     "take_off_gel_addon": {
         "name": "Take Off Gel (With Services)",
-        "category": "addons",
+        "category": "Addons",
         "price": 500
     },
     "soak_off_acrylic_addon": {
         "name": "Soak Off Acrylic",
-        "category": "addons",
+        "category": "Addons",
         "price": 1500
     },
     "pop_off_acrylic_addon": {
         "name": "Pop Off Acrylic",
-        "category": "addons",
+        "category": "Addons",
         "price": 1000
     },
     "shine_buff_addon": {
         "name": "Shine Buff",
-        "category": "addons",
+        "category": "Addons",
         "price": 500
     },
     "art_design_addon": {
         "name": "Art Design",
-        "category": "addons",
+        "category": "Addons",
         "price": 200
     },
     "other_services_addon": {
         "name": "Other Services",
-        "category": "addons",
+        "category": "Addons",
         "price": 300
     }
 }

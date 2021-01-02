@@ -1,7 +1,7 @@
 <template>
     <v-container fill-height>
         <v-row fill-height>
-            <v-col class="mr-1 grey-background" fill-height>
+            <v-col id="item-col" class="mr-1 grey-background" fill-height>
                 <ItemSelector :items="items" />
             </v-col>
             <v-col
