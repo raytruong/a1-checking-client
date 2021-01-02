@@ -24,11 +24,7 @@
 import ItemSelector from "./ItemSelector";
 import ItemCart from "./ItemCart";
 import ItemDialog from "./ItemDialog";
-
-let items = [];
-for (let i = 0; i < 100; i += 1) {
-    items.push({ name: `Item #${i}` });
-}
+import Items from "@/items.json";
 
 let selected = [];
 for (let i = 1; i < 8; i += 1) {
@@ -48,7 +44,7 @@ export default {
         return {
             showItemDialog: true,
             empty: [],
-            items: items,
+            items: Object.values(Items),
             selected: selected,
         };
     },

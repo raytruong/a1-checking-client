@@ -10,11 +10,12 @@
         >
             <template v-slot:header>
                 <v-toolbar flat dark color="grey darken-3" class="shrink mb-1">
-                    <v-item-group mandatory>
+                    <v-item-group v-model="selected_category" mandatory>
                         <v-item
                             v-slot="{ active, toggle }"
                             v-for="category in categories"
                             :key="category.name"
+                            :value="category"
                         >
                             <v-btn
                                 :color="active ? 'white' : 'grey darken-1'"
@@ -24,7 +25,7 @@
                                 large
                             >
                                 <div class="white--text title">
-                                    {{ category.name }}
+                                    {{ category }}
                                 </div>
                             </v-btn>
                         </v-item>
@@ -34,7 +35,7 @@
                         class="mr-4
                         white--text"
                     >
-                        Page {{ page }} of {{ numberOfPages }}
+                        {{ page }} / {{ numberOfPages }}
                     </span>
                     <v-btn
                         large
@@ -58,23 +59,25 @@
                     </v-btn>
                 </v-toolbar>
             </template>
-            <template v-slot:default="props">
-                <v-container>
-                    <v-row
-                        align="stretch"
-                        class="fill-height overflow-auto"
-                        id="container"
-                    >
-                        <v-col
-                            v-for="item in props.items"
-                            :key="item.name"
-                            :cols="12 / itemsPerRow"
-                            class="py-2"
+            <template v-slot:default>
+                <v-card height="80vh" color="transparent" flat>
+                    <v-container>
+                        <v-row
+                            align="stretch"
+                            class="fill-height overflow-auto"
+                            id="container"
                         >
-                            <ItemCard :name="item.name" />
-                        </v-col>
-                    </v-row>
-                </v-container>
+                            <v-col
+                                v-for="item in getItems"
+                                :key="item.name"
+                                :cols="12 / itemsPerRow"
+                                class="py-2"
+                            >
+                                <ItemCard :name="item.name" />
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card>
             </template>
         </v-data-iterator>
         <v-card
@@ -97,6 +100,15 @@
 
 <script>
 import ItemCard from "./ItemCard";
+const category_enum = {
+    "Full Set": "full_set",
+    "Fill In": "fill_in",
+    "Polish Change": "polish_change",
+    Pedicure: "pedicure",
+    Manicure: "manicure",
+    Kids: "kids",
+    Addons: "addons",
+};
 export default {
     name: "ItemSelector",
 
@@ -119,29 +131,23 @@ export default {
             rpp: 4,
             page: 1,
             busy: false,
-            categories: [
-                {
-                    name: "Full Set",
-                },
-                {
-                    name: "Fill In",
-                },
-                {
-                    name: "Pedicure",
-                },
-                {
-                    name: "Manicure",
-                },
-                {
-                    name: "Kids",
-                },
-                {
-                    name: "Polish Change",
-                },
-            ],
+            categories: Object.keys(category_enum),
+            selected_category: "",
         };
     },
     computed: {
+        getItems() {
+            let arr = [];
+            for (let i in this.items) {
+                if (
+                    this.items[i].category ===
+                    category_enum[this.selected_category]
+                ) {
+                    arr.push(this.items[i]);
+                }
+            }
+            return arr;
+        },
         numberOfPages() {
             return Math.ceil(this.items.length / this.ipp);
         },
