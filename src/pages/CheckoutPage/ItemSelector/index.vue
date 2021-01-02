@@ -121,16 +121,22 @@ export default {
             busy: false,
             categories: [
                 {
-                    name: "✋ Manicure",
+                    name: "Full Set",
                 },
                 {
-                    name: "🦶 Pedicure",
+                    name: "Fill In",
                 },
                 {
-                    name: "🧒 Kids",
+                    name: "Pedicure",
                 },
                 {
-                    name: "❔ Other",
+                    name: "Manicure",
+                },
+                {
+                    name: "Kids",
+                },
+                {
+                    name: "Polish Change",
                 },
             ],
         };
