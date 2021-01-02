@@ -60,7 +60,7 @@
                 </v-toolbar>
             </template>
             <template v-slot:default="props">
-                <v-card height="70vh" color="transparent" tile flat>
+                <v-container height="70vh" color="transparent" tile flat>
                     <v-container>
                         <v-row
                             align="stretch"
@@ -73,11 +73,11 @@
                                 :cols="12 / ipr"
                                 class="py-2"
                             >
-                                <ItemCard :name="item.name" />
+                                <ItemCard :item="item" />
                             </v-col>
                         </v-row>
                     </v-container>
-                </v-card>
+                </v-container>
             </template>
         </v-data-iterator>
         <v-card

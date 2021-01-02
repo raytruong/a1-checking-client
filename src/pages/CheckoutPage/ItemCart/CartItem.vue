@@ -9,13 +9,13 @@
                         class="d-inline-block text-truncate"
                         style="max-width: 75%;"
                     >
-                        {{ getName }}
+                        {{ name }}
                     </span>
                 </template>
-                <span>{{ getName }}</span>
+                <span>{{ name }}</span>
             </v-tooltip>
             <v-spacer />
-            <span class="green--text">${{ price }}</span>
+            <span class="green--text">${{ price / 100 }}</span>
         </v-card-title>
         <v-container>
             <v-row justify="center">
@@ -44,6 +44,7 @@
                     <v-btn
                         class="ml-3"
                         color="red lighten-2"
+                        @click.stop="handleDeleteButton"
                         tile
                         outlined
                         small
@@ -75,17 +76,11 @@ export default {
         return {};
     },
 
-    computed: {
-        getName: function() {
-            let name = this.name;
-            for (let i = 0; i < Math.random() * 50; i++) {
-                name += i;
-            }
-            return name;
-        },
-    },
+    computed: {},
 
-    methods: {},
+    methods: {
+        handleDeleteButton() {},
+    },
 };
 </script>
 

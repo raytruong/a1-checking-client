@@ -11,7 +11,7 @@
                 color="grey"
                 cols="3"
             >
-                <ItemCart :items="empty" />
+                <ItemCart :items="selected" />
             </v-col>
         </v-row>
         <v-dialog max-width="45vw" max-height="30vh" v-model="showItemDialog">
@@ -26,11 +26,6 @@ import ItemCart from "./ItemCart";
 import ItemDialog from "./ItemDialog";
 import Items from "@/items.json";
 
-let selected = [];
-for (let i = 1; i < 8; i += 1) {
-    selected.push({ name: `Item #${i}`, price: 230.95, quantity: 2 });
-}
-
 export default {
     name: "CheckoutPage",
 
@@ -42,10 +37,10 @@ export default {
 
     data: function() {
         return {
-            showItemDialog: true,
+            showItemDialog: false,
             empty: [],
             items: Object.values(Items),
-            selected: selected,
+            selected: [],
         };
     },
 

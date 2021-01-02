@@ -1,7 +1,14 @@
 <template>
-    <v-card max-width="256" height="160" tile outlined class="mt-2">
+    <v-card
+        @click.stop="handleClick"
+        max-width="256"
+        height="160"
+        tile
+        outlined
+        class="mt-2"
+    >
         <v-card-text class="black--text title">
-            {{ name }}
+            {{ item.name }}
         </v-card-text>
     </v-card>
 </template>
@@ -11,7 +18,7 @@ export default {
     name: "ItemCard",
 
     props: {
-        name: String,
+        item: Object,
     },
 
     data: function() {
@@ -20,6 +27,8 @@ export default {
 
     computed: {},
 
-    methods: {},
+    methods: {
+        handleClick: function() {},
+    },
 };
 </script>
