@@ -60,7 +60,7 @@
                 </v-toolbar>
             </template>
             <template v-slot:default>
-                <v-card height="80vh" color="transparent" flat>
+                <v-card height="70vh" color="transparent" tile flat>
                     <v-container>
                         <v-row
                             align="stretch"
@@ -84,7 +84,7 @@
             color="transparent"
             tile
             flat
-            height="80vh"
+            height="70vh"
             v-if="this.items.length === 0"
         >
             <v-container fill-height fluid>

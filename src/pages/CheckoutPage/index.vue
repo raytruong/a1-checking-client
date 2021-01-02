@@ -11,7 +11,7 @@
                 color="grey"
                 cols="3"
             >
-                <ItemCart :items="selected" />
+                <ItemCart :items="empty" />
             </v-col>
         </v-row>
         <v-dialog max-width="45vw" max-height="30vh" v-model="showItemDialog">

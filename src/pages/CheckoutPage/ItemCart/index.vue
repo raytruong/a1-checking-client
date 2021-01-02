@@ -19,7 +19,7 @@
                         />
                     </template>
                 </v-virtual-scroll>
-                <v-card color="transparent" tile flat height="80vh" v-else>
+                <v-card color="transparent" tile flat height="70vh" v-else>
                     <v-container fill-height fluid>
                         <v-row class="title" align="center" justify="center">
                             <div class="black--text">
