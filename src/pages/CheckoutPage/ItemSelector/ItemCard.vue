@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import Bus from "../checkoutEventBus";
 export default {
     name: "ItemCard",
 
@@ -28,7 +29,9 @@ export default {
     computed: {},
 
     methods: {
-        handleClick: function() {},
+        handleClick: function() {
+            Bus.$emit("addToCart", this.item);
+        },
     },
 };
 </script>

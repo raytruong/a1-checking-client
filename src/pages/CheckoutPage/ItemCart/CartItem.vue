@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import Bus from "../checkoutEventBus";
 export default {
     name: "CartItem",
 
@@ -70,6 +71,7 @@ export default {
         name: String,
         price: Number,
         quantity: Number,
+        index: Number,
     },
 
     data: function() {
@@ -79,7 +81,9 @@ export default {
     computed: {},
 
     methods: {
-        handleDeleteButton() {},
+        handleDeleteButton() {
+            Bus.$emit("removeFromCart", this.index);
+        },
     },
 };
 </script>

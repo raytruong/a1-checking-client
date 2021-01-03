@@ -10,12 +10,13 @@
                     :item-height="200"
                     :height="scrollHeight"
                 >
-                    <template v-slot:default="{ item }">
+                    <template v-slot:default="{ item, index }">
                         <CartItem
                             class="mr-2"
                             :name="item.name"
                             :price="item.price"
                             :quantity="item.quantity"
+                            :index="index"
                         />
                     </template>
                 </v-virtual-scroll>

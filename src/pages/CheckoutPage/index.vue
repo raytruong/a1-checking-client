@@ -24,6 +24,7 @@
 import ItemSelector from "./ItemSelector";
 import ItemCart from "./ItemCart";
 import ItemDialog from "./ItemDialog";
+import Bus from "./checkoutEventBus";
 import Items from "@/items.json";
 
 export default {
@@ -39,12 +40,27 @@ export default {
         return {
             showItemDialog: false,
             empty: [],
-            items: Object.values(Items),
             selected: [],
+            items: Object.values(Items),
         };
     },
 
-    methods: {},
+    mounted() {
+        // Register eventbus listeners
+        Bus.$on("addToCart", this.addToCart);
+        Bus.$on("removeFromCart", this.removeFromCart);
+    },
+
+    methods: {
+        addToCart(payload) {
+            const item = JSON.parse(JSON.stringify(Items[payload.tag]));
+            item.quantity = 1;
+            this.selected.push(item);
+        },
+        removeFromCart(index) {
+            this.selected.splice(index, 1);
+        },
+    },
 };
 </script>
 
