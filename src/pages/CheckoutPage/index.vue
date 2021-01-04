@@ -15,7 +15,11 @@
             </v-col>
         </v-row>
         <v-dialog max-width="45vw" max-height="30vh" v-model="showItemDialog">
-            <ItemDialog />
+            <ItemDialog
+                :item="selectedItem"
+                :addonOptions="items.filter(item => item.category === 'Addons')"
+                width="400"
+            />
         </v-dialog>
     </v-container>
 </template>
@@ -39,6 +43,7 @@ export default {
     data: function() {
         return {
             showItemDialog: false,
+            selectedItem: {},
             empty: [],
             selected: [],
             items: Object.values(Items),
@@ -48,15 +53,24 @@ export default {
     mounted() {
         // Register eventbus listeners
         Bus.$on("addToCart", this.addToCart);
+        Bus.$on("selectItem", this.selectItem);
+        Bus.$on("editCartItem", this.editCartItem);
         Bus.$on("removeFromCart", this.removeFromCart);
         Bus.$on("increaseQuantity", this.increaseQuantity);
         Bus.$on("decreaseQuantity", this.decreaseQuantity);
     },
 
     methods: {
-        addToCart(tag) {
-            const item = JSON.parse(JSON.stringify(Items[tag]));
-            item.quantity = 1;
+        selectItem(tag) {
+            // Replace with class constructor
+            const newItem = JSON.parse(JSON.stringify(Items[tag]));
+            newItem.quantity = 1;
+            newItem.addons = [];
+            // Open dialog
+            this.selectedItem = newItem;
+            this.showItemDialog = true;
+        },
+        addToCart(item) {
             this.selected.push(item);
         },
         removeFromCart(index) {
@@ -68,6 +82,10 @@ export default {
         decreaseQuantity(index) {
             if (this.selected[index].quantity > 1)
                 this.selected[index].quantity -= 1;
+        },
+        editCartItem(index) {
+            this.showItemDialog = true;
+            this.itemDialogIndex = index;
         },
     },
 };

@@ -30,17 +30,17 @@
             <v-btn
                 class="ml-2"
                 color="red lighten-2"
-                @click.stop="removeFromCart"
+                @click.stop="handleRemoveButton"
                 tile
                 outlined
                 small
             >
-                <font-awesome-icon icon="trash" size="small" />
+                <font-awesome-icon icon="trash-alt" size="small" />
             </v-btn>
             <v-btn
                 class="ml-3"
                 color="orange"
-                @click.stop="editCartItem"
+                @click.stop="handleEditButton"
                 tile
                 outlined
                 small
@@ -93,7 +93,7 @@ export default {
     computed: {},
 
     methods: {
-        removeFromCart() {
+        handleRemoveButton() {
             Bus.$emit("removeFromCart", this.index);
         },
         handleIncreaseButton() {
@@ -101,6 +101,9 @@ export default {
         },
         handleDecreaseButton() {
             Bus.$emit("decreaseQuantity", this.index);
+        },
+        handleEditButton() {
+            Bus.$emit("editCartItem", this.index);
         },
     },
 };

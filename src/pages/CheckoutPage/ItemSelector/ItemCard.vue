@@ -30,7 +30,7 @@ export default {
 
     methods: {
         handleClick: function() {
-            Bus.$emit("addToCart", this.item.tag);
+            Bus.$emit("selectItem", this.item.tag);
         },
     },
 };
