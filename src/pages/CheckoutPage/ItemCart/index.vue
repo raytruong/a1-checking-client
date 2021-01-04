@@ -2,27 +2,27 @@
     <v-container>
         <v-row>
             <v-col>
-                <v-virtual-scroll
+                <v-card
+                    class="scroll-window"
+                    color="transparent"
+                    tile
+                    flat
+                    height="70vh"
                     v-if="this.items.length > 0"
-                    class="mb-4"
-                    :bench="10"
-                    :items="items"
-                    :item-height="210"
-                    :height="scrollHeight"
                 >
-                    <template v-slot:default="{ item, index }">
-                        <CartItem
-                            class="mr-2"
-                            :name="item.name"
-                            :category="item.category"
-                            :price="item.price"
-                            :quantity="item.quantity"
-                            :addons="item.addons"
-                            :index="index"
-                        />
-                    </template>
-                </v-virtual-scroll>
-                <v-card color="transparent" tile flat height="70vh" v-else>
+                    <CartItem
+                        v-for="(item, index) in this.items"
+                        :key="item.tag"
+                        class="mr-2 mb-2"
+                        :name="item.name"
+                        :category="item.category"
+                        :price="item.price"
+                        :quantity="item.quantity"
+                        :addons="item.addons"
+                        :index="index"
+                    />
+                </v-card>
+                <v-card v-else color="transparent" tile flat height="70vh">
                     <v-container fill-height fluid>
                         <v-row class="title" align="center" justify="center">
                             <div class="black--text">
@@ -73,3 +73,9 @@ export default {
     methods: {},
 };
 </script>
+
+<style scoped>
+.scroll-window {
+    overflow-y: auto;
+}
+</style>
