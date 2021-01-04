@@ -7,15 +7,17 @@
                     class="mb-4"
                     :bench="10"
                     :items="items"
-                    :item-height="200"
+                    :item-height="210"
                     :height="scrollHeight"
                 >
                     <template v-slot:default="{ item, index }">
                         <CartItem
                             class="mr-2"
                             :name="item.name"
+                            :category="item.category"
                             :price="item.price"
                             :quantity="item.quantity"
+                            :addons="item.addons"
                             :index="index"
                         />
                     </template>

@@ -49,16 +49,25 @@ export default {
         // Register eventbus listeners
         Bus.$on("addToCart", this.addToCart);
         Bus.$on("removeFromCart", this.removeFromCart);
+        Bus.$on("increaseQuantity", this.increaseQuantity);
+        Bus.$on("decreaseQuantity", this.decreaseQuantity);
     },
 
     methods: {
-        addToCart(payload) {
-            const item = JSON.parse(JSON.stringify(Items[payload.tag]));
+        addToCart(tag) {
+            const item = JSON.parse(JSON.stringify(Items[tag]));
             item.quantity = 1;
             this.selected.push(item);
         },
         removeFromCart(index) {
             this.selected.splice(index, 1);
+        },
+        increaseQuantity(index) {
+            this.selected[index].quantity += 1;
+        },
+        decreaseQuantity(index) {
+            if (this.selected[index].quantity > 1)
+                this.selected[index].quantity -= 1;
         },
     },
 };

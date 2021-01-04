@@ -10,6 +10,7 @@ import {
     faTrash,
     faPlusSquare,
     faMinusSquare,
+    faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import db from "@/services";
@@ -26,6 +27,7 @@ library.add(
     faTrash,
     faPlusSquare,
     faMinusSquare,
+    faPlus,
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
