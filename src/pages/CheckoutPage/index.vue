@@ -71,6 +71,7 @@ export default {
             this.showItemDialog = true;
         },
         addToCart(item) {
+            this.showItemDialog = false;
             this.selected.push(item);
         },
         removeFromCart(index) {

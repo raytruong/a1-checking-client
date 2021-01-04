@@ -33,106 +33,103 @@
             </v-chip-group>
         </v-card-text>
         <v-container>
-            <v-card tile flat color="grey lighten-4">
-                <v-virtual-scroll
-                    v-if="selectedAddons.length > 0"
-                    :items="selectedAddons"
-                    :item-height="50"
-                    :bench="50"
-                    height="250"
-                >
-                    <template v-slot:default="{ item }">
-                        <v-list-item>
-                            <v-list-item-content>
-                                <v-list-item-title>{{
-                                    item.name
-                                }}</v-list-item-title>
-                            </v-list-item-content>
-
-                            <v-list-item-action>
-                                <v-row>
-                                    <v-btn
-                                        outlined
-                                        tile
-                                        small
-                                        @click.stop="handleIncreaseButton"
-                                    >
-                                        <font-awesome-icon
-                                            icon="plus-square"
-                                            size="large"
-                                        />
-                                    </v-btn>
-                                    <v-avatar
-                                        tile
-                                        color="grey darken-3"
-                                        width="28"
-                                        max-height="28"
-                                    >
-                                        <span class="white--text">{{
-                                            quantity
-                                        }}</span>
-                                    </v-avatar>
-                                    <v-btn
-                                        outlined
-                                        tile
-                                        small
-                                        @click.stop="handleDecreaseButton"
-                                    >
-                                        <font-awesome-icon
-                                            icon="minus-square"
-                                            size="small"
-                                        />
-                                    </v-btn>
-                                    <v-btn
-                                        class="ml-2"
-                                        color="red lighten-2"
-                                        @click.stop="handleRemoveButton"
-                                        tile
-                                        outlined
-                                        small
-                                    >
-                                        <font-awesome-icon
-                                            icon="trash-alt"
-                                            size="small"
-                                        />
-                                    </v-btn>
-                                </v-row>
-                            </v-list-item-action>
-                        </v-list-item>
-                        <v-divider></v-divider>
-                    </template>
-                </v-virtual-scroll>
+            <v-card
+                v-if="selectedAddons.length > 0"
+                class="scroll-window"
+                color="white"
+                flat
+                height="250"
+            >
                 <v-card
-                    v-else
-                    height="250"
+                    flat
                     tile
-                    elevation="0"
                     color="transparent"
+                    v-for="(addon, index) in selectedAddons"
+                    :key="addon.tag"
                 >
-                    <v-container fill-height fluid>
-                        <v-row class="title" align="center" justify="center">
-                            <div class="black--text">
-                                No addons selected
-                            </div>
-                        </v-row>
-                    </v-container>
+                    <v-list-item>
+                        <v-list-item-content>
+                            <v-list-item-title>
+                                {{ addon.name }}
+                            </v-list-item-title>
+                        </v-list-item-content>
+                        <v-list-item-action>
+                            <v-row>
+                                <v-btn
+                                    outlined
+                                    tile
+                                    small
+                                    @click.stop="handleIncreaseButton(index)"
+                                >
+                                    <font-awesome-icon
+                                        icon="plus-square"
+                                        size="large"
+                                    />
+                                </v-btn>
+                                <v-avatar
+                                    tile
+                                    color="grey darken-3"
+                                    width="28"
+                                    max-height="28"
+                                >
+                                    <span class="white--text">{{
+                                        addon.quantity
+                                    }}</span>
+                                </v-avatar>
+                                <v-btn
+                                    outlined
+                                    tile
+                                    small
+                                    @click.stop="handleDecreaseButton(index)"
+                                >
+                                    <font-awesome-icon
+                                        icon="minus-square"
+                                        size="small"
+                                    />
+                                </v-btn>
+                                <v-btn
+                                    class="ml-2"
+                                    color="red lighten-2"
+                                    @click.stop="handleRemoveButton(index)"
+                                    tile
+                                    outlined
+                                    small
+                                >
+                                    <font-awesome-icon
+                                        icon="trash-alt"
+                                        size="small"
+                                    />
+                                </v-btn>
+                            </v-row>
+                        </v-list-item-action>
+                    </v-list-item>
+                    <v-divider />
                 </v-card>
             </v-card>
-            <v-card-actions>
-                <v-spacer />
-                <v-btn outlined>
-                    Cancel
-                </v-btn>
-                <v-btn
-                    @click="handleFinishButton"
-                    depressed
-                    class="white--text"
-                    color="green"
-                >
-                    Finished
-                </v-btn>
-            </v-card-actions>
+            <v-card v-else height="250" tile elevation="0" color="transparent">
+                <v-container fill-height fluid>
+                    <v-row class="title" align="center" justify="center">
+                        <div class="black--text">
+                            No addons selected
+                        </div>
+                    </v-row>
+                </v-container>
+            </v-card>
         </v-container>
+        <v-card-actions>
+            <v-spacer />
+            <v-btn outlined>
+                Cancel
+            </v-btn>
+            <v-btn
+                @click="handleFinishButton"
+                depressed
+                class="white--text"
+                color="green"
+            >
+                Finished
+            </v-btn>
+        </v-card-actions>
     </v-card>
 </template>
 
@@ -160,9 +157,30 @@ export default {
         handleFinishButton() {
             Bus.$emit("addToCart", this.editedItem);
         },
+        handleIncreaseButton(index) {
+            this.selectedAddons[index].quantity += 1;
+            this.$set(this.selectedAddons, index, this.selectedAddons[index]); // reactivity
+        },
+        handleDecreaseButton(index) {
+            console.log(index);
+            if (this.selectedAddons[index].quantity > 1)
+                this.selectedAddons[index].quantity -= 1;
+            this.$set(this.selectedAddons, index, this.selectedAddons[index]); // reactivity
+        },
+        handleRemoveButton(index) {
+            this.selectedAddons.splice(index, 1);
+        },
         addAddon(addon) {
-            this.selectedAddons.push(addon);
+            let newAddon = JSON.parse(JSON.stringify(addon));
+            newAddon.quantity = 1;
+            this.selectedAddons.push(newAddon);
         },
     },
 };
 </script>
+
+<style scoped>
+.scroll-window {
+    overflow-y: auto;
+}
+</style>
