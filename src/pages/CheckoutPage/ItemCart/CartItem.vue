@@ -10,9 +10,11 @@
                 {{ category }}
             </div>
         </v-card-subtitle>
-        <v-card-text class="scroll-chips">
+        <v-card-text v-if="addons">
             <v-chip-group column class="white--text">
                 <v-chip
+                    v-for="addon in addons"
+                    :key="addon.tag"
                     color="blue"
                     class="white--text"
                     :ripple="false"
@@ -20,43 +22,13 @@
                     outlined
                     small
                 >
-                    Take off Gel x2
+                    {{ `${addon.name} x${addon.quantity}` }}
                 </v-chip>
-                <v-chip
-                    color="blue"
-                    class="white--text"
-                    :ripple="false"
-                    label
-                    outlined
-                    small
-                >
-                    Repair x2</v-chip
-                >
-                <v-chip
-                    color="blue"
-                    class="white--text"
-                    :ripple="false"
-                    label
-                    outlined
-                    small
-                >
-                    Pink White x4</v-chip
-                >
-                <v-chip
-                    color="blue"
-                    class="white--text"
-                    :ripple="false"
-                    label
-                    outlined
-                    small
-                >
-                    Dipping (Natural Nail)</v-chip
-                >
             </v-chip-group>
         </v-card-text>
         <v-card-actions>
             <v-btn
-                class="ml-3"
+                class="ml-2"
                 color="red lighten-2"
                 @click.stop="removeFromCart"
                 tile
@@ -101,6 +73,7 @@ export default {
         price: Number,
         quantity: Number,
         index: Number,
+        addons: Array,
     },
 
     data: function() {

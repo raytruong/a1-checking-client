@@ -8,12 +8,12 @@
                     tile
                     flat
                     height="70vh"
-                    v-if="this.items.length > 0"
+                    v-if="items.length > 0"
                 >
                     <CartItem
                         v-for="(item, index) in this.items"
                         :key="item.tag"
-                        class="mr-2 mb-2"
+                        class="mr-1 mb-2"
                         :name="item.name"
                         :category="item.category"
                         :price="item.price"
