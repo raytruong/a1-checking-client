@@ -55,7 +55,7 @@
                     <v-chip value="cash" class="payment-chip" label large>
                         <font-awesome-icon
                             class="mr-1 green--text"
-                            icon="money-bill"
+                            icon="money-bill-alt"
                             size="large"
                         />
                         <span>Cash</span>

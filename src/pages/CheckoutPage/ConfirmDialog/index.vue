@@ -17,7 +17,17 @@
                     </div>
                 </v-col>
                 <v-col class="title">
-                    <div class="black--text">Payment: {{ getPaymentType }}</div>
+                    <span class="black--text">Payment:</span>
+                    <v-chip label outlined class="ml-2">
+                        <font-awesome-icon
+                            class="mr-1 deep-purple--text"
+                            icon="credit-card"
+                            size="large"
+                        />
+                        <span>
+                            {{ getPaymentType }}
+                        </span>
+                    </v-chip>
                     <div class="green--text">Total: {{ getTotal }}</div>
                 </v-col>
             </v-row>
