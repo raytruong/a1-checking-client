@@ -38,7 +38,7 @@
                 >
                     <v-chip value="visa" class="payment-chip" label large>
                         <font-awesome-icon
-                            class="mr-1 blue--text"
+                            class="mr-1 deep-purple--text"
                             color="white"
                             icon="credit-card"
                             size="large"

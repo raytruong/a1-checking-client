@@ -127,7 +127,7 @@
                 class="white--text"
                 color="green"
             >
-                Finished
+                Finish Editing
             </v-btn>
         </v-card-actions>
     </v-card>
