@@ -147,22 +147,23 @@ export default {
 
     data: function() {
         return {
-            editedItem: {},
-            selectedAddons: [],
+            selectedAddons: this.item.addons,
             customPrice: this.item.price,
         };
     },
-    computed: {},
+
     methods: {
         handleFinishButton() {
-            Bus.$emit("addToCart", this.editedItem);
+            let editedItem = JSON.parse(JSON.stringify(this.item)); // gross
+            editedItem.addons = this.selectedAddons;
+            Bus.$emit("addToCart", editedItem);
+            this.selectedAddons = [];
         },
         handleIncreaseButton(index) {
             this.selectedAddons[index].quantity += 1;
             this.$set(this.selectedAddons, index, this.selectedAddons[index]); // reactivity
         },
         handleDecreaseButton(index) {
-            console.log(index);
             if (this.selectedAddons[index].quantity > 1)
                 this.selectedAddons[index].quantity -= 1;
             this.$set(this.selectedAddons, index, this.selectedAddons[index]); // reactivity
@@ -171,7 +172,7 @@ export default {
             this.selectedAddons.splice(index, 1);
         },
         addAddon(addon) {
-            let newAddon = JSON.parse(JSON.stringify(addon));
+            let newAddon = JSON.parse(JSON.stringify(addon)); // gross
             newAddon.quantity = 1;
             this.selectedAddons.push(newAddon);
         },

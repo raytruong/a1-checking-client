@@ -31,7 +31,13 @@
                         </v-row>
                     </v-container>
                 </v-card>
-                <v-btn block large color="green">
+                <v-btn
+                    @click="handleNextButton"
+                    block
+                    large
+                    depressed
+                    color="green"
+                >
                     <span class="white--text">
                         Next
                     </span>
@@ -43,6 +49,7 @@
 
 <script>
 import CartItem from "./CartItem";
+import Bus from "../checkoutEventBus";
 export default {
     name: "ItemCart",
 
@@ -70,7 +77,11 @@ export default {
 
     computed: {},
 
-    methods: {},
+    methods: {
+        handleNextButton() {
+            Bus.$emit("confirmCheckout");
+        },
+    },
 };
 </script>
 

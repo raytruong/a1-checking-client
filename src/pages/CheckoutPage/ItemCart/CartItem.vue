@@ -103,7 +103,13 @@ export default {
             Bus.$emit("decreaseQuantity", this.index);
         },
         handleEditButton() {
-            Bus.$emit("editCartItem", this.index);
+            Bus.$emit("editCartItem", this.index, {
+                name: this.name,
+                category: this.category,
+                price: this.price,
+                quantity: this.quantity,
+                addons: this.addons,
+            });
         },
     },
 };

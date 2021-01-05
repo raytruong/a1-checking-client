@@ -16,10 +16,17 @@
         </v-row>
         <v-dialog max-width="45vw" max-height="30vh" v-model="showItemDialog">
             <ItemDialog
-                :item="selectedItem"
+                :item="dialogItem"
                 :addonOptions="items.filter(item => item.category === 'Addons')"
                 width="400"
             />
+        </v-dialog>
+        <v-dialog
+            max-width="45vw"
+            max-height="30vh"
+            v-model="showConfirmDialog"
+        >
+            <ConfirmDialog :cart="selected" width="400" />
         </v-dialog>
     </v-container>
 </template>
@@ -28,6 +35,7 @@
 import ItemSelector from "./ItemSelector";
 import ItemCart from "./ItemCart";
 import ItemDialog from "./ItemDialog";
+import ConfirmDialog from "./ConfirmDialog";
 import Bus from "./checkoutEventBus";
 import Items from "@/items.json";
 
@@ -38,12 +46,14 @@ export default {
         ItemSelector,
         ItemCart,
         ItemDialog,
+        ConfirmDialog,
     },
 
     data: function() {
         return {
             showItemDialog: false,
-            selectedItem: {},
+            showConfirmDialog: false,
+            dialogItem: {},
             empty: [],
             selected: [],
             items: Object.values(Items),
@@ -58,6 +68,7 @@ export default {
         Bus.$on("removeFromCart", this.removeFromCart);
         Bus.$on("increaseQuantity", this.increaseQuantity);
         Bus.$on("decreaseQuantity", this.decreaseQuantity);
+        Bus.$on("confirmCheckout", this.showConfirmation);
     },
 
     methods: {
@@ -67,12 +78,17 @@ export default {
             newItem.quantity = 1;
             newItem.addons = [];
             // Open dialog
-            this.selectedItem = newItem;
+            this.dialogItem = newItem;
             this.showItemDialog = true;
         },
         addToCart(item) {
             this.showItemDialog = false;
+            this.dialogItem = {};
             this.selected.push(item);
+        },
+        editCartItem(index, item) {
+            this.showItemDialog = true;
+            this.dialogItem = item;
         },
         removeFromCart(index) {
             this.selected.splice(index, 1);
@@ -84,9 +100,8 @@ export default {
             if (this.selected[index].quantity > 1)
                 this.selected[index].quantity -= 1;
         },
-        editCartItem(index) {
-            this.showItemDialog = true;
-            this.itemDialogIndex = index;
+        showConfirmation() {
+            this.showConfirmDialog = true;
         },
     },
 };
