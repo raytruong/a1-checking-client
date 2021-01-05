@@ -31,15 +31,39 @@
                         </v-row>
                     </v-container>
                 </v-card>
+                <v-chip-group
+                    mandatory
+                    v-model="paymentType"
+                    active-class="blue--text text--accent-4"
+                >
+                    <v-chip value="visa" class="payment-chip" label large>
+                        <font-awesome-icon
+                            class="mr-1 blue--text"
+                            color="white"
+                            icon="credit-card"
+                            size="large"
+                        />
+                        <span>Visa</span>
+                    </v-chip>
+                    <v-chip value="cash" class="payment-chip" label large>
+                        <font-awesome-icon
+                            class="mr-1 green--text"
+                            icon="money-bill"
+                            size="large"
+                        />
+                        <span>Cash</span>
+                    </v-chip>
+                </v-chip-group>
                 <v-btn
-                    @click="handleNextButton"
-                    block
+                    @click="handleFinishButton"
                     large
+                    block
                     depressed
+                    :disabled="items.length === 0"
                     color="green"
                 >
                     <span class="white--text">
-                        Next
+                        Finish
                     </span>
                 </v-btn>
             </v-col>
@@ -72,13 +96,14 @@ export default {
     data: function() {
         return {
             scrollHeight: 0,
+            paymentType: "visa",
         };
     },
 
     computed: {},
 
     methods: {
-        handleNextButton() {
+        handleFinishButton() {
             Bus.$emit("confirmCheckout");
         },
     },
@@ -88,5 +113,9 @@ export default {
 <style scoped>
 .scroll-window {
     overflow-y: auto;
+}
+.payment-chip {
+    width: 100%;
+    justify-content: center;
 }
 </style>
