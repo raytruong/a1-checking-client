@@ -22,7 +22,12 @@
                     outlined
                     small
                 >
-                    {{ `${addon.name} x${addon.quantity}` }}
+                    <span>
+                        {{ addon.name }}
+                    </span>
+                    <span class="ml-1 black--text">
+                        ({{ addon.quantity }})
+                    </span>
                 </v-chip>
             </v-chip-group>
         </v-card-text>

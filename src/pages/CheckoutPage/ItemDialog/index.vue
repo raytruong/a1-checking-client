@@ -1,9 +1,9 @@
 <template>
     <v-card>
-        <v-card-title>
+        <v-card-title class="headline">
             {{ item.name }}
         </v-card-title>
-        <v-card-subtitle>
+        <v-card-subtitle class="title">
             {{ item.category }}
         </v-card-subtitle>
         <v-card-text>
@@ -16,8 +16,8 @@
         </v-card-text>
 
         <v-card-text>
-            <div class="blue--text">
-                Addons
+            <div class="title black--text">
+                Select Addons
             </div>
             <v-chip-group column>
                 <v-chip

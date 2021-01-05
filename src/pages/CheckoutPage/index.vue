@@ -22,7 +22,7 @@
             />
         </v-dialog>
         <v-dialog
-            max-width="45vw"
+            max-width="25vw"
             max-height="30vh"
             v-model="showConfirmDialog"
         >
