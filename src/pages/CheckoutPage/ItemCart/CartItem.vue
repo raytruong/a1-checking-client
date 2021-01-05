@@ -1,19 +1,19 @@
 <template>
     <v-card tile outlined>
         <v-card-title>
-            <span>{{ name }}</span>
+            <span>{{ item.name }}</span>
             <v-spacer />
-            <span class="green--text">${{ price / 100 }}</span>
+            <span class="green--text">${{ item.price / 100 }}</span>
         </v-card-title>
         <v-card-subtitle>
             <div class="black--text">
-                {{ category }}
+                {{ item.category }}
             </div>
         </v-card-subtitle>
-        <v-card-text v-if="addons">
+        <v-card-text>
             <v-chip-group column class="white--text">
                 <v-chip
-                    v-for="addon in addons"
+                    v-for="addon in item.addons"
                     :key="addon.tag"
                     color="blue"
                     class="white--text"
@@ -58,7 +58,7 @@
                 <font-awesome-icon icon="plus-square" size="large" />
             </v-btn>
             <v-avatar tile color="grey darken-3" width="28" max-height="28">
-                <span class="white--text">{{ quantity }}</span>
+                <span class="white--text">{{ item.quantity }}</span>
             </v-avatar>
             <v-btn outlined tile small @click.stop="handleDecreaseButton">
                 <font-awesome-icon icon="minus-square" size="small" />
@@ -68,17 +68,11 @@
 </template>
 
 <script>
-import Bus from "../checkoutEventBus";
 export default {
     name: "CartItem",
 
     props: {
-        name: String,
-        category: String,
-        price: Number,
-        quantity: Number,
-        index: Number,
-        addons: Array,
+        item: Object,
     },
 
     data: function() {
@@ -99,22 +93,16 @@ export default {
 
     methods: {
         handleRemoveButton() {
-            Bus.$emit("removeFromCart", this.index);
+            this.$emit("removeFromCart");
         },
         handleIncreaseButton() {
-            Bus.$emit("increaseQuantity", this.index);
+            this.$emit("increaseQuantity");
         },
         handleDecreaseButton() {
-            Bus.$emit("decreaseQuantity", this.index);
+            this.$emit("decreaseQuantity");
         },
         handleEditButton() {
-            Bus.$emit("editCartItem", this.index, {
-                name: this.name,
-                category: this.category,
-                price: this.price,
-                quantity: this.quantity,
-                addons: this.addons,
-            });
+            this.$emit("editCartItem");
         },
     },
 };

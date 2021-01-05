@@ -3,23 +3,30 @@
         <v-row>
             <v-col>
                 <v-card
+                    v-if="items.length > 0"
                     class="scroll-window"
                     color="transparent"
                     tile
                     flat
                     height="70vh"
-                    v-if="items.length > 0"
                 >
                     <CartItem
                         v-for="(item, index) in this.items"
                         :key="item.tag"
                         class="mr-1 mb-2"
-                        :name="item.name"
-                        :category="item.category"
-                        :price="item.price"
-                        :quantity="item.quantity"
-                        :addons="item.addons"
-                        :index="index"
+                        :item="item"
+                        @removeFromCart="
+                            handleCartItemActions('removeFromCart', index)
+                        "
+                        @increaseQuantity="
+                            handleCartItemActions('increaseQuantity', index)
+                        "
+                        @decreaseQuantity="
+                            handleCartItemActions('decreaseQuantity', index)
+                        "
+                        @editCartItem="
+                            handleCartItemActions('editCartItem', index)
+                        "
                     />
                 </v-card>
                 <v-card v-else color="transparent" tile flat height="70vh">
@@ -72,8 +79,8 @@
 </template>
 
 <script>
-import CartItem from "./CartItem";
 import Bus from "../checkoutEventBus";
+import CartItem from "./CartItem";
 export default {
     name: "ItemCart",
 
@@ -105,6 +112,9 @@ export default {
     methods: {
         handleFinishButton() {
             Bus.$emit("confirmCheckout");
+        },
+        handleCartItemActions(event, index) {
+            Bus.$emit(event, index);
         },
     },
 };
