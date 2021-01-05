@@ -26,7 +26,7 @@
             max-height="30vh"
             v-model="showConfirmDialog"
         >
-            <ConfirmDialog :cart="selected" width="400" />
+            <ConfirmDialog :items="selected" width="400" />
         </v-dialog>
     </v-container>
 </template>
@@ -86,9 +86,9 @@ export default {
             this.dialogItem = {};
             this.selected.push(item);
         },
-        editCartItem(index, item) {
+        editCartItem(index) {
             this.showItemDialog = true;
-            this.dialogItem = item;
+            this.dialogItem = this.selected[index];
         },
         removeFromCart(index) {
             this.selected.splice(index, 1);

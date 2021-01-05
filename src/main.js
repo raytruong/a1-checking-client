@@ -11,7 +11,7 @@ import {
     faMinusSquare,
     faPlus,
     faTrashAlt,
-    faMoneyBill,
+    faMoneyBillAlt,
     faCreditCard,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -30,7 +30,7 @@ library.add(
     faMinusSquare,
     faPlus,
     faTrashAlt,
-    faMoneyBill,
+    faMoneyBillAlt,
     faCreditCard,
 );
 

@@ -14,7 +14,6 @@
                 dense
             ></v-text-field>
         </v-card-text>
-
         <v-card-text>
             <div class="title black--text">
                 Select Addons
@@ -40,71 +39,15 @@
                 flat
                 height="250"
             >
-                <v-card
-                    flat
-                    tile
-                    color="transparent"
+                <AddonListItem
                     v-for="(addon, index) in selectedAddons"
+                    @increaseQuantity="handleIncreaseQuantity(index)"
+                    @decreaseQuantity="handleIncreaseQuantity(index)"
+                    @removeAddon="handleRemoveAddon(index)"
                     :key="addon.tag"
-                >
-                    <v-list-item>
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                {{ addon.name }}
-                            </v-list-item-title>
-                        </v-list-item-content>
-                        <v-list-item-action>
-                            <v-row>
-                                <v-btn
-                                    outlined
-                                    tile
-                                    small
-                                    @click.stop="handleIncreaseButton(index)"
-                                >
-                                    <font-awesome-icon
-                                        icon="plus-square"
-                                        size="large"
-                                    />
-                                </v-btn>
-                                <v-avatar
-                                    tile
-                                    color="grey darken-3"
-                                    width="28"
-                                    max-height="28"
-                                >
-                                    <span class="white--text">{{
-                                        addon.quantity
-                                    }}</span>
-                                </v-avatar>
-                                <v-btn
-                                    outlined
-                                    tile
-                                    small
-                                    @click.stop="handleDecreaseButton(index)"
-                                >
-                                    <font-awesome-icon
-                                        icon="minus-square"
-                                        size="small"
-                                    />
-                                </v-btn>
-                                <v-btn
-                                    class="ml-2"
-                                    color="red lighten-2"
-                                    @click.stop="handleRemoveButton(index)"
-                                    tile
-                                    outlined
-                                    small
-                                >
-                                    <font-awesome-icon
-                                        icon="trash-alt"
-                                        size="small"
-                                    />
-                                </v-btn>
-                            </v-row>
-                        </v-list-item-action>
-                    </v-list-item>
-                    <v-divider />
-                </v-card>
+                    :addon="addon"
+                    :index="index"
+                />
             </v-card>
             <v-card v-else height="250" tile elevation="0" color="transparent">
                 <v-container fill-height fluid>
@@ -135,10 +78,13 @@
 
 <script>
 import Bus from "../checkoutEventBus";
+import AddonListItem from "./AddonListItem";
 export default {
     name: "ItemDialog",
 
-    components: {},
+    components: {
+        AddonListItem,
+    },
 
     props: {
         item: Object,
@@ -159,16 +105,16 @@ export default {
             Bus.$emit("addToCart", editedItem);
             this.selectedAddons = [];
         },
-        handleIncreaseButton(index) {
+        handleIncreaseQuantity(index) {
             this.selectedAddons[index].quantity += 1;
             this.$set(this.selectedAddons, index, this.selectedAddons[index]); // reactivity
         },
-        handleDecreaseButton(index) {
+        handleDecreaseQuantity(index) {
             if (this.selectedAddons[index].quantity > 1)
                 this.selectedAddons[index].quantity -= 1;
             this.$set(this.selectedAddons, index, this.selectedAddons[index]); // reactivity
         },
-        handleRemoveButton(index) {
+        handleRemoveAddon(index) {
             this.selectedAddons.splice(index, 1);
         },
         addAddon(addon) {
