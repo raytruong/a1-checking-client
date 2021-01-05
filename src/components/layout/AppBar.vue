@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app color="primary">
+    <v-app-bar app flat color="primary">
         <v-toolbar-title class="white--text">A-1 Nail Salon</v-toolbar-title>
         <v-spacer />
         <v-toolbar-title class="white--text">{{ date }}</v-toolbar-title>

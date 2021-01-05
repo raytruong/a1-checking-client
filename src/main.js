@@ -6,6 +6,13 @@ import {
     faLock,
     faCheck,
     faExclamation,
+    faPen,
+    faPlusSquare,
+    faMinusSquare,
+    faPlus,
+    faTrashAlt,
+    faMoneyBill,
+    faCreditCard,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import db from "@/services";
@@ -14,7 +21,18 @@ Vue.prototype.$db = db;
 
 Vue.config.productionTip = false;
 
-library.add(faLock, faCheck, faExclamation);
+library.add(
+    faLock,
+    faCheck,
+    faExclamation,
+    faPen,
+    faPlusSquare,
+    faMinusSquare,
+    faPlus,
+    faTrashAlt,
+    faMoneyBill,
+    faCreditCard,
+);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
