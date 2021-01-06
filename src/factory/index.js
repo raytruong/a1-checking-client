@@ -11,7 +11,7 @@ const createItem = (
     addons,
     price,
     name: items[tag].name,
-    category: items[tag.category],
+    category: items[tag].category,
 });
 
 const createAddon = ({ tag, quantity = 1 }) => ({
