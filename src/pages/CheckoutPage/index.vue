@@ -37,7 +37,8 @@ import ItemCart from "./ItemCart";
 import ItemDialog from "./ItemDialog";
 import ConfirmDialog from "./ConfirmDialog";
 import Bus from "./checkoutEventBus";
-import Items from "@/items.json";
+import Items from "@/factory/items.json";
+import { createItem } from "@/factory";
 
 export default {
     name: "CheckoutPage",
@@ -74,9 +75,7 @@ export default {
     methods: {
         selectItem(tag) {
             // Replace with class constructor
-            const newItem = JSON.parse(JSON.stringify(Items[tag]));
-            newItem.quantity = 1;
-            newItem.addons = [];
+            const newItem = createItem(tag);
             // Open dialog
             this.dialogItem = newItem;
             this.showItemDialog = true;
