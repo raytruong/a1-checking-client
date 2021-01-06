@@ -12,7 +12,7 @@
                         outlined
                         tile
                         small
-                        @click.stop="handleAction('decreaseQuantity')"
+                        @click.stop="handleAction('increaseQuantity')"
                     >
                         <font-awesome-icon icon="plus-square" size="large" />
                     </v-btn>
@@ -28,7 +28,7 @@
                         outlined
                         tile
                         small
-                        @click.stop="handleAction('increaseQuantity')"
+                        @click.stop="handleAction('decreaseQuantity')"
                     >
                         <font-awesome-icon icon="minus-square" size="small" />
                     </v-btn>

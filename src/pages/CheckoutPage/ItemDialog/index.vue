@@ -42,7 +42,7 @@
                 <AddonListItem
                     v-for="(addon, index) in selectedAddons"
                     @increaseQuantity="handleIncreaseQuantity(index)"
-                    @decreaseQuantity="handleIncreaseQuantity(index)"
+                    @decreaseQuantity="handleDecreaseQuantity(index)"
                     @removeAddon="handleRemoveAddon(index)"
                     :key="addon.tag"
                     :addon="addon"
