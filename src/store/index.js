@@ -11,9 +11,9 @@ const store = new Vuex.Store({
         cart: [],
         itemDialog: false,
         isEdit: false,
-        dialogItem: {},
         activeItem: {},
         confirmDialog: false,
+        paymentType: "",
     },
     getters: {
         items: function(state) {
@@ -53,6 +53,17 @@ const store = new Vuex.Store({
             state.itemDialog = true;
             state.isEdit = true;
         },
+        removeCartItem(state, index) {
+            console.log("Hi");
+            state.cart.splice(index, 1);
+        },
+        increaseCartQuantity(state, index) {
+            state.cart[index].quantity += 1;
+        },
+        decreaseCartQuantity(state, index) {
+            state.cart[index].quantity -=
+                state.cart[index].quantity > 1 ? 1 : 0;
+        },
         closeItemDialog(state) {
             state.activeItem = {};
             state.itemDialog = false;
@@ -71,6 +82,9 @@ const store = new Vuex.Store({
             }
             state.activeItem = {};
             state.itemDialog = false;
+        },
+        setPaymentType(state, type) {
+            state.paymentType = type;
         },
     },
     actions: {},

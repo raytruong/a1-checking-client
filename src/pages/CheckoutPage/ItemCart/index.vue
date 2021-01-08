@@ -15,7 +15,7 @@
                         :key="item.tag"
                         class="mr-1 mb-2"
                         :item="item"
-                        @removeFromCart="removeCartItem(index)"
+                        @removeCartItem="removeCartItem(index)"
                         @increaseQuantity="increaseCartQuantity(index)"
                         @decreaseQuantity="decreaseCartQuantity(index)"
                         @editCartItem="editCartItem(index)"
@@ -93,11 +93,19 @@ export default {
     data: function() {
         return {
             scrollHeight: 0,
-            paymentType: "visa",
         };
     },
 
-    computed: {},
+    computed: {
+        paymentType: {
+            get() {
+                return this.$store.state.paymentType;
+            },
+            set(type) {
+                this.$store.commit("setPaymentType", type);
+            },
+        },
+    },
 
     methods: {
         handleFinishButton() {},
