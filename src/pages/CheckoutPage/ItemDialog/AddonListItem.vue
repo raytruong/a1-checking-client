@@ -3,7 +3,9 @@
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title>
-                    {{ addon.name }}
+                    <span>
+                        {{ addon.name }}
+                    </span>
                 </v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>

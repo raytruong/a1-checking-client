@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { Item, Addon } from "@/objects";
 import database from "./items.json";
+import pouch from "@/services";
 
 Vue.use(Vuex);
 
@@ -14,7 +15,10 @@ const store = new Vuex.Store({
         activeItem: {},
         confirmDialog: false,
         paymentType: "",
-        user: "",
+        employees: [],
+        selectedEmployeeName: "",
+        selectedEmployeeId: "",
+        loggedInEmployee: "",
     },
     getters: {
         items: function(state) {
@@ -100,10 +104,18 @@ const store = new Vuex.Store({
                 payment: state.paymentType,
                 ...state.cart,
             };
-            console.log(sale);
+            console.log(JSON.stringify(sale));
+        },
+        setEmployees(state, employees) {
+            state.employees = employees;
         },
     },
-    actions: {},
+    actions: {
+        async getEmployees({ commit }) {
+            const data = await pouch.getAllEmployees();
+            commit("setEmployees", data);
+        },
+    },
 });
 
 export default store;

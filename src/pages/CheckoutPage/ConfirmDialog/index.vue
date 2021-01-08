@@ -27,7 +27,7 @@
                             {{ getPaymentType.text }}
                         </span>
                     </v-chip>
-                    <div class="green--text">Total: {{ getTotal }}</div>
+                    <span class="green--text">Total: {{ getTotal }}</span>
                 </v-col>
             </v-row>
             <v-card

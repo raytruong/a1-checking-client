@@ -39,13 +39,12 @@ export default {
         PinCodeDialog,
     },
 
-    async created() {
-        this.employees = await this.$db.getAllEmployees();
+    created() {
+        this.$store.dispatch("getEmployees");
     },
 
     data: function() {
         return {
-            employees: [],
             showPinCodeDialog: false,
             selectedEmployeeName: "",
             selectedEmployeeId: "",
@@ -55,8 +54,14 @@ export default {
         };
     },
 
+    computed: {
+        employees: function() {
+            return this.$store.state.employees;
+        },
+    },
+
     methods: {
-        async handleInput(keydown) {
+        handleInput(keydown) {
             if (keydown.key === "Backspace" && this.keysEntered > 0) {
                 this.pin.pop();
                 this.keysEntered -= 1;
@@ -69,9 +74,10 @@ export default {
                 this.keysEntered += 1;
 
                 if (this.keysEntered == 4) {
-                    let data = await this.$db.getEmployee(
-                        this.selectedEmployeeId,
-                    );
+                    // let data = await this.$db.getEmployee(
+                    //     this.selectedEmployeeId,
+                    // );
+                    let data;
                     if (this.pin.join("") === data.pin) {
                         this.loginAlertEnum = 1;
                     } else {
