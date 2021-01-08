@@ -41,6 +41,9 @@ const store = new Vuex.Store({
         isEdit: function(state) {
             return state.isEdit;
         },
+        paymentType: function(state) {
+            return state.paymentType;
+        },
     },
     mutations: {
         newItem(state, tag) {
@@ -54,7 +57,6 @@ const store = new Vuex.Store({
             state.isEdit = true;
         },
         removeCartItem(state, index) {
-            console.log("Hi");
             state.cart.splice(index, 1);
         },
         increaseCartQuantity(state, index) {
@@ -85,6 +87,19 @@ const store = new Vuex.Store({
         },
         setPaymentType(state, type) {
             state.paymentType = type;
+        },
+        openConfirmDialog(state) {
+            state.confirmDialog = true;
+        },
+        closeConfirmDialog(state) {
+            state.confirmDialog = false;
+        },
+        confirmSale(state) {
+            const sale = {
+                payment: state.paymentType,
+                ...state.cart,
+            };
+            console.log(sale);
         },
     },
     actions: {},

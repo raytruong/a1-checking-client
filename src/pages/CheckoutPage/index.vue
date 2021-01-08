@@ -22,7 +22,12 @@
         >
             <ItemDialog :item="activeItem" :addonOptions="addons" width="400" />
         </v-dialog>
-        <v-dialog max-width="25vw" max-height="30vh" :value="confirmDialog">
+        <v-dialog
+            max-width="25vw"
+            max-height="30vh"
+            @update:return-value="closeConfirmDialog"
+            :value="confirmDialog"
+        >
             <ConfirmDialog :items="cart" width="400" />
         </v-dialog>
     </v-container>
@@ -62,6 +67,7 @@ export default {
 
     methods: {
         ...mapMutations(["closeItemDialog"]),
+        ...mapMutations(["closeConfirmDialog"]),
     },
 };
 </script>

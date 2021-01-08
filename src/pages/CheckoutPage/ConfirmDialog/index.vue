@@ -20,11 +20,11 @@
                     <span class="black--text">Payment:</span>
                     <v-chip label outlined class="ml-2">
                         <font-awesome-icon
-                            class="mr-1 deep-purple--text"
-                            icon="credit-card"
+                            :class="getPaymentType.class"
+                            :icon="getPaymentType.icon"
                         />
                         <span>
-                            {{ getPaymentType }}
+                            {{ getPaymentType.text }}
                         </span>
                     </v-chip>
                     <div class="green--text">Total: {{ getTotal }}</div>
@@ -45,11 +45,11 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer />
-            <v-btn outlined>
+            <v-btn @click="closeConfirmDialog" outlined>
                 Cancel
             </v-btn>
             <v-btn
-                @click="handleConfirmButton"
+                @click="confirmSale"
                 depressed
                 class="white--text"
                 color="green"
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import Bus from "../checkoutEventBus";
+import { mapMutations } from "vuex";
 import OverviewItem from "./OverviewItem";
 export default {
     name: "ConfirmDialog",
@@ -83,13 +83,34 @@ export default {
             return "Raymond Truong";
         },
         getDate: function() {
-            return "January 5th, 2021";
+            return new Date().toLocaleString("en-US").split(",")[0];
         },
         getTime: function() {
-            return "12:51 PM";
+            return new Date().toLocaleString("en-US", {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+            });
         },
         getPaymentType: function() {
-            return "Visa";
+            switch (this.$store.getters.paymentType) {
+                case "cash":
+                    return {
+                        text: "Cash",
+                        icon: "money-bill-alt",
+                        class: "mr-1 green--text",
+                    };
+                case "visa":
+                    return {
+                        text: "Visa",
+                        icon: "credit-card",
+                        class: "mr-1 deep-purple--text",
+                    };
+                default:
+                    return {
+                        text: "Error",
+                    };
+            }
         },
         getTotal: function() {
             return "$250";
@@ -97,12 +118,7 @@ export default {
     },
 
     methods: {
-        handleConfirmButton() {
-            Bus.$emit("confirmSale");
-        },
-        handleCancelButton() {
-            Bus.$emit("closeConfirmDialog");
-        },
+        ...mapMutations(["confirmSale", "closeConfirmDialog"]),
     },
 };
 </script>

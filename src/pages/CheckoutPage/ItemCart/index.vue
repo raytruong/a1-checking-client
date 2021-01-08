@@ -52,7 +52,7 @@
                     </v-chip>
                 </v-chip-group>
                 <v-btn
-                    @click="handleFinishButton"
+                    @click="openConfirmDialog"
                     large
                     block
                     depressed
@@ -108,12 +108,12 @@ export default {
     },
 
     methods: {
-        handleFinishButton() {},
         ...mapMutations([
             "increaseCartQuantity",
             "decreaseCartQuantity",
             "removeCartItem",
             "editCartItem",
+            "openConfirmDialog",
         ]),
     },
 };
