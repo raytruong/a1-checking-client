@@ -100,7 +100,6 @@
 
 <script>
 import ItemCard from "./ItemCard";
-import { mapMutations } from "vuex";
 
 export default {
     name: "ItemSelector",
@@ -158,7 +157,9 @@ export default {
                 this.rpp = 4;
             }
         },
-        ...mapMutations(["newItem"]),
+        newItem(tag) {
+            this.$store.commit("newItem", tag);
+        },
     },
 };
 </script>

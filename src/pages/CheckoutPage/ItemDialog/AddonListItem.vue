@@ -12,7 +12,7 @@
                         outlined
                         tile
                         small
-                        @click.stop="handleAction('increaseQuantity')"
+                        @click.stop="handleIncreaseButton"
                     >
                         <font-awesome-icon icon="plus-square" />
                     </v-btn>
@@ -28,14 +28,14 @@
                         outlined
                         tile
                         small
-                        @click.stop="handleAction('decreaseQuantity')"
+                        @click.stop="handleDecreaseButton"
                     >
                         <font-awesome-icon icon="minus-square" />
                     </v-btn>
                     <v-btn
                         class="ml-2"
                         color="red lighten-2"
-                        @click.stop="handleAction('removeAddon')"
+                        @click.stop="handleRemoveButton"
                         tile
                         outlined
                         small
@@ -58,15 +58,21 @@ export default {
     },
 
     data: function() {
-        return {
-            handleAction(event) {
-                this.$emit(event);
-            },
-        };
+        return {};
     },
 
     computed: {},
 
-    methods: {},
+    methods: {
+        handleIncreaseButton() {
+            this.$emit("increaseQuantity");
+        },
+        handleDecreaseButton() {
+            this.$emit("decreaseQuantity");
+        },
+        handleRemoveButton() {
+            this.$emit("removeAddon");
+        },
+    },
 };
 </script>

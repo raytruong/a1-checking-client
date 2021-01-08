@@ -66,8 +66,7 @@ export default {
     },
 
     methods: {
-        ...mapMutations(["closeItemDialog"]),
-        ...mapMutations(["closeConfirmDialog"]),
+        ...mapMutations(["closeItemDialog", "closeConfirmDialog"]),
     },
 };
 </script>

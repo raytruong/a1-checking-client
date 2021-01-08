@@ -99,6 +99,7 @@ export default {
 
     watch: {
         "$store.state.activeItem": function() {
+            // Load addons from item
             if (
                 this.$store.state.activeItem &&
                 this.$store.state.itemDialog === true
@@ -127,11 +128,12 @@ export default {
         },
         handleAddAddon(addon) {
             for (let i in this.activeAddons) {
+                // Existing addon
                 if (this.activeAddons[i].tag === addon.tag) {
                     return (this.activeAddons[i].quantity += 1);
                 }
             }
-            this.activeAddons.push({ ...addon, quantity: 1 });
+            this.activeAddons.push({ ...addon, quantity: 1 }); // New addon
         },
     },
 };

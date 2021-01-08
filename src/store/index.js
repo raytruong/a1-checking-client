@@ -14,6 +14,7 @@ const store = new Vuex.Store({
         activeItem: {},
         confirmDialog: false,
         paymentType: "",
+        user: "",
     },
     getters: {
         items: function(state) {
