@@ -14,8 +14,8 @@
         <v-card-text v-if="item.addons">
             <v-chip-group column class="white--text">
                 <v-chip
-                    v-for="addon in item.addons"
-                    :key="addon.tag"
+                    v-for="(addon, index) in item.addons"
+                    :key="`${addon.tag}-${index}`"
                     color="blue"
                     class="white--text"
                     :ripple="false"
@@ -42,7 +42,9 @@ export default {
         item: Object,
     },
 
-    data: function() {},
+    data: function() {
+        return {};
+    },
 
     computed: {},
 

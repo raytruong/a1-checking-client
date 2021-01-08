@@ -61,7 +61,7 @@
         </v-container>
         <v-card-actions>
             <v-spacer />
-            <v-btn outlined>
+            <v-btn @click="handleCancelButton" outlined>
                 Cancel
             </v-btn>
             <v-btn
@@ -112,6 +112,9 @@ export default {
     },
 
     methods: {
+        handleCancelButton() {
+            this.$store.commit("closeItemDialog");
+        },
         handleFinishButton() {
             this.$store.commit("finishItemEditing", this.activeAddons);
             this.activeAddons = [];

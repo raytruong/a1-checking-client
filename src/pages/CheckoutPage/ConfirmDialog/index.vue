@@ -37,9 +37,9 @@
                 height="500"
             >
                 <OverviewItem
-                    v-for="item in items"
+                    v-for="(item, index) in items"
+                    :key="`${item.tag}-${index}`"
                     :item="item"
-                    :key="item.tag"
                 />
             </v-card>
         </v-card-text>

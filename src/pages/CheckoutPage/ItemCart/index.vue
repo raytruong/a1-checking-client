@@ -12,7 +12,7 @@
                 >
                     <CartItem
                         v-for="(item, index) in this.items"
-                        :key="item.tag"
+                        :key="`${item.tag}-${index}`"
                         class="mr-1 mb-2"
                         :item="item"
                         @removeCartItem="removeCartItem(index)"
