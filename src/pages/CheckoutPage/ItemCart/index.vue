@@ -99,7 +99,7 @@ export default {
     computed: {
         paymentType: {
             get() {
-                return this.$store.state.paymentType;
+                return this.$store.state.checkout.paymentType;
             },
             set(type) {
                 this.$store.commit("setPaymentType", type);

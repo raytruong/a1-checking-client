@@ -98,11 +98,11 @@ export default {
     },
 
     watch: {
-        "$store.state.activeItem": function() {
+        "$store.state.checkout.activeItem": function() {
             // Load addons from item
             if (
-                this.$store.state.activeItem &&
-                this.$store.state.itemDialog === true
+                this.$store.state.checkout.activeItem &&
+                this.$store.state.checkout.itemDialog === true
             ) {
                 this.activeAddons = JSON.parse(
                     JSON.stringify(this.item.addons),

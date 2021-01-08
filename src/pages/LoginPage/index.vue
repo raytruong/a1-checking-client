@@ -56,7 +56,7 @@ export default {
 
     computed: {
         employees: function() {
-            return this.$store.state.employees;
+            return this.$store.state.login.employees;
         },
     },
 
