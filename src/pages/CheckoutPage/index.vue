@@ -11,22 +11,19 @@
                 color="grey"
                 cols="3"
             >
-                <ItemCart :items="selected" />
+                <ItemCart :items="cart" />
             </v-col>
         </v-row>
-        <v-dialog max-width="45vw" max-height="30vh" v-model="showItemDialog">
-            <ItemDialog
-                :item="dialogItem"
-                :addonOptions="items.filter(item => item.category === 'Addons')"
-                width="400"
-            />
-        </v-dialog>
         <v-dialog
-            max-width="25vw"
+            max-width="45vw"
             max-height="30vh"
-            v-model="showConfirmDialog"
+            @update:return-value="closeItemDialog"
+            :value="itemDialog"
         >
-            <ConfirmDialog :items="selected" width="400" />
+            <ItemDialog :item="activeItem" :addonOptions="addons" width="400" />
+        </v-dialog>
+        <v-dialog max-width="25vw" max-height="30vh" :value="confirmDialog">
+            <ConfirmDialog :items="cart" width="400" />
         </v-dialog>
     </v-container>
 </template>
@@ -36,9 +33,7 @@ import ItemSelector from "./ItemSelector";
 import ItemCart from "./ItemCart";
 import ItemDialog from "./ItemDialog";
 import ConfirmDialog from "./ConfirmDialog";
-import Bus from "./checkoutEventBus";
-import Items from "@/factory/items.json";
-import { createItem } from "@/factory";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
     name: "CheckoutPage",
@@ -51,57 +46,22 @@ export default {
     },
 
     data: function() {
-        return {
-            showItemDialog: false,
-            showConfirmDialog: false,
-            dialogItem: {},
-            empty: [],
-            selected: [],
-            items: Object.values(Items),
-        };
+        return {};
     },
 
-    mounted() {
-        // Register eventbus listeners
-        Bus.$on("addToCart", this.addToCart);
-        Bus.$on("selectItem", this.selectItem);
-        Bus.$on("editCartItem", this.editCartItem);
-        Bus.$on("removeFromCart", this.removeFromCart);
-        Bus.$on("increaseQuantity", this.increaseQuantity);
-        Bus.$on("decreaseQuantity", this.decreaseQuantity);
-        Bus.$on("confirmCheckout", this.showConfirmation);
+    computed: {
+        ...mapGetters([
+            "items",
+            "addons",
+            "cart",
+            "activeItem",
+            "itemDialog",
+            "confirmDialog",
+        ]),
     },
 
     methods: {
-        selectItem(tag) {
-            // Replace with class constructor
-            const newItem = createItem(tag);
-            // Open dialog
-            this.dialogItem = newItem;
-            this.showItemDialog = true;
-        },
-        addToCart(item) {
-            this.showItemDialog = false;
-            this.dialogItem = {};
-            this.selected.push(item);
-        },
-        editCartItem(index) {
-            this.showItemDialog = true;
-            this.dialogItem = this.selected[index];
-        },
-        removeFromCart(index) {
-            this.selected.splice(index, 1);
-        },
-        increaseQuantity(index) {
-            this.selected[index].quantity += 1;
-        },
-        decreaseQuantity(index) {
-            if (this.selected[index].quantity > 1)
-                this.selected[index].quantity -= 1;
-        },
-        showConfirmation() {
-            this.showConfirmDialog = true;
-        },
+        ...mapMutations(["closeItemDialog"]),
     },
 };
 </script>

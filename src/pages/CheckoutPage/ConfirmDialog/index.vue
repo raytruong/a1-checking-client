@@ -22,7 +22,6 @@
                         <font-awesome-icon
                             class="mr-1 deep-purple--text"
                             icon="credit-card"
-                            size="large"
                         />
                         <span>
                             {{ getPaymentType }}

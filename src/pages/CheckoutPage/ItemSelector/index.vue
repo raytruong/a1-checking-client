@@ -73,7 +73,7 @@
                                 :cols="12 / ipr"
                                 class="py-2"
                             >
-                                <ItemCard :item="item" />
+                                <ItemCard @selectItem="newItem" :item="item" />
                             </v-col>
                         </v-row>
                     </v-container>
@@ -100,6 +100,7 @@
 
 <script>
 import ItemCard from "./ItemCard";
+import { mapMutations } from "vuex";
 
 export default {
     name: "ItemSelector",
@@ -157,6 +158,7 @@ export default {
                 this.rpp = 4;
             }
         },
+        ...mapMutations(["newItem"]),
     },
 };
 </script>

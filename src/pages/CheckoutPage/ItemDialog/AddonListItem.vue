@@ -14,7 +14,7 @@
                         small
                         @click.stop="handleAction('increaseQuantity')"
                     >
-                        <font-awesome-icon icon="plus-square" size="large" />
+                        <font-awesome-icon icon="plus-square" />
                     </v-btn>
                     <v-avatar
                         tile
@@ -30,7 +30,7 @@
                         small
                         @click.stop="handleAction('decreaseQuantity')"
                     >
-                        <font-awesome-icon icon="minus-square" size="small" />
+                        <font-awesome-icon icon="minus-square" />
                     </v-btn>
                     <v-btn
                         class="ml-2"
@@ -40,7 +40,7 @@
                         outlined
                         small
                     >
-                        <font-awesome-icon icon="trash-alt" size="small" />
+                        <font-awesome-icon icon="trash-alt" />
                     </v-btn>
                 </v-row>
             </v-list-item-action>

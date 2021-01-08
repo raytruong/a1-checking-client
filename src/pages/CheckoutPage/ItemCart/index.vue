@@ -15,18 +15,10 @@
                         :key="item.tag"
                         class="mr-1 mb-2"
                         :item="item"
-                        @removeFromCart="
-                            handleCartItemActions('removeFromCart', index)
-                        "
-                        @increaseQuantity="
-                            handleCartItemActions('increaseQuantity', index)
-                        "
-                        @decreaseQuantity="
-                            handleCartItemActions('decreaseQuantity', index)
-                        "
-                        @editCartItem="
-                            handleCartItemActions('editCartItem', index)
-                        "
+                        @removeFromCart="removeCartItem(index)"
+                        @increaseQuantity="increaseCartQuantity(index)"
+                        @decreaseQuantity="decreaseCartQuantity(index)"
+                        @editCartItem="editCartItem(index)"
                     />
                 </v-card>
                 <v-card v-else color="transparent" tile flat height="70vh">
@@ -48,7 +40,6 @@
                             class="mr-1 deep-purple--text"
                             color="white"
                             icon="credit-card"
-                            size="large"
                         />
                         <span>Visa</span>
                     </v-chip>
@@ -56,7 +47,6 @@
                         <font-awesome-icon
                             class="mr-1 green--text"
                             icon="money-bill-alt"
-                            size="large"
                         />
                         <span>Cash</span>
                     </v-chip>
@@ -79,8 +69,8 @@
 </template>
 
 <script>
-import Bus from "../checkoutEventBus";
 import CartItem from "./CartItem";
+import { mapMutations } from "vuex";
 export default {
     name: "ItemCart",
 
@@ -110,12 +100,13 @@ export default {
     computed: {},
 
     methods: {
-        handleFinishButton() {
-            Bus.$emit("confirmCheckout");
-        },
-        handleCartItemActions(event, index) {
-            Bus.$emit(event, index);
-        },
+        handleFinishButton() {},
+        ...mapMutations([
+            "increaseCartQuantity",
+            "decreaseCartQuantity",
+            "removeCartItem",
+            "editCartItem",
+        ]),
     },
 };
 </script>

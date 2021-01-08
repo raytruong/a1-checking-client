@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
+import store from "@/store";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
     faLock,
@@ -15,9 +16,6 @@ import {
     faCreditCard,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import db from "@/services";
-
-Vue.prototype.$db = db;
 
 Vue.config.productionTip = false;
 
@@ -40,5 +38,6 @@ Vue.config.productionTip = false;
 
 new Vue({
     vuetify,
+    store,
     render: h => h(App),
 }).$mount("#app");
