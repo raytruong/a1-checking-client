@@ -1,7 +1,9 @@
 import { Item, Addon } from "@/objects";
 import database from "./items.json";
-const checkout = {
-    state: {
+import db from "@/services";
+
+const getInitialState = () => {
+    return {
         db: database,
         cart: [],
         itemDialog: false,
@@ -9,7 +11,11 @@ const checkout = {
         activeItem: {},
         confirmDialog: false,
         paymentType: "",
-    },
+    };
+};
+
+const checkout = {
+    state: getInitialState(),
     getters: {
         items: function(state) {
             return Object.values(state.db).filter(
@@ -72,11 +78,8 @@ const checkout = {
                 newAddons.push(new Addon(state.db, addon.tag, addon.quantity));
             });
             state.activeItem.setAddons(newAddons);
-            if (!state.isEdit) {
-                state.cart.push(state.activeItem);
-            } else {
-                state.isEdit = false;
-            }
+            if (!state.isEdit) state.cart.push(state.activeItem);
+            state.isEdit = false;
             state.activeItem = {};
             state.itemDialog = false;
         },
@@ -89,15 +92,24 @@ const checkout = {
         closeConfirmDialog(state) {
             state.confirmDialog = false;
         },
-        confirmSale(state) {
-            const sale = {
-                payment: state.paymentType,
-                ...state.cart,
-            };
-            console.log(JSON.stringify(sale));
+        resetStore(state) {
+            Object.assign(state, getInitialState());
         },
     },
-    actions: {},
+    actions: {
+        async confirmSale({ state, commit, rootState }) {
+            const sale = {
+                _id: `sale:${Date.now()}`,
+                employee: rootState.global.loggedInEmployee.name,
+                payment: state.paymentType,
+                items: [...state.cart],
+            };
+            // Create transaction item, clean tags and categories, remove functions
+            await db.postSale(JSON.parse(JSON.stringify(sale)));
+            commit("resetStore");
+            commit("resetGlobal");
+        },
+    },
 };
 
 export default checkout;

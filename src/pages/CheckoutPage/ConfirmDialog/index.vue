@@ -45,11 +45,11 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer />
-            <v-btn @click="closeConfirmDialog" outlined>
+            <v-btn @click="handleCancelButton" outlined>
                 Cancel
             </v-btn>
             <v-btn
-                @click="confirmSale"
+                @click="handleConfirmButton"
                 depressed
                 class="white--text"
                 color="green"
@@ -61,7 +61,6 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
 import OverviewItem from "./OverviewItem";
 export default {
     name: "ConfirmDialog",
@@ -80,7 +79,7 @@ export default {
 
     computed: {
         getTech: function() {
-            return "Raymond Truong";
+            return this.$store.state.global.loggedInEmployee.name;
         },
         getDate: function() {
             return new Date().toLocaleString("en-US").split(",")[0];
@@ -118,7 +117,12 @@ export default {
     },
 
     methods: {
-        ...mapMutations(["confirmSale", "closeConfirmDialog"]),
+        handleCancelButton() {
+            this.$store.commit("closeConfirmDialog");
+        },
+        handleConfirmButton() {
+            this.$store.dispatch("confirmSale");
+        },
     },
 };
 </script>
