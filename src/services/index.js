@@ -24,6 +24,7 @@ const db = {
         });
         return data.rows.map(row => ({
             _id: row.doc["_id"],
+            pin: row.doc["pin"],
             name: row.doc["name"],
         }));
     },

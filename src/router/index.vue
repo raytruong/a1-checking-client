@@ -12,12 +12,9 @@ const routes = {
 };
 
 export default {
-    data() {
-        return { current: window.location.pathname };
-    },
     computed: {
         routedComponent() {
-            return routes[this.current];
+            return routes[this.$store.state.global.url];
         },
     },
 };

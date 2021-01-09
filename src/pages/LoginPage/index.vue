@@ -74,12 +74,13 @@ export default {
                 this.keysEntered += 1;
 
                 if (this.keysEntered == 4) {
-                    // let data = await this.$db.getEmployee(
-                    //     this.selectedEmployeeId,
-                    // );
-                    let data;
-                    if (this.pin.join("") === data.pin) {
+                    const data = this.$store.state.login.employees.filter(
+                        employee => employee._id === this.selectedEmployeeId,
+                    );
+                    if (data && this.pin.join("") === data[0].pin) {
                         this.loginAlertEnum = 1;
+                        this.$store.commit("setUrl", "/checkout");
+                        this.$store.commit("setLoggedInEmployee", data[0]);
                     } else {
                         this.loginAlertEnum = 2;
                         this.keysEntered = 0;

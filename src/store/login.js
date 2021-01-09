@@ -2,9 +2,6 @@ import db from "@/services";
 const login = {
     state: {
         employees: [],
-        selectedEmployeeName: "",
-        selectedEmployeeId: "",
-        loggedInEmployee: "",
     },
     getters: {
         employees(state) {
@@ -14,9 +11,6 @@ const login = {
     mutations: {
         setEmployees(state, employees) {
             state.employees = employees;
-        },
-        setLoggedInUser(state, employee) {
-            state.loggedInEmployee = employee;
         },
     },
     actions: {
