@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import global from "./global";
-import login from "./login";
-import checkout from "./checkout";
+import global from "./modules/global";
+import login from "./modules/login";
+import checkout from "./modules/checkout";
 
 Vue.use(Vuex);
 
