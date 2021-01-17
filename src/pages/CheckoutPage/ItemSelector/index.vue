@@ -158,7 +158,7 @@ export default {
             }
         },
         newItem(tag) {
-            this.$store.commit("newItem", tag);
+            this.$store.commit("checkout/newItem", tag);
         },
     },
 };

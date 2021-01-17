@@ -79,8 +79,11 @@ export default {
                     );
                     if (data && this.pin.join("") === data[0].pin) {
                         this.loginAlertEnum = 1;
-                        this.$store.commit("setUrl", "/checkout");
-                        this.$store.commit("setLoggedInEmployee", data[0]);
+                        this.$store.commit("global/setUrl", "/checkout");
+                        this.$store.commit(
+                            "global/setLoggedInEmployee",
+                            data[0],
+                        );
                     } else {
                         this.loginAlertEnum = 2;
                         this.keysEntered = 0;

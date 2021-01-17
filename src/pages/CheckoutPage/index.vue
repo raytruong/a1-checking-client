@@ -38,7 +38,7 @@ import ItemSelector from "./ItemSelector";
 import ItemCart from "./ItemCart";
 import ItemDialog from "./ItemDialog";
 import ConfirmDialog from "./ConfirmDialog";
-import { mapGetters, mapMutations } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 
 export default {
     name: "CheckoutPage",
@@ -55,9 +55,8 @@ export default {
     },
 
     computed: {
-        ...mapGetters([
-            "items",
-            "addons",
+        ...mapGetters("checkout", ["items", "addons"]),
+        ...mapState("checkout", [
             "cart",
             "activeItem",
             "itemDialog",
@@ -66,7 +65,7 @@ export default {
     },
 
     methods: {
-        ...mapMutations(["closeItemDialog", "closeConfirmDialog"]),
+        ...mapMutations("checkout", ["closeItemDialog", "closeConfirmDialog"]),
     },
 };
 </script>

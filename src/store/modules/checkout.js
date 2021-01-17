@@ -15,6 +15,7 @@ const getInitialState = () => {
 };
 
 const checkout = {
+    namespaced: true,
     state: getInitialState(),
     getters: {
         items: function(state) {
@@ -26,24 +27,6 @@ const checkout = {
             return Object.values(state.db).filter(
                 item => item.category === "Addons",
             );
-        },
-        cart: function(state) {
-            return state.cart;
-        },
-        itemDialog: function(state) {
-            return state.itemDialog;
-        },
-        confirmDialog: function(state) {
-            return state.confirmDialog;
-        },
-        activeItem: function(state) {
-            return state.activeItem;
-        },
-        isEdit: function(state) {
-            return state.isEdit;
-        },
-        paymentType: function(state) {
-            return state.paymentType;
         },
     },
     mutations: {

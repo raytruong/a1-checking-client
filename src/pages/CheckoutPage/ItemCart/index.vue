@@ -102,13 +102,13 @@ export default {
                 return this.$store.state.checkout.paymentType;
             },
             set(type) {
-                this.$store.commit("setPaymentType", type);
+                this.$store.commit("checkout/setPaymentType", type);
             },
         },
     },
 
     methods: {
-        ...mapMutations([
+        ...mapMutations("checkout", [
             "increaseCartQuantity",
             "decreaseCartQuantity",
             "removeCartItem",

@@ -96,7 +96,7 @@ export default {
             });
         },
         getPaymentType: function() {
-            switch (this.$store.getters.paymentType) {
+            switch (this.$store.state.checkout.paymentType) {
                 case "cash":
                     return {
                         text: "Cash",
@@ -122,10 +122,10 @@ export default {
 
     methods: {
         handleCancelButton() {
-            this.$store.commit("closeConfirmDialog");
+            this.$store.commit("checkout/closeConfirmDialog");
         },
         handleConfirmButton() {
-            this.$store.dispatch("confirmSale");
+            this.$store.dispatch("checkout/confirmSale");
         },
     },
 };

@@ -113,10 +113,10 @@ export default {
 
     methods: {
         handleCancelButton() {
-            this.$store.commit("closeItemDialog");
+            this.$store.commit("checkout/closeItemDialog");
         },
         handleFinishButton() {
-            this.$store.commit("finishItemEditing", this.activeAddons);
+            this.$store.commit("checkout/finishItemEditing", this.activeAddons);
             this.activeAddons = [];
         },
         handleIncreaseQuantity(index) {

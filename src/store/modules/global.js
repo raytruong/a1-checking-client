@@ -6,6 +6,7 @@ const getInitialState = () => {
 };
 
 const global = {
+    namespaced: true,
     state: getInitialState(),
     mutations: {
         setUrl(state, path) {

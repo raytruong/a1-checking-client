@@ -1,5 +1,6 @@
 import db from "@/services";
 const login = {
+    namedspaced: true,
     state: {
         employees: [],
     },
