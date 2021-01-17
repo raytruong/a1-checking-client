@@ -89,8 +89,8 @@ const checkout = {
             };
             // Create transaction item, clean tags and categories, remove functions
             await db.postSale(JSON.parse(JSON.stringify(sale)));
-            commit("resetStore");
-            commit("resetGlobal");
+            commit("checkout/resetStore", null, { root: true });
+            commit("global/resetGlobal", null, { root: true });
         },
     },
 };
