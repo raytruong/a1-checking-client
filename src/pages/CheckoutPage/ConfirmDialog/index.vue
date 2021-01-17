@@ -17,17 +17,21 @@
                     </div>
                 </v-col>
                 <v-col class="title">
-                    <span class="black--text">Payment:</span>
-                    <v-chip label outlined class="ml-2">
-                        <font-awesome-icon
-                            :class="getPaymentType.class"
-                            :icon="getPaymentType.icon"
-                        />
-                        <span>
-                            {{ getPaymentType.text }}
-                        </span>
-                    </v-chip>
-                    <span class="green--text">Total: {{ getTotal }}</span>
+                    <v-row>
+                        <span class="black--text">Payment:</span>
+                        <v-chip label outlined class="ml-2">
+                            <font-awesome-icon
+                                :class="getPaymentType.class"
+                                :icon="getPaymentType.icon"
+                            />
+                            <span>
+                                {{ getPaymentType.text }}
+                            </span>
+                        </v-chip>
+                    </v-row>
+                    <v-row>
+                        <span class="green--text">Total: {{ getTotal }}</span>
+                    </v-row>
                 </v-col>
             </v-row>
             <v-card
