@@ -39,13 +39,12 @@ export default {
         PinCodeDialog,
     },
 
-    async created() {
-        this.employees = await this.$db.getAllEmployees();
+    created() {
+        this.$store.dispatch("getEmployees");
     },
 
     data: function() {
         return {
-            employees: [],
             showPinCodeDialog: false,
             selectedEmployeeName: "",
             selectedEmployeeId: "",
@@ -55,8 +54,14 @@ export default {
         };
     },
 
+    computed: {
+        employees: function() {
+            return this.$store.state.login.employees;
+        },
+    },
+
     methods: {
-        async handleInput(keydown) {
+        handleInput(keydown) {
             if (keydown.key === "Backspace" && this.keysEntered > 0) {
                 this.pin.pop();
                 this.keysEntered -= 1;
@@ -69,11 +74,16 @@ export default {
                 this.keysEntered += 1;
 
                 if (this.keysEntered == 4) {
-                    let data = await this.$db.getEmployee(
-                        this.selectedEmployeeId,
+                    const data = this.$store.state.login.employees.filter(
+                        employee => employee._id === this.selectedEmployeeId,
                     );
-                    if (this.pin.join("") === data.pin) {
+                    if (data && this.pin.join("") === data[0].pin) {
                         this.loginAlertEnum = 1;
+                        this.$store.commit("global/setUrl", "/checkout");
+                        this.$store.commit(
+                            "global/setLoggedInEmployee",
+                            data[0],
+                        );
                     } else {
                         this.loginAlertEnum = 2;
                         this.keysEntered = 0;

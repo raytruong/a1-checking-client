@@ -40,7 +40,7 @@
                 outlined
                 small
             >
-                <font-awesome-icon icon="trash-alt" size="small" />
+                <font-awesome-icon icon="trash-alt" />
             </v-btn>
             <v-btn
                 class="ml-3"
@@ -50,18 +50,18 @@
                 outlined
                 small
             >
-                <font-awesome-icon class="mr-1" icon="pen" size="small" />
+                <font-awesome-icon class="mr-1" icon="pen" />
                 Edit
             </v-btn>
             <v-spacer />
             <v-btn outlined tile small @click.stop="handleIncreaseButton">
-                <font-awesome-icon icon="plus-square" size="large" />
+                <font-awesome-icon icon="plus-square" />
             </v-btn>
             <v-avatar tile color="grey darken-3" width="28" max-height="28">
                 <span class="white--text">{{ item.quantity }}</span>
             </v-avatar>
             <v-btn outlined tile small @click.stop="handleDecreaseButton">
-                <font-awesome-icon icon="minus-square" size="small" />
+                <font-awesome-icon icon="minus-square" />
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -76,24 +76,14 @@ export default {
     },
 
     data: function() {
-        return {
-            buttons: [
-                {
-                    text: "",
-                    icon: "trash",
-                    color: "red lighten-2",
-                    event: "removeFromCart",
-                },
-                { text: "edit", icon: "pen", color: "orange" },
-            ],
-        };
+        return {};
     },
 
     computed: {},
 
     methods: {
         handleRemoveButton() {
-            this.$emit("removeFromCart");
+            this.$emit("removeCartItem");
         },
         handleIncreaseButton() {
             this.$emit("increaseQuantity");

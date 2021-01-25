@@ -12,21 +12,13 @@
                 >
                     <CartItem
                         v-for="(item, index) in this.items"
-                        :key="item.tag"
+                        :key="`${item.tag}-${index}`"
                         class="mr-1 mb-2"
                         :item="item"
-                        @removeFromCart="
-                            handleCartItemActions('removeFromCart', index)
-                        "
-                        @increaseQuantity="
-                            handleCartItemActions('increaseQuantity', index)
-                        "
-                        @decreaseQuantity="
-                            handleCartItemActions('decreaseQuantity', index)
-                        "
-                        @editCartItem="
-                            handleCartItemActions('editCartItem', index)
-                        "
+                        @removeCartItem="removeCartItem(index)"
+                        @increaseQuantity="increaseCartQuantity(index)"
+                        @decreaseQuantity="decreaseCartQuantity(index)"
+                        @editCartItem="editCartItem(index)"
                     />
                 </v-card>
                 <v-card v-else color="transparent" tile flat height="70vh">
@@ -48,7 +40,6 @@
                             class="mr-1 deep-purple--text"
                             color="white"
                             icon="credit-card"
-                            size="large"
                         />
                         <span>Visa</span>
                     </v-chip>
@@ -56,13 +47,12 @@
                         <font-awesome-icon
                             class="mr-1 green--text"
                             icon="money-bill-alt"
-                            size="large"
                         />
                         <span>Cash</span>
                     </v-chip>
                 </v-chip-group>
                 <v-btn
-                    @click="handleFinishButton"
+                    @click="openConfirmDialog"
                     large
                     block
                     depressed
@@ -79,8 +69,8 @@
 </template>
 
 <script>
-import Bus from "../checkoutEventBus";
 import CartItem from "./CartItem";
+import { mapMutations } from "vuex";
 export default {
     name: "ItemCart",
 
@@ -103,19 +93,28 @@ export default {
     data: function() {
         return {
             scrollHeight: 0,
-            paymentType: "visa",
         };
     },
 
-    computed: {},
+    computed: {
+        paymentType: {
+            get() {
+                return this.$store.state.checkout.paymentType;
+            },
+            set(type) {
+                this.$store.commit("checkout/setPaymentType", type);
+            },
+        },
+    },
 
     methods: {
-        handleFinishButton() {
-            Bus.$emit("confirmCheckout");
-        },
-        handleCartItemActions(event, index) {
-            Bus.$emit(event, index);
-        },
+        ...mapMutations("checkout", [
+            "increaseCartQuantity",
+            "decreaseCartQuantity",
+            "removeCartItem",
+            "editCartItem",
+            "openConfirmDialog",
+        ]),
     },
 };
 </script>

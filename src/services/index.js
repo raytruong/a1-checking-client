@@ -2,34 +2,47 @@ import PouchDB from "pouchdb-browser";
 
 const username = process.env.VUE_APP_DB_USER;
 const password = process.env.VUE_APP_DB_PASS;
-const name = process.env.VUE_APP_DB_NAME;
+const data = process.env.VUE_APP_DB_DATA;
+const sales = process.env.VUE_APP_DB_SALES;
 
-const remoteUrl = `https://${username}:${password}@${username}.cloudantnosqldb.appdomain.cloud/${name}`;
-let remote = new PouchDB(remoteUrl);
-let local = new PouchDB("local");
+const remoteDataUrl = `https://${username}:${password}@${username}.cloudantnosqldb.appdomain.cloud/${data}`;
+const remoteSalesUrl = `https://${username}:${password}@${username}.cloudantnosqldb.appdomain.cloud/${sales}`;
+let remoteData = new PouchDB(remoteDataUrl);
+let localData = new PouchDB("localData");
+let remoteSales = new PouchDB(remoteSalesUrl);
+let localSales = new PouchDB("localSales");
 
-local
-    .sync(remote, {
+localData
+    .sync(remoteData, {
         live: true,
         retry: false,
     })
     .on("error", function() {
-        console.log(remoteUrl);
+        console.log(remoteDataUrl);
+    });
+
+localSales
+    .sync(remoteSales, {
+        live: true,
+        retry: false,
+    })
+    .on("error", function() {
+        console.log(remoteSalesUrl);
     });
 
 const db = {
     getAllEmployees: async function() {
-        let data = await local.allDocs({
+        let data = await localData.allDocs({
             include_docs: true,
         });
         return data.rows.map(row => ({
             _id: row.doc["_id"],
+            pin: row.doc["pin"],
             name: row.doc["name"],
         }));
     },
-    getEmployee: async function(_id) {
-        const data = await local.get(_id);
-        return data;
+    postSale: async function(transaction) {
+        return await localSales.put(transaction);
     },
 };
 

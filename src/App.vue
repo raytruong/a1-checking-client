@@ -2,23 +2,21 @@
     <v-app>
         <AppBar />
         <v-main>
-            <CheckoutPage />
+            <AppRouter />
         </v-main>
     </v-app>
 </template>
 
 <script>
 import AppBar from "@/components/layout/AppBar";
-// import LoginPage from "@/pages/LoginPage";
-import CheckoutPage from "@/pages/CheckoutPage";
+import AppRouter from "@/router";
 
 export default {
     name: "App",
 
     components: {
         AppBar,
-        // LoginPage,
-        CheckoutPage,
+        AppRouter,
     },
 
     data: () => ({

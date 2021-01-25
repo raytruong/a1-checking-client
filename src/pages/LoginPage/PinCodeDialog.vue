@@ -1,44 +1,41 @@
 <template>
     <v-card>
-        <v-card-body>
-            <v-container>
-                <v-card-text class="headline">
-                    {{ employeeName }}
-                </v-card-text>
-                <v-card-text class="subtitle-1">
-                    <font-awesome-icon icon="lock" size="small" />
-                    Enter PIN code
-                </v-card-text>
-                <v-alert
-                    v-if="getAlert"
-                    text
-                    :type="getAlert.type"
-                    :class="`${getAlert.color}--text subtitle-1`"
+        <v-container>
+            <v-card-text class="headline">
+                {{ employeeName }}
+            </v-card-text>
+            <v-card-text class="subtitle-1">
+                <font-awesome-icon icon="lock" />
+                Enter PIN code
+            </v-card-text>
+            <v-alert
+                v-if="getAlert"
+                text
+                :type="getAlert.type"
+                :class="`${getAlert.color}--text subtitle-1`"
+            >
+                {{ getAlert.message }}
+            </v-alert>
+            <v-row align="center" justify="center">
+                <v-avatar
+                    v-for="index in 4"
+                    :key="index"
+                    :color="
+                        keysEntered === index - 1
+                            ? 'grey darken-1'
+                            : 'grey lighten-2'
+                    "
+                    class="black--text ml-2"
+                    width="36"
+                    tile
                 >
-                    {{ getAlert.message }}
-                </v-alert>
-                <v-row align="center" justify="center">
-                    <v-avatar
-                        v-for="index in 4"
-                        :key="index"
-                        :color="
-                            keysEntered === index - 1
-                                ? 'grey darken-1'
-                                : 'grey lighten-2'
-                        "
-                        class="black--text ml-2"
-                        width="36"
-                        tile
-                    >
-                        <h1 v-if="keysEntered >= index">*</h1>
-                    </v-avatar>
-                </v-row>
-            </v-container>
-        </v-card-body>
+                    <h1 v-if="keysEntered >= index">*</h1>
+                </v-avatar>
+            </v-row>
+        </v-container>
         <v-btn
             color="grey"
             class="white--text"
-            flat
             tile
             block
             @click="handleCancel"

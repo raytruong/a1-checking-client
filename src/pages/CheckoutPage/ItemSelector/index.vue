@@ -73,7 +73,7 @@
                                 :cols="12 / ipr"
                                 class="py-2"
                             >
-                                <ItemCard :item="item" />
+                                <ItemCard @selectItem="newItem" :item="item" />
                             </v-col>
                         </v-row>
                     </v-container>
@@ -156,6 +156,9 @@ export default {
             } else {
                 this.rpp = 4;
             }
+        },
+        newItem(tag) {
+            this.$store.commit("checkout/newItem", tag);
         },
     },
 };

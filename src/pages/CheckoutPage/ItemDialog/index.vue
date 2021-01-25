@@ -24,7 +24,7 @@
                     color="blue"
                     class="white--text"
                     :key="addon.tag"
-                    @click="addAddon(addon)"
+                    @click="handleAddAddon(addon)"
                 >
                     <v-icon small>mdi-plus</v-icon>
                     {{ addon.name }}
@@ -33,16 +33,16 @@
         </v-card-text>
         <v-container>
             <v-card
-                v-if="selectedAddons.length > 0"
+                v-if="activeAddons.length > 0"
                 class="scroll-window"
                 color="white"
                 flat
                 height="250"
             >
                 <AddonListItem
-                    v-for="(addon, index) in selectedAddons"
+                    v-for="(addon, index) in activeAddons"
                     @increaseQuantity="handleIncreaseQuantity(index)"
-                    @decreaseQuantity="handleIncreaseQuantity(index)"
+                    @decreaseQuantity="handleDecreaseQuantity(index)"
                     @removeAddon="handleRemoveAddon(index)"
                     :key="addon.tag"
                     :addon="addon"
@@ -61,7 +61,7 @@
         </v-container>
         <v-card-actions>
             <v-spacer />
-            <v-btn outlined>
+            <v-btn @click="handleCancelButton" outlined>
                 Cancel
             </v-btn>
             <v-btn
@@ -77,7 +77,6 @@
 </template>
 
 <script>
-import Bus from "../checkoutEventBus";
 import AddonListItem from "./AddonListItem";
 export default {
     name: "ItemDialog",
@@ -93,34 +92,51 @@ export default {
 
     data: function() {
         return {
-            selectedAddons: this.item.addons,
-            customPrice: this.item.price,
+            activeAddons: [],
+            customPrice: 0,
         };
     },
 
+    watch: {
+        "$store.state.checkout.activeItem": function() {
+            // Load addons from item
+            if (
+                this.$store.state.checkout.activeItem &&
+                this.$store.state.checkout.itemDialog === true
+            ) {
+                this.activeAddons = JSON.parse(
+                    JSON.stringify(this.item.addons),
+                );
+            }
+        },
+    },
+
     methods: {
+        handleCancelButton() {
+            this.$store.commit("checkout/closeItemDialog");
+        },
         handleFinishButton() {
-            let editedItem = JSON.parse(JSON.stringify(this.item)); // gross
-            editedItem.addons = this.selectedAddons;
-            Bus.$emit("addToCart", editedItem);
-            this.selectedAddons = [];
+            this.$store.commit("checkout/finishItemEditing", this.activeAddons);
+            this.activeAddons = [];
         },
         handleIncreaseQuantity(index) {
-            this.selectedAddons[index].quantity += 1;
-            this.$set(this.selectedAddons, index, this.selectedAddons[index]); // reactivity
+            this.activeAddons[index].quantity += 1;
         },
         handleDecreaseQuantity(index) {
-            if (this.selectedAddons[index].quantity > 1)
-                this.selectedAddons[index].quantity -= 1;
-            this.$set(this.selectedAddons, index, this.selectedAddons[index]); // reactivity
+            this.activeAddons[index].quantity -=
+                this.activeAddons[index].quantity > 1 ? 1 : 0;
         },
         handleRemoveAddon(index) {
-            this.selectedAddons.splice(index, 1);
+            this.activeAddons.splice(index, 1);
         },
-        addAddon(addon) {
-            let newAddon = JSON.parse(JSON.stringify(addon)); // gross
-            newAddon.quantity = 1;
-            this.selectedAddons.push(newAddon);
+        handleAddAddon(addon) {
+            for (let i in this.activeAddons) {
+                // Existing addon
+                if (this.activeAddons[i].tag === addon.tag) {
+                    return (this.activeAddons[i].quantity += 1);
+                }
+            }
+            this.activeAddons.push({ ...addon, quantity: 1 }); // New addon
         },
     },
 };

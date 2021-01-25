@@ -17,18 +17,21 @@
                     </div>
                 </v-col>
                 <v-col class="title">
-                    <span class="black--text">Payment:</span>
-                    <v-chip label outlined class="ml-2">
-                        <font-awesome-icon
-                            class="mr-1 deep-purple--text"
-                            icon="credit-card"
-                            size="large"
-                        />
-                        <span>
-                            {{ getPaymentType }}
-                        </span>
-                    </v-chip>
-                    <div class="green--text">Total: {{ getTotal }}</div>
+                    <v-row>
+                        <span class="black--text">Payment:</span>
+                        <v-chip label outlined class="ml-2">
+                            <font-awesome-icon
+                                :class="getPaymentType.class"
+                                :icon="getPaymentType.icon"
+                            />
+                            <span>
+                                {{ getPaymentType.text }}
+                            </span>
+                        </v-chip>
+                    </v-row>
+                    <v-row>
+                        <span class="green--text">Total: {{ getTotal }}</span>
+                    </v-row>
                 </v-col>
             </v-row>
             <v-card
@@ -38,15 +41,15 @@
                 height="500"
             >
                 <OverviewItem
-                    v-for="item in items"
+                    v-for="(item, index) in items"
+                    :key="`${item.tag}-${index}`"
                     :item="item"
-                    :key="item.tag"
                 />
             </v-card>
         </v-card-text>
         <v-card-actions>
             <v-spacer />
-            <v-btn outlined>
+            <v-btn @click="handleCancelButton" outlined>
                 Cancel
             </v-btn>
             <v-btn
@@ -62,7 +65,6 @@
 </template>
 
 <script>
-import Bus from "../checkoutEventBus";
 import OverviewItem from "./OverviewItem";
 export default {
     name: "ConfirmDialog",
@@ -81,16 +83,37 @@ export default {
 
     computed: {
         getTech: function() {
-            return "Raymond Truong";
+            return this.$store.state.global.loggedInEmployee.name;
         },
         getDate: function() {
-            return "January 5th, 2021";
+            return new Date().toLocaleString("en-US").split(",")[0];
         },
         getTime: function() {
-            return "12:51 PM";
+            return new Date().toLocaleString("en-US", {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+            });
         },
         getPaymentType: function() {
-            return "Visa";
+            switch (this.$store.state.checkout.paymentType) {
+                case "cash":
+                    return {
+                        text: "Cash",
+                        icon: "money-bill-alt",
+                        class: "mr-1 green--text",
+                    };
+                case "visa":
+                    return {
+                        text: "Visa",
+                        icon: "credit-card",
+                        class: "mr-1 deep-purple--text",
+                    };
+                default:
+                    return {
+                        text: "Error",
+                    };
+            }
         },
         getTotal: function() {
             return "$250";
@@ -98,11 +121,11 @@ export default {
     },
 
     methods: {
-        handleConfirmButton() {
-            Bus.$emit("confirmSale");
-        },
         handleCancelButton() {
-            Bus.$emit("closeConfirmDialog");
+            this.$store.commit("checkout/closeConfirmDialog");
+        },
+        handleConfirmButton() {
+            this.$store.dispatch("checkout/confirmSale");
         },
     },
 };

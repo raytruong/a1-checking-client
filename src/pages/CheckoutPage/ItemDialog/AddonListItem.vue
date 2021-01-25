@@ -3,7 +3,9 @@
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title>
-                    {{ addon.name }}
+                    <span>
+                        {{ addon.name }}
+                    </span>
                 </v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
@@ -12,9 +14,9 @@
                         outlined
                         tile
                         small
-                        @click.stop="handleAction('decreaseQuantity')"
+                        @click.stop="handleIncreaseButton"
                     >
-                        <font-awesome-icon icon="plus-square" size="large" />
+                        <font-awesome-icon icon="plus-square" />
                     </v-btn>
                     <v-avatar
                         tile
@@ -28,19 +30,19 @@
                         outlined
                         tile
                         small
-                        @click.stop="handleAction('increaseQuantity')"
+                        @click.stop="handleDecreaseButton"
                     >
-                        <font-awesome-icon icon="minus-square" size="small" />
+                        <font-awesome-icon icon="minus-square" />
                     </v-btn>
                     <v-btn
                         class="ml-2"
                         color="red lighten-2"
-                        @click.stop="handleAction('removeAddon')"
+                        @click.stop="handleRemoveButton"
                         tile
                         outlined
                         small
                     >
-                        <font-awesome-icon icon="trash-alt" size="small" />
+                        <font-awesome-icon icon="trash-alt" />
                     </v-btn>
                 </v-row>
             </v-list-item-action>
@@ -58,15 +60,21 @@ export default {
     },
 
     data: function() {
-        return {
-            handleAction(event) {
-                this.$emit(event);
-            },
-        };
+        return {};
     },
 
     computed: {},
 
-    methods: {},
+    methods: {
+        handleIncreaseButton() {
+            this.$emit("increaseQuantity");
+        },
+        handleDecreaseButton() {
+            this.$emit("decreaseQuantity");
+        },
+        handleRemoveButton() {
+            this.$emit("removeAddon");
+        },
+    },
 };
 </script>
