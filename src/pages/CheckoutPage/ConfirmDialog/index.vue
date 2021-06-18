@@ -3,37 +3,56 @@
         <v-card-title class="justify-center">
             Sale Overview
         </v-card-title>
-        <v-card-text class="justify-center">
-            <v-row>
-                <v-col>
-                    <div>
-                        {{ getTech }}
-                    </div>
-                    <div>
-                        {{ getDate }}
-                    </div>
-                    <div>
-                        {{ getTime }}
-                    </div>
-                </v-col>
-                <v-col class="title">
-                    <v-row>
-                        <span class="black--text">Payment:</span>
-                        <v-chip label outlined class="ml-2">
-                            <font-awesome-icon
-                                :class="getPaymentType.class"
-                                :icon="getPaymentType.icon"
-                            />
-                            <span>
-                                {{ getPaymentType.text }}
-                            </span>
-                        </v-chip>
-                    </v-row>
-                    <v-row>
-                        <span class="green--text">Total: {{ getTotal }}</span>
-                    </v-row>
-                </v-col>
-            </v-row>
+        <v-card-text>
+            <v-card color="transparent" flat>
+                <v-row>
+                    <v-col class="title">
+                        <div>
+                            {{ getTech }}
+                        </div>
+                        <div>
+                            {{ getDate }}
+                        </div>
+                        <div>
+                            {{ getTime }}
+                        </div>
+                    </v-col>
+                    <v-col>
+                        <v-row>
+                            <span class="title black--text">Payment:</span>
+                            <v-chip
+                                label
+                                flat
+                                color="transparent"
+                                class="noHover"
+                            >
+                                <font-awesome-icon
+                                    :class="getPaymentType.class"
+                                    :icon="getPaymentType.icon"
+                                />
+                                <span>
+                                    {{ getPaymentType.text }}
+                                </span>
+                            </v-chip>
+                        </v-row>
+                        <v-row>
+                            <span class="body-1 blue--text"
+                                >Tip: {{ getTip }}</span
+                            >
+                        </v-row>
+                        <v-row>
+                            <span class="body-1 blue--text"
+                                >Subtotal: {{ getSubtotal }}</span
+                            >
+                        </v-row>
+                        <v-row>
+                            <span class="title green--text"
+                                >Total: {{ getTotal }}</span
+                            >
+                        </v-row>
+                    </v-col>
+                </v-row>
+            </v-card>
             <v-card
                 class="scroll-window"
                 color="grey lighten-3"
@@ -105,7 +124,7 @@ export default {
                     };
                 case "visa":
                     return {
-                        text: "Visa",
+                        text: "Card",
                         icon: "credit-card",
                         class: "mr-1 deep-purple--text",
                     };
@@ -114,6 +133,12 @@ export default {
                         text: "Error",
                     };
             }
+        },
+        getSubtotal: function() {
+            return "$200";
+        },
+        getTip: function() {
+            return "$50";
         },
         getTotal: function() {
             return "$250";
@@ -134,5 +159,8 @@ export default {
 <style scoped>
 .scroll-window {
     overflow-y: auto;
+}
+.noHover {
+    pointer-events: none;
 }
 </style>

@@ -1,19 +1,13 @@
 <template>
     <v-card>
         <v-card-title class="headline">
-            {{ item.name }}
+            <span>{{ item.name }}</span>
+            <v-spacer />
+            <span class="green--text">${{ item.price }}</span>
         </v-card-title>
         <v-card-subtitle class="title">
             {{ item.category }}
         </v-card-subtitle>
-        <v-card-text>
-            <v-text-field
-                label="Price"
-                :value="item.price / 100"
-                prefix="$"
-                dense
-            ></v-text-field>
-        </v-card-text>
         <v-card-text>
             <div class="title black--text">
                 Select Addons
@@ -93,17 +87,25 @@ export default {
     data: function() {
         return {
             activeAddons: [],
-            customPrice: 0,
+            price: this.item.price,
+            rules: {
+                required: value => !!value || "Price Required",
+                customPrice: value => {
+                    const pattern = /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/;
+                    return pattern.test(value) || "Invalid Price";
+                },
+            },
         };
     },
 
     watch: {
         "$store.state.checkout.activeItem": function() {
-            // Load addons from item
+            // Load pricing and addons from active item
             if (
                 this.$store.state.checkout.activeItem &&
                 this.$store.state.checkout.itemDialog === true
             ) {
+                this.price = this.item.price;
                 this.activeAddons = JSON.parse(
                     JSON.stringify(this.item.addons),
                 );
@@ -116,7 +118,10 @@ export default {
             this.$store.commit("checkout/closeItemDialog");
         },
         handleFinishButton() {
-            this.$store.commit("checkout/finishItemEditing", this.activeAddons);
+            this.$store.commit("checkout/finishItemEditing", {
+                addons: this.activeAddons,
+                price: this.price,
+            });
             this.activeAddons = [];
         },
         handleIncreaseQuantity(index) {

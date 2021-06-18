@@ -3,9 +3,14 @@
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title>
-                    <span>
-                        {{ addon.name }}
-                    </span>
+                    <v-row>
+                        <v-col cols="1" class="font-weight-bold blue--text">
+                            ${{ addon.price }}
+                        </v-col>
+                        <v-col cols="11">
+                            {{ addon.name }}
+                        </v-col>
+                    </v-row>
                 </v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>

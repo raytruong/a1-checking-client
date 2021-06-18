@@ -3,12 +3,10 @@
         <v-card-title>
             <span>{{ item.name }}</span>
             <v-spacer />
-            <span class="green--text">${{ item.price / 100 }}</span>
+            <span class="green--text">${{ item.price }}</span>
         </v-card-title>
         <v-card-subtitle>
-            <div class="black--text">
-                {{ item.category }}
-            </div>
+            {{ item.category }}
         </v-card-subtitle>
         <v-card-text>
             <v-chip-group column class="white--text">
@@ -16,7 +14,7 @@
                     v-for="addon in item.addons"
                     :key="addon.tag"
                     color="blue"
-                    class="white--text"
+                    class="noHover white--text"
                     :ripple="false"
                     label
                     outlined
@@ -104,5 +102,8 @@ export default {
     word-break: normal;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.noHover {
+    pointer-events: none;
 }
 </style>

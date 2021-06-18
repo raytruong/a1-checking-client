@@ -32,6 +32,7 @@
                 </v-card>
                 <v-chip-group
                     mandatory
+                    center-active
                     v-model="paymentType"
                     active-class="blue--text text--accent-4"
                 >
@@ -41,7 +42,7 @@
                             color="white"
                             icon="credit-card"
                         />
-                        <span>Visa</span>
+                        <span>Card</span>
                     </v-chip>
                     <v-chip value="cash" class="payment-chip" label large>
                         <font-awesome-icon
@@ -56,8 +57,20 @@
                     large
                     block
                     depressed
+                    color="blue"
+                >
+                    <span class="white--text">
+                        Add tip
+                    </span>
+                </v-btn>
+                <v-btn
+                    @click="openConfirmDialog"
+                    large
+                    block
+                    depressed
                     :disabled="items.length === 0"
                     color="green"
+                    class="mt-2"
                 >
                     <span class="white--text">
                         Finish
