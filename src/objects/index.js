@@ -1,3 +1,5 @@
+import currency from "currency.js";
+
 const Item = function(
     db,
     tag,
@@ -8,11 +10,11 @@ const Item = function(
     (this.tag = tag),
         (this.quantity = quantity),
         (this.addons = addons),
-        (this.price = price),
+        (this.price = currency(price, { fromCents: true })),
         (this.category = db[tag].category),
         (this.name = db[tag].name),
         (this.setPrice = function(newPrice) {
-            this.price = newPrice;
+            this.price = currency(newPrice);
         }),
         (this.setQuantity = function(newQuantity) {
             this.quantity = newQuantity;
@@ -25,9 +27,12 @@ const Item = function(
 const Addon = function(db, tag, quantity = 1) {
     (this.tag = tag),
         (this.quantity = quantity),
-        (this.price = db[tag].price),
+        (this.price = currency(db[tag].price, { fromCents: true })),
         (this.category = db[tag].category),
         (this.name = db[tag].name),
+        (this.setPrice = function(newPrice) {
+            this.price = currency(newPrice);
+        }),
         (this.setQuantity = function(newQuantity) {
             this.quantity = newQuantity;
         });

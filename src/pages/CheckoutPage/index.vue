@@ -55,13 +55,8 @@ export default {
     },
 
     computed: {
-        ...mapGetters("checkout", ["items", "addons"]),
-        ...mapState("checkout", [
-            "cart",
-            "activeItem",
-            "itemDialog",
-            "confirmDialog",
-        ]),
+        ...mapGetters("checkout", ["items", "addons", "cart"]),
+        ...mapState("checkout", ["activeItem", "itemDialog", "confirmDialog"]),
     },
 
     methods: {

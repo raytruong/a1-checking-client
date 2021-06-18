@@ -106,9 +106,7 @@ export default {
                 this.$store.state.checkout.itemDialog === true
             ) {
                 this.price = this.item.price;
-                this.activeAddons = JSON.parse(
-                    JSON.stringify(this.item.addons),
-                );
+                this.activeAddons = [...this.item.addons];
             }
         },
     },
@@ -136,7 +134,7 @@ export default {
         },
         handleAddAddon(addon) {
             for (let i in this.activeAddons) {
-                // Existing addon
+                // Existing addon, increment value
                 if (this.activeAddons[i].tag === addon.tag) {
                     return (this.activeAddons[i].quantity += 1);
                 }

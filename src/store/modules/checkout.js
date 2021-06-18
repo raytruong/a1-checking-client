@@ -1,6 +1,7 @@
 import { Item, Addon } from "@/objects";
 import database from "./items.json";
 import db from "@/services";
+import currency from "currency.js";
 
 const getInitialState = () => {
     return {
@@ -19,14 +20,23 @@ const checkout = {
     state: getInitialState(),
     getters: {
         items: function(state) {
-            return Object.values(state.db).filter(
-                item => item.category != "Addons",
-            );
+            return Object.values(state.db)
+                .map(item => ({
+                    ...item,
+                    price: currency(item.price, { fromCents: true }),
+                }))
+                .filter(item => item.category != "Addons");
         },
         addons: function(state) {
-            return Object.values(state.db).filter(
-                item => item.category === "Addons",
-            );
+            return Object.values(state.db)
+                .map(addon => ({
+                    ...addon,
+                    price: currency(addon.price, { fromCents: true }),
+                }))
+                .filter(item => item.category === "Addons");
+        },
+        cart: function(state) {
+            return state.cart;
         },
     },
     mutations: {

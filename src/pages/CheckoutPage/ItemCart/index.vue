@@ -38,7 +38,7 @@
                 >
                     <v-chip value="visa" class="payment-chip" label large>
                         <font-awesome-icon
-                            class="mr-1 deep-purple--text"
+                            class="mr-1 blue--text"
                             color="white"
                             icon="credit-card"
                         />
@@ -139,5 +139,9 @@ export default {
 .payment-chip {
     width: 100%;
     justify-content: center;
+}
+.v-chip--active {
+    border: 1px solid dodgerblue;
+    background-color: white;
 }
 </style>
