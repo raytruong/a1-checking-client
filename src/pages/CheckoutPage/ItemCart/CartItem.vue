@@ -48,8 +48,8 @@
                 outlined
                 small
             >
-                <font-awesome-icon class="mr-1" icon="pen" />
                 Edit
+                <font-awesome-icon class="ml-1" icon="pen" />
             </v-btn>
             <v-spacer />
             <v-btn outlined tile small @click.stop="handleIncreaseButton">

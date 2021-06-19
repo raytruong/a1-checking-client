@@ -4,10 +4,18 @@
             <v-list-item-content>
                 <v-list-item-title>
                     <v-row>
-                        <v-col cols="1" class="font-weight-bold blue--text">
-                            ${{ addon.price }}
+                        <v-col cols="3" class="font-weight-bold blue--text">
+                            <v-text-field
+                                dense
+                                outlined
+                                prefix="$"
+                                hide-details="auto"
+                                :value="addon.price"
+                                clearable
+                            >
+                            </v-text-field>
                         </v-col>
-                        <v-col cols="11">
+                        <v-col cols="9" justify="center">
                             {{ addon.name }}
                         </v-col>
                     </v-row>
@@ -83,3 +91,28 @@ export default {
     },
 };
 </script>
+
+<style>
+/* Price input size*/
+.v-text-field .v-input__control .v-input__slot {
+    min-height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Price input clearable vertical alignment */
+.v-text-field--enclosed.v-input--dense:not(.v-text-field--solo).v-text-field--outlined
+    .v-input__append-inner {
+    margin-top: 4px;
+}
+
+/* List item padding */
+.v-list-item__content {
+    padding: 0px;
+}
+
+/* List item text vertical alignment */
+.v-list-item .v-list-item__title {
+    line-height: 1.9;
+}
+</style>

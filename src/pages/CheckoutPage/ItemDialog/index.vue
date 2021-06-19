@@ -9,6 +9,26 @@
             {{ item.category }}
         </v-card-subtitle>
         <v-card-text>
+            <v-row>
+                <v-col cols="2">
+                    <span class="title black--text">
+                        Base Price:
+                    </span>
+                </v-col>
+                <v-col cols="2" class="font-weight-bold blue--text">
+                    <v-text-field
+                        dense
+                        outlined
+                        prefix="$"
+                        clearable
+                        hide-details="auto"
+                        :value="item.price"
+                    >
+                    </v-text-field>
+                </v-col>
+            </v-row>
+        </v-card-text>
+        <v-card-text>
             <div class="title black--text">
                 Select Addons
             </div>
@@ -31,7 +51,7 @@
                 class="scroll-window"
                 color="white"
                 flat
-                height="250"
+                height="300"
             >
                 <AddonListItem
                     v-for="(addon, index) in activeAddons"
@@ -43,7 +63,7 @@
                     :index="index"
                 />
             </v-card>
-            <v-card v-else height="250" tile elevation="0" color="transparent">
+            <v-card v-else height="300" tile elevation="0" color="transparent">
                 <v-container fill-height fluid>
                     <v-row class="title" align="center" justify="center">
                         <div class="black--text">
@@ -71,7 +91,9 @@
 </template>
 
 <script>
+import cloneDeep from "lodash.clonedeep";
 import AddonListItem from "./AddonListItem";
+
 export default {
     name: "ItemDialog",
 
@@ -105,8 +127,8 @@ export default {
                 this.$store.state.checkout.activeItem &&
                 this.$store.state.checkout.itemDialog === true
             ) {
+                this.activeAddons = cloneDeep(this.item.addons);
                 this.price = this.item.price;
-                this.activeAddons = [...this.item.addons];
             }
         },
     },
