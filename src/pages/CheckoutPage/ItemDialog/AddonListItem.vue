@@ -115,4 +115,8 @@ export default {
 .v-list-item .v-list-item__title {
     line-height: 1.9;
 }
+
+.theme--light.v-icon {
+    color: #e57373;
+}
 </style>
