@@ -1,6 +1,7 @@
 import { Item, Addon } from "@/objects";
 import database from "./items.json";
 import db from "@/services";
+import currency from "currency.js";
 
 const getInitialState = () => {
     return {
@@ -19,14 +20,49 @@ const checkout = {
     state: getInitialState(),
     getters: {
         items: function(state) {
-            return Object.values(state.db).filter(
-                item => item.category != "Addons",
-            );
+            return Object.values(state.db)
+                .map(item => ({
+                    ...item,
+                    price: currency(item.price, { fromCents: true }),
+                }))
+                .filter(item => item.category != "Addons");
         },
         addons: function(state) {
-            return Object.values(state.db).filter(
-                item => item.category === "Addons",
-            );
+            return Object.values(state.db)
+                .map(addon => ({
+                    ...addon,
+                    price: currency(addon.price, { fromCents: true }),
+                }))
+                .filter(item => item.category === "Addons");
+        },
+        cart: function(state) {
+            state.cart.forEach(item => {
+                item.total = item.price.add(
+                    item.addons.reduce((addonTotals, addon) => {
+                        return addon
+                            ? addonTotals.add(
+                                  addon.price.multiply(addon.quantity),
+                              )
+                            : currency(0);
+                    }, currency(0)),
+                );
+            });
+            return state.cart;
+        },
+        cartTotal: function(state) {
+            return state.cart.reduce((cartTotal, item) => {
+                return cartTotal.add(
+                    item.price.add(
+                        item.addons.reduce((addonTotals, addon) => {
+                            return addon
+                                ? addonTotals.add(
+                                      addon.price.multiply(addon.quantity),
+                                  )
+                                : currency(0);
+                        }, currency(0)),
+                    ),
+                );
+            }, currency(0));
         },
     },
     mutations: {
@@ -55,12 +91,15 @@ const checkout = {
             state.itemDialog = false;
             state.isEdit = false;
         },
-        finishItemEditing(state, addons) {
+        finishItemEditing(state, { addons, price }) {
             const newAddons = [];
             addons.forEach(addon => {
-                newAddons.push(new Addon(state.db, addon.tag, addon.quantity));
+                let newAddon = new Addon(state.db, addon.tag, addon.quantity);
+                newAddon.setPrice(addon.price);
+                newAddons.push(newAddon);
             });
             state.activeItem.setAddons(newAddons);
+            state.activeItem.setPrice(price);
             if (!state.isEdit) state.cart.push(state.activeItem);
             state.isEdit = false;
             state.activeItem = {};

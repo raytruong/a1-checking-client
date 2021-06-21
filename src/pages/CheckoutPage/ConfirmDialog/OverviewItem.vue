@@ -2,9 +2,8 @@
     <v-card tile outlined class="ma-2">
         <v-card-title>
             <span>{{ item.name }}</span>
-            <span class="ml-1 black--text"> ({{ item.quantity }}) </span>
             <v-spacer />
-            <span class="green--text">${{ item.price / 100 }}</span>
+            <span class="green--text">${{ item.total }}</span>
         </v-card-title>
         <v-card-subtitle>
             <div class="black--text">

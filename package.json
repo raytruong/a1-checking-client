@@ -19,6 +19,8 @@
         "@fortawesome/vue-fontawesome": "^2.0.0",
         "add-cors-to-couchdb": "0.0.6",
         "core-js": "^3.6.5",
+        "currency.js": "^2.0.4",
+        "lodash.clonedeep": "^4.5.0",
         "pouchdb-browser": "^7.2.2",
         "vue": "^2.6.11",
         "vuetify": "^2.2.11",

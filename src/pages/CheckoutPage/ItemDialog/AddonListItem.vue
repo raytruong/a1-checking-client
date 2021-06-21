@@ -3,20 +3,28 @@
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title>
-                    <span>
-                        {{ addon.name }}
-                    </span>
+                    <v-row>
+                        <v-col cols="3" class="font-weight-bold blue--text">
+                            <PriceInput
+                                :defaultPrice="addon.price"
+                                @priceChange="handleAddonPriceChange"
+                            />
+                        </v-col>
+                        <v-col cols="9" justify="center">
+                            {{ addon.name }}
+                        </v-col>
+                    </v-row>
                 </v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
                 <v-row>
                     <v-btn
-                        outlined
                         tile
+                        outlined
                         small
                         @click.stop="handleIncreaseButton"
                     >
-                        <font-awesome-icon icon="plus-square" />
+                        <v-icon>mdi-plus</v-icon>
                     </v-btn>
                     <v-avatar
                         tile
@@ -27,22 +35,21 @@
                         <span class="white--text">{{ addon.quantity }}</span>
                     </v-avatar>
                     <v-btn
-                        outlined
                         tile
+                        outlined
                         small
                         @click.stop="handleDecreaseButton"
                     >
-                        <font-awesome-icon icon="minus-square" />
+                        <v-icon>mdi-minus</v-icon>
                     </v-btn>
                     <v-btn
                         class="ml-2"
                         color="red lighten-2"
                         @click.stop="handleRemoveButton"
-                        tile
                         outlined
                         small
                     >
-                        <font-awesome-icon icon="trash-alt" />
+                        <v-icon>mdi-close</v-icon>
                     </v-btn>
                 </v-row>
             </v-list-item-action>
@@ -52,8 +59,14 @@
 </template>
 
 <script>
+import PriceInput from "@/components/shared/PriceInput";
+
 export default {
     name: "AddonListItem",
+
+    components: {
+        PriceInput,
+    },
 
     props: {
         addon: Object,
@@ -75,6 +88,38 @@ export default {
         handleRemoveButton() {
             this.$emit("removeAddon");
         },
+        handleAddonPriceChange(payload) {
+            this.$emit("changePrice", payload);
+        },
     },
 };
 </script>
+
+<style>
+/* Price input size*/
+.v-text-field .v-input__control .v-input__slot {
+    min-height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Price input clearable vertical alignment */
+.v-text-field--enclosed.v-input--dense:not(.v-text-field--solo).v-text-field--outlined
+    .v-input__append-inner {
+    margin-top: 4px;
+}
+
+/* List item padding */
+.v-list-item__content {
+    padding: 0px;
+}
+
+/* List item text vertical alignment */
+.v-list-item .v-list-item__title {
+    line-height: 1.9;
+}
+
+.theme--light.v-icon {
+    color: #e57373;
+}
+</style>

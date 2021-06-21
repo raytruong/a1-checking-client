@@ -1,18 +1,27 @@
 <template>
     <v-card>
         <v-card-title class="headline">
-            {{ item.name }}
+            <span>{{ item.name }}</span>
+            <v-spacer />
+            <span class="green--text">${{ item.price }}</span>
         </v-card-title>
         <v-card-subtitle class="title">
             {{ item.category }}
         </v-card-subtitle>
         <v-card-text>
-            <v-text-field
-                label="Price"
-                :value="item.price / 100"
-                prefix="$"
-                dense
-            ></v-text-field>
+            <v-row>
+                <v-col cols="2">
+                    <span class="title black--text">
+                        Base Price:
+                    </span>
+                </v-col>
+                <v-col cols="2" class="font-weight-bold blue--text">
+                    <PriceInput
+                        :defaultPrice="item.price"
+                        @priceChange="handleBaseChangePrice"
+                    />
+                </v-col>
+            </v-row>
         </v-card-text>
         <v-card-text>
             <div class="title black--text">
@@ -37,19 +46,20 @@
                 class="scroll-window"
                 color="white"
                 flat
-                height="250"
+                height="300"
             >
                 <AddonListItem
                     v-for="(addon, index) in activeAddons"
                     @increaseQuantity="handleIncreaseQuantity(index)"
                     @decreaseQuantity="handleDecreaseQuantity(index)"
                     @removeAddon="handleRemoveAddon(index)"
+                    @changePrice="handleAddonChangePrice(index, $event)"
                     :key="addon.tag"
                     :addon="addon"
                     :index="index"
                 />
             </v-card>
-            <v-card v-else height="250" tile elevation="0" color="transparent">
+            <v-card v-else height="300" tile elevation="0" color="transparent">
                 <v-container fill-height fluid>
                     <v-row class="title" align="center" justify="center">
                         <div class="black--text">
@@ -77,11 +87,16 @@
 </template>
 
 <script>
+import cloneDeep from "lodash.clonedeep";
+import currency from "currency.js";
+import PriceInput from "@/components/shared/PriceInput";
 import AddonListItem from "./AddonListItem";
+
 export default {
     name: "ItemDialog",
 
     components: {
+        PriceInput,
         AddonListItem,
     },
 
@@ -93,20 +108,19 @@ export default {
     data: function() {
         return {
             activeAddons: [],
-            customPrice: 0,
+            price: this.item.price,
         };
     },
 
     watch: {
         "$store.state.checkout.activeItem": function() {
-            // Load addons from item
+            // Load pricing and addons from active item
             if (
                 this.$store.state.checkout.activeItem &&
                 this.$store.state.checkout.itemDialog === true
             ) {
-                this.activeAddons = JSON.parse(
-                    JSON.stringify(this.item.addons),
-                );
+                this.activeAddons = cloneDeep(this.item.addons);
+                this.price = this.item.price;
             }
         },
     },
@@ -116,7 +130,10 @@ export default {
             this.$store.commit("checkout/closeItemDialog");
         },
         handleFinishButton() {
-            this.$store.commit("checkout/finishItemEditing", this.activeAddons);
+            this.$store.commit("checkout/finishItemEditing", {
+                addons: this.activeAddons,
+                price: this.price,
+            });
             this.activeAddons = [];
         },
         handleIncreaseQuantity(index) {
@@ -129,9 +146,15 @@ export default {
         handleRemoveAddon(index) {
             this.activeAddons.splice(index, 1);
         },
+        handleBaseChangePrice(payload) {
+            this.price = currency(payload);
+        },
+        handleAddonChangePrice(index, payload) {
+            this.activeAddons[index].price = currency(payload);
+        },
         handleAddAddon(addon) {
             for (let i in this.activeAddons) {
-                // Existing addon
+                // Existing addon, increment value
                 if (this.activeAddons[i].tag === addon.tag) {
                     return (this.activeAddons[i].quantity += 1);
                 }

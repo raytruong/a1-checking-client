@@ -6,6 +6,8 @@ Vue application built for employees to log transactions, intended for usage on a
 
 ```
 npm run electron:build -- --win nsis
+
+npm run electron:build -- --linux arm7l
 ```
 
 ## Project setup

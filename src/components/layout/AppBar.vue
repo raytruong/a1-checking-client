@@ -4,7 +4,10 @@
         <v-spacer />
         <v-toolbar-title class="white--text">{{ getTech }}</v-toolbar-title>
         <v-spacer />
-        <v-toolbar-title class="white--text">{{ date }}</v-toolbar-title>
+        <v-btn @click="handleManageButton">
+            Manage
+        </v-btn>
+        <!-- <v-toolbar-title class="white--text">{{ date }}</v-toolbar-title> -->
     </v-app-bar>
 </template>
 
@@ -28,6 +31,11 @@ export default {
     computed: {
         getTech: function() {
             return this.$store.state.global.loggedInEmployee.name || "Sign In";
+        },
+    },
+    methods: {
+        handleManageButton() {
+            this.$store.commit("global/setUrl", "/sales");
         },
     },
 };
