@@ -3,7 +3,7 @@
         <v-card-title>
             <span>{{ item.name }}</span>
             <v-spacer />
-            <span class="green--text">${{ item.price }}</span>
+            <span class="green--text">${{ item.total }}</span>
         </v-card-title>
         <v-card-subtitle>
             {{ item.category }}

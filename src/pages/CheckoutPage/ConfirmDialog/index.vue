@@ -36,18 +36,8 @@
                             </v-chip>
                         </v-row>
                         <v-row>
-                            <span class="body-1 blue--text"
-                                >Tip: {{ getTip }}</span
-                            >
-                        </v-row>
-                        <v-row>
-                            <span class="body-1 blue--text"
-                                >Subtotal: {{ getSubtotal }}</span
-                            >
-                        </v-row>
-                        <v-row>
                             <span class="title green--text"
-                                >Total: {{ getTotal }}</span
+                                >Total: ${{ cartTotal }}</span
                             >
                         </v-row>
                     </v-col>
@@ -85,6 +75,8 @@
 
 <script>
 import OverviewItem from "./OverviewItem";
+import { mapGetters } from "vuex";
+
 export default {
     name: "ConfirmDialog",
 
@@ -140,9 +132,7 @@ export default {
         getTip: function() {
             return "$50";
         },
-        getTotal: function() {
-            return "$250";
-        },
+        ...mapGetters("checkout", ["cartTotal"]),
     },
 
     methods: {

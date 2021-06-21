@@ -5,15 +5,7 @@
                 <v-list-item-title>
                     <v-row>
                         <v-col cols="3" class="font-weight-bold blue--text">
-                            <v-text-field
-                                dense
-                                outlined
-                                prefix="$"
-                                hide-details="auto"
-                                :value="addon.price"
-                                clearable
-                            >
-                            </v-text-field>
+                            <PriceInput :defaultPrice="addon.price" />
                         </v-col>
                         <v-col cols="9" justify="center">
                             {{ addon.name }}
@@ -65,8 +57,14 @@
 </template>
 
 <script>
+import PriceInput from "@/components/shared/PriceInput";
+
 export default {
     name: "AddonListItem",
+
+    components: {
+        PriceInput,
+    },
 
     props: {
         addon: Object,

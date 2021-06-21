@@ -36,7 +36,33 @@ const checkout = {
                 .filter(item => item.category === "Addons");
         },
         cart: function(state) {
+            state.cart.forEach(item => {
+                item.total = item.price.add(
+                    item.addons.reduce((addonTotals, addon) => {
+                        return addon
+                            ? addonTotals.add(
+                                  addon.price.multiply(addon.quantity),
+                              )
+                            : currency(0);
+                    }, currency(0)),
+                );
+            });
             return state.cart;
+        },
+        cartTotal: function(state) {
+            return state.cart.reduce((cartTotal, item) => {
+                return cartTotal.add(
+                    item.price.add(
+                        item.addons.reduce((addonTotals, addon) => {
+                            return addon
+                                ? addonTotals.add(
+                                      addon.price.multiply(addon.quantity),
+                                  )
+                                : currency(0);
+                        }, currency(0)),
+                    ),
+                );
+            }, currency(0));
         },
     },
     mutations: {

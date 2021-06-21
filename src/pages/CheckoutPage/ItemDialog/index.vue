@@ -16,15 +16,7 @@
                     </span>
                 </v-col>
                 <v-col cols="2" class="font-weight-bold blue--text">
-                    <v-text-field
-                        dense
-                        outlined
-                        prefix="$"
-                        clearable
-                        hide-details="auto"
-                        :value="item.price"
-                    >
-                    </v-text-field>
+                    <PriceInput :defaultPrice="item.price" />
                 </v-col>
             </v-row>
         </v-card-text>
@@ -92,12 +84,14 @@
 
 <script>
 import cloneDeep from "lodash.clonedeep";
+import PriceInput from "@/components/shared/PriceInput";
 import AddonListItem from "./AddonListItem";
 
 export default {
     name: "ItemDialog",
 
     components: {
+        PriceInput,
         AddonListItem,
     },
 

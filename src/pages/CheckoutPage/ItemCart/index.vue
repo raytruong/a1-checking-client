@@ -30,6 +30,7 @@
                         </v-row>
                     </v-container>
                 </v-card>
+                <span class="title green--text"> Total: ${{ cartTotal }} </span>
                 <v-chip-group
                     mandatory
                     center-active
@@ -83,7 +84,7 @@
 
 <script>
 import CartItem from "./CartItem";
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
     name: "ItemCart",
 
@@ -118,6 +119,7 @@ export default {
                 this.$store.commit("checkout/setPaymentType", type);
             },
         },
+        ...mapGetters("checkout", ["cartTotal"]),
     },
 
     methods: {
