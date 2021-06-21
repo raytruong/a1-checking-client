@@ -94,7 +94,9 @@ const checkout = {
         finishItemEditing(state, { addons, price }) {
             const newAddons = [];
             addons.forEach(addon => {
-                newAddons.push(new Addon(state.db, addon.tag, addon.quantity));
+                let newAddon = new Addon(state.db, addon.tag, addon.quantity);
+                newAddon.setPrice(addon.price);
+                newAddons.push(newAddon);
             });
             state.activeItem.setAddons(newAddons);
             state.activeItem.setPrice(price);

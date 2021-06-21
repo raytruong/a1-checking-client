@@ -5,7 +5,10 @@
                 <v-list-item-title>
                     <v-row>
                         <v-col cols="3" class="font-weight-bold blue--text">
-                            <PriceInput :defaultPrice="addon.price" />
+                            <PriceInput
+                                :defaultPrice="addon.price"
+                                @priceChange="handleAddonPriceChange"
+                            />
                         </v-col>
                         <v-col cols="9" justify="center">
                             {{ addon.name }}
@@ -84,6 +87,9 @@ export default {
         },
         handleRemoveButton() {
             this.$emit("removeAddon");
+        },
+        handleAddonPriceChange(payload) {
+            this.$emit("changePrice", payload);
         },
     },
 };

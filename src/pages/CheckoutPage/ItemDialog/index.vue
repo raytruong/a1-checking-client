@@ -16,7 +16,10 @@
                     </span>
                 </v-col>
                 <v-col cols="2" class="font-weight-bold blue--text">
-                    <PriceInput :defaultPrice="item.price" />
+                    <PriceInput
+                        :defaultPrice="item.price"
+                        @priceChange="handleBaseChangePrice"
+                    />
                 </v-col>
             </v-row>
         </v-card-text>
@@ -50,6 +53,7 @@
                     @increaseQuantity="handleIncreaseQuantity(index)"
                     @decreaseQuantity="handleDecreaseQuantity(index)"
                     @removeAddon="handleRemoveAddon(index)"
+                    @changePrice="handleAddonChangePrice(index, $event)"
                     :key="addon.tag"
                     :addon="addon"
                     :index="index"
@@ -84,6 +88,7 @@
 
 <script>
 import cloneDeep from "lodash.clonedeep";
+import currency from "currency.js";
 import PriceInput from "@/components/shared/PriceInput";
 import AddonListItem from "./AddonListItem";
 
@@ -104,13 +109,6 @@ export default {
         return {
             activeAddons: [],
             price: this.item.price,
-            rules: {
-                required: value => !!value || "Price Required",
-                customPrice: value => {
-                    const pattern = /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/;
-                    return pattern.test(value) || "Invalid Price";
-                },
-            },
         };
     },
 
@@ -147,6 +145,12 @@ export default {
         },
         handleRemoveAddon(index) {
             this.activeAddons.splice(index, 1);
+        },
+        handleBaseChangePrice(payload) {
+            this.price = currency(payload);
+        },
+        handleAddonChangePrice(index, payload) {
+            this.activeAddons[index].price = currency(payload);
         },
         handleAddAddon(addon) {
             for (let i in this.activeAddons) {

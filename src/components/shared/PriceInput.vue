@@ -45,9 +45,11 @@ export default {
     methods: {
         unfocus() {
             this.isEdit = false;
-            if (!this.text || this.text.length < 1) {
+            const priceRegex = /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/;
+            if (!this.text || !priceRegex.test(this.text)) {
                 this.text = this.defaultPrice;
             }
+            this.$emit("priceChange", this.text);
         },
         clearableClicked() {
             this.isEdit = true;
