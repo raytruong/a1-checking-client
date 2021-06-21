@@ -16,7 +16,7 @@
                     v-for="(addon, index) in item.addons"
                     :key="`${addon.tag}-${index}`"
                     color="blue"
-                    class="white--text"
+                    class="noHover white--text"
                     :ripple="false"
                     label
                     outlined
@@ -50,3 +50,9 @@ export default {
     methods: {},
 };
 </script>
+
+<style>
+.noHover {
+    pointer-events: none;
+}
+</style>

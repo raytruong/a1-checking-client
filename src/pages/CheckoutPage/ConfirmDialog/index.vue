@@ -5,11 +5,9 @@
         </v-card-title>
         <v-card-text>
             <v-card color="transparent" flat>
-                <v-row>
+                <v-row class="ml-2">
                     <v-col class="title">
-                        <div>
-                            {{ getTech }}
-                        </div>
+                        <div>{{ getTech }}</div>
                         <div>
                             {{ getDate }}
                         </div>
