@@ -16,12 +16,12 @@
             <v-list-item-action>
                 <v-row>
                     <v-btn
-                        outlined
                         tile
+                        outlined
                         small
                         @click.stop="handleIncreaseButton"
                     >
-                        <font-awesome-icon icon="plus-square" />
+                        <v-icon>mdi-plus</v-icon>
                     </v-btn>
                     <v-avatar
                         tile
@@ -32,22 +32,21 @@
                         <span class="white--text">{{ addon.quantity }}</span>
                     </v-avatar>
                     <v-btn
-                        outlined
                         tile
+                        outlined
                         small
                         @click.stop="handleDecreaseButton"
                     >
-                        <font-awesome-icon icon="minus-square" />
+                        <v-icon>mdi-minus</v-icon>
                     </v-btn>
                     <v-btn
                         class="ml-2"
                         color="red lighten-2"
                         @click.stop="handleRemoveButton"
-                        tile
                         outlined
                         small
                     >
-                        <font-awesome-icon icon="trash-alt" />
+                        <v-icon>mdi-close</v-icon>
                     </v-btn>
                 </v-row>
             </v-list-item-action>

@@ -4,12 +4,11 @@
         outlined
         prefix="$"
         hide-details="auto"
-        :value="text"
+        v-model="text"
         clearable
         @blur="unfocus"
         @click:clear="clearableClicked"
-        :readonly="isEditing ? false : true"
-        :append-icon="isEditing && !text ? 'mdi-close' : ''"
+        :readonly="isEdit ? false : true"
     >
     </v-text-field>
 </template>
@@ -41,15 +40,14 @@ export default {
         };
     },
 
-    computed: {
-        isEditing() {
-            return this.isEdit;
-        },
-    },
+    computed: {},
 
     methods: {
         unfocus() {
             this.isEdit = false;
+            if (!this.text || this.text.length < 1) {
+                this.text = this.defaultPrice;
+            }
         },
         clearableClicked() {
             this.isEdit = true;

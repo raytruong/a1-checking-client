@@ -31,20 +31,9 @@
         </v-card-text>
         <v-card-actions>
             <v-btn
-                class="ml-2"
-                color="red lighten-2"
-                @click.stop="handleRemoveButton"
-                tile
-                outlined
-                small
-            >
-                <font-awesome-icon icon="trash-alt" />
-            </v-btn>
-            <v-btn
-                class="ml-3"
+                class="ml-1"
                 color="orange"
                 @click.stop="handleEditButton"
-                tile
                 outlined
                 small
             >
@@ -52,14 +41,14 @@
                 <font-awesome-icon class="ml-1" icon="pen" />
             </v-btn>
             <v-spacer />
-            <v-btn outlined tile small @click.stop="handleIncreaseButton">
-                <font-awesome-icon icon="plus-square" />
-            </v-btn>
-            <v-avatar tile color="grey darken-3" width="28" max-height="28">
-                <span class="white--text">{{ item.quantity }}</span>
-            </v-avatar>
-            <v-btn outlined tile small @click.stop="handleDecreaseButton">
-                <font-awesome-icon icon="minus-square" />
+            <v-btn
+                class="mr-2"
+                color="red lighten-2"
+                @click.stop="handleRemoveButton"
+                outlined
+                small
+            >
+                <v-icon>mdi-close</v-icon>
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -82,12 +71,6 @@ export default {
     methods: {
         handleRemoveButton() {
             this.$emit("removeCartItem");
-        },
-        handleIncreaseButton() {
-            this.$emit("increaseQuantity");
-        },
-        handleDecreaseButton() {
-            this.$emit("decreaseQuantity");
         },
         handleEditButton() {
             this.$emit("editCartItem");

@@ -8,7 +8,7 @@
                     color="transparent"
                     tile
                     flat
-                    height="70vh"
+                    height="65vh"
                 >
                     <CartItem
                         v-for="(item, index) in this.items"
@@ -16,12 +16,10 @@
                         class="mr-1 mb-2"
                         :item="item"
                         @removeCartItem="removeCartItem(index)"
-                        @increaseQuantity="increaseCartQuantity(index)"
-                        @decreaseQuantity="decreaseCartQuantity(index)"
                         @editCartItem="editCartItem(index)"
                     />
                 </v-card>
-                <v-card v-else color="transparent" tile flat height="70vh">
+                <v-card v-else color="transparent" tile flat height="65vh">
                     <v-container fill-height fluid>
                         <v-row class="title" align="center" justify="center">
                             <div class="black--text">
@@ -30,7 +28,15 @@
                         </v-row>
                     </v-container>
                 </v-card>
-                <span class="title green--text"> Total: ${{ cartTotal }} </span>
+                <v-divider class="mb-2 mt-2" />
+                <v-row>
+                    <v-col class="d-flex title black--text">
+                        Total:
+                    </v-col>
+                    <v-col class="d-flex title black--text justify-end">
+                        ${{ cartTotal }}
+                    </v-col>
+                </v-row>
                 <v-chip-group
                     mandatory
                     center-active
@@ -53,17 +59,6 @@
                         <span>Cash</span>
                     </v-chip>
                 </v-chip-group>
-                <v-btn
-                    @click="openConfirmDialog"
-                    large
-                    block
-                    depressed
-                    color="blue"
-                >
-                    <span class="white--text">
-                        Add tip
-                    </span>
-                </v-btn>
                 <v-btn
                     @click="openConfirmDialog"
                     large
@@ -124,8 +119,6 @@ export default {
 
     methods: {
         ...mapMutations("checkout", [
-            "increaseCartQuantity",
-            "decreaseCartQuantity",
             "removeCartItem",
             "editCartItem",
             "openConfirmDialog",
