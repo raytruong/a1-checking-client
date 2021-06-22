@@ -10,8 +10,12 @@
                 {{ item.category }}
             </div>
         </v-card-subtitle>
-        <v-card-text v-if="item.addons">
-            <v-chip-group column class="white--text">
+        <v-card-text>
+            <v-chip-group
+                v-if="item.addons && item.addons.length > 0"
+                column
+                class="white--text"
+            >
                 <v-chip
                     v-for="(addon, index) in item.addons"
                     :key="`${addon.tag}-${index}`"
@@ -30,6 +34,9 @@
                     </span>
                 </v-chip>
             </v-chip-group>
+            <span v-else class="d-flex justify-center">
+                No addons selected
+            </span>
         </v-card-text>
     </v-card>
 </template>

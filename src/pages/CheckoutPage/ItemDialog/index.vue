@@ -2,8 +2,6 @@
     <v-card>
         <v-card-title class="headline">
             <span>{{ item.name }}</span>
-            <v-spacer />
-            <span class="green--text">${{ item.price }}</span>
         </v-card-title>
         <v-card-subtitle class="title">
             {{ item.category }}

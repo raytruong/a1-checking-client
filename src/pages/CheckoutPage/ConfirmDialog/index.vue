@@ -5,7 +5,7 @@
         </v-card-title>
         <v-card-text>
             <v-card color="transparent" flat>
-                <v-row class="ml-2">
+                <v-row class="ml-2 black--text">
                     <v-col class="title">
                         <div>{{ getTech }}</div>
                         <div>
@@ -34,8 +34,8 @@
                             </v-chip>
                         </v-row>
                         <v-row>
-                            <span class="title green--text"
-                                >Total: ${{ cartTotal }}</span
+                            <span class="title green--text">
+                                Total: ${{ cartTotal }}</span
                             >
                         </v-row>
                     </v-col>

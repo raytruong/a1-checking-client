@@ -31,10 +31,11 @@
                 <v-divider class="mb-2 mt-2" />
                 <v-row>
                     <v-col class="d-flex title black--text">
+                        <v-icon color="green" class="mr-1">mdi-cash-usd</v-icon>
                         Total:
                     </v-col>
                     <v-col class="d-flex title black--text justify-end">
-                        ${{ cartTotal }}
+                        <span>${{ cartTotal }}</span>
                     </v-col>
                 </v-row>
                 <v-chip-group
