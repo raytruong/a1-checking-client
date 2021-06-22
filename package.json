@@ -9,8 +9,8 @@
         "clean": "rm -rf dist_electron",
         "build:dev": "NODE_ENV=dev vue-cli-service build",
         "electron:build": "vue-cli-service electron:build",
-        "electron:build:win": "rm -rf dist_electron; vue-cli-service electron:build --win",
-        "electron:build:linux": "rm -rf dist_electron; vue-cli-service electron:build --linux",
+        "electron:build:win": "vue-cli-service electron:build --win",
+        "electron:build:linux": "vue-cli-service electron:build --linux",
         "electron:serve": "vue-cli-service electron:serve",
         "postinstall": "electron-builder install-app-deps",
         "postuninstall": "electron-builder install-app-deps"
