@@ -91,7 +91,7 @@ const checkout = {
             state.itemDialog = false;
             state.isEdit = false;
         },
-        finishItemEditing(state, { addons, price }) {
+        finishItemEditing(state, { addons }) {
             const newAddons = [];
             addons.forEach(addon => {
                 let newAddon = new Addon(state.db, addon.tag, addon.quantity);
@@ -99,7 +99,6 @@ const checkout = {
                 newAddons.push(newAddon);
             });
             state.activeItem.setAddons(newAddons);
-            state.activeItem.setPrice(price);
             if (!state.isEdit) state.cart.push(state.activeItem);
             state.isEdit = false;
             state.activeItem = {};

@@ -127,6 +127,9 @@ export default {
 
     computed: {
         displayPrice: function() {
+            if (!this.item.price) {
+                return;
+            }
             let activeAddonsPrice = this.activeAddons.reduce(function(
                 total,
                 addon,
@@ -147,7 +150,7 @@ export default {
         handleFinishButton() {
             this.$store.commit("checkout/finishItemEditing", {
                 addons: this.activeAddons,
-                price: this.price,
+                // price: this.price,
             });
             this.activeAddons = [];
         },
