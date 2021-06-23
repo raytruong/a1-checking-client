@@ -8,6 +8,7 @@
         clearable
         @blur="unfocus"
         @click:clear="clearableClicked"
+        @focus="clearableClicked"
         :readonly="isEdit ? false : true"
     >
     </v-text-field>
@@ -53,6 +54,7 @@ export default {
         },
         clearableClicked() {
             this.isEdit = true;
+            this.text = "";
         },
     },
 };

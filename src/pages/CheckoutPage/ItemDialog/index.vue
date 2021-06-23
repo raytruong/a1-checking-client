@@ -2,11 +2,13 @@
     <v-card>
         <v-card-title class="headline">
             <span>{{ item.name }}</span>
+            <v-spacer />
+            <span class="green--text">${{ displayPrice }}</span>
         </v-card-title>
         <v-card-subtitle class="title">
             {{ item.category }}
         </v-card-subtitle>
-        <v-card-text>
+        <!-- <v-card-text>
             <v-row>
                 <v-col cols="2">
                     <span class="title black--text">
@@ -20,7 +22,7 @@
                     />
                 </v-col>
             </v-row>
-        </v-card-text>
+        </v-card-text> -->
         <v-card-text>
             <div class="title black--text">
                 Select Addons
@@ -87,15 +89,15 @@
 <script>
 import cloneDeep from "lodash.clonedeep";
 import currency from "currency.js";
-import PriceInput from "@/components/shared/PriceInput";
 import AddonListItem from "./AddonListItem";
+// import PriceInput from "@/components/shared/PriceInput";
 
 export default {
     name: "ItemDialog",
 
     components: {
-        PriceInput,
         AddonListItem,
+        // PriceInput,
     },
 
     props: {
@@ -123,6 +125,21 @@ export default {
         },
     },
 
+    computed: {
+        displayPrice: function() {
+            let activeAddonsPrice = this.activeAddons.reduce(function(
+                total,
+                addon,
+            ) {
+                return total.add(addon.price.multiply(addon.quantity));
+            },
+            currency(0));
+            return this.item.totalPrice
+                ? this.item.totalPrice.add(activeAddonsPrice)
+                : this.item.price.add(activeAddonsPrice);
+        },
+    },
+
     methods: {
         handleCancelButton() {
             this.$store.commit("checkout/closeItemDialog");
@@ -144,9 +161,9 @@ export default {
         handleRemoveAddon(index) {
             this.activeAddons.splice(index, 1);
         },
-        handleBaseChangePrice(payload) {
-            this.price = currency(payload);
-        },
+        // handleBaseChangePrice(payload) {
+        //     this.price = currency(payload);
+        // },
         handleAddonChangePrice(index, payload) {
             this.activeAddons[index].price = currency(payload);
         },
@@ -154,7 +171,8 @@ export default {
             for (let i in this.activeAddons) {
                 // Existing addon, increment value
                 if (this.activeAddons[i].tag === addon.tag) {
-                    return (this.activeAddons[i].quantity += 1);
+                    // return (this.activeAddons[i].quantity += 1);
+                    return;
                 }
             }
             this.activeAddons.push({ ...addon, quantity: 1 }); // New addon
