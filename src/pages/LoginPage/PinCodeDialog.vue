@@ -16,7 +16,7 @@
             >
                 {{ getAlert.message }}
             </v-alert>
-            <v-row align="center" justify="center">
+            <v-row class="mt-2" align="center" justify="center">
                 <v-avatar
                     v-for="index in 4"
                     :key="index"
@@ -33,7 +33,8 @@
                 </v-avatar>
             </v-row>
         </v-container>
-        <v-btn
+        <v-text-field dense class="hide" autofocus></v-text-field>
+        <!-- <v-btn
             color="grey"
             class="white--text"
             tile
@@ -41,7 +42,7 @@
             @click="handleCancel"
         >
             Cancel
-        </v-btn>
+        </v-btn> -->
     </v-card>
 </template>
 
@@ -88,3 +89,9 @@ export default {
     },
 };
 </script>
+<style scoped>
+.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+</style>
