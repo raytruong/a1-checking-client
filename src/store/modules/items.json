@@ -1,0 +1,224 @@
+{
+    "gel_polish_full_set": {
+        "name": "Gel Polish",
+        "category": "Full Set",
+        "price": 3300,
+        "tag": "gel_polish_full_set"
+    },
+    "regular_polish_full_Set": {
+        "name": "Regular Polish",
+        "category": "Full Set",
+        "price": 2800,
+        "tag": "regular_polish_full_Set"
+    },
+    "pink_white_full_set": {
+        "name": "Pink & White",
+        "category": "Full Set",
+        "price": 5500,
+        "tag": "pink_white_full_set"
+    },
+    "ombre_full_set": {
+        "name": "Ombre",
+        "category": "Full Set",
+        "price": 5500,
+        "tag": "ombre_full_set"
+    },
+    "dipping_natural_nail_full_set": {
+        "name": "Dipping (Natural Nail)",
+        "category": "Full Set",
+        "price": 3500,
+        "tag": "dipping_natural_nail_full_set"
+    },
+    "dipping_with_tip_full_set": {
+        "name": "Dipping (With Tip)",
+        "category": "Full Set",
+        "price": 4000,
+        "tag": "dipping_with_tip_full_set"
+    },
+    "gel_polish_fill_in": {
+        "name": "Gel Polish",
+        "category": "Fill In",
+        "price": 3000,
+        "tag": "gel_polish_fill_in"
+    },
+    "regular_polish_fill_in": {
+        "name": "Regular Polish",
+        "category": "Fill In",
+        "price": 2300,
+        "tag": "regular_polish_fill_in"
+    },
+    "pink_white_fill_in": {
+        "name": "Pink & White",
+        "category": "Fill In",
+        "price": 4000,
+        "tag": "pink_white_fill_in"
+    },
+    "ombre_fill_in": {
+        "name": "Ombre",
+        "category": "Fill In",
+        "price": 4500,
+        "tag": "ombre_fill_in"
+    },
+    "classic_pedicure": {
+        "name": "Classic",
+        "category": "Pedicure",
+        "price": 2500,
+        "tag": "classic_pedicure"
+    },
+    "signature_pedicure": {
+        "name": "Signature",
+        "category": "Pedicure",
+        "price": 3000,
+        "tag": "signature_pedicure"
+    },
+    "deluxe_pedicure": {
+        "name": "Deluxe",
+        "category": "Pedicure",
+        "price": 3500,
+        "tag": "deluxe_pedicure"
+    },
+    "hot_stone_pedicure": {
+        "name": "Hot Stone",
+        "category": "Pedicure",
+        "price": 4000,
+        "tag": "hot_stone_pedicure"
+    },
+    "classic_manicure_pedicure": {
+        "name": "Classic Pedicure & Manicure",
+        "category": "Pedicure",
+        "price": 4000,
+        "tag": "classic_manicure_pedicure"
+    },
+    "classic_manicure": {
+        "name": "Classic",
+        "category": "Manicure",
+        "price": 2000,
+        "tag": "classic_manicure"
+    },
+    "gel_manicure": {
+        "name": "Gel",
+        "category": "Manicure",
+        "price": 2800,
+        "tag": "gel_manicure"
+    },
+    "manicure_kids": {
+        "name": "Manicure",
+        "category": "Kids",
+        "price": 1000,
+        "tag": "manicure_kids"
+    },
+    "pedicure_kids": {
+        "name": "Pedicure",
+        "category": "Kids",
+        "price": 1800,
+        "tag": "pedicure_kids"
+    },
+    "pedicure_manicure_kids": {
+        "name": "Pedicure & Manicure",
+        "category": "Kids",
+        "price": 2500,
+        "tag": "pedicure_manicure_kids"
+    },
+    "regular_polish_kids": {
+        "name": "Regular Polish",
+        "category": "Kids",
+        "price": 500,
+        "tag": "regular_polish_kids"
+    },
+    "gel_polish_kids": {
+        "name": "Gel Polish",
+        "category": "Kids",
+        "price": 1500,
+        "tag": "gel_polish_kids"
+    },
+    "hand_gel_polish_change": {
+        "name": "Hand Gel",
+        "category": "Polish Change",
+        "price": 1800,
+        "tag": "hand_gel_polish_change"
+    },
+    "toe_gel_polis_change": {
+        "name": "Toe Gel",
+        "category": "Polish Change",
+        "price": 2000,
+        "tag": "toe_gel_polis_change"
+    },
+    "hand_regular_polish_change": {
+        "name": "Hand Regular",
+        "category": "Polish Change",
+        "price": 1000,
+        "tag": "hand_regular_polish_change"
+    },
+    "toe_regular_polish_change": {
+        "name": "Toe Regular",
+        "category": "Polish Change",
+        "price": 1000,
+        "tag": "toe_regular_polish_change"
+    },
+    "gel_addon": {
+        "name": "Gel",
+        "category": "Addons",
+        "price": 1000,
+        "tag": "gel_addon"
+    },
+    "white_tip_addon": {
+        "name": "White Tip",
+        "category": "Addons",
+        "price": 500,
+        "tag": "white_tip_addon"
+    },
+    "gel_powder_addon": {
+        "name": "Gel Powder",
+        "category": "Addons",
+        "price": 500,
+        "tag": "gel_powder_addon"
+    },
+    "repair_addon": {
+        "name": "Repair",
+        "category": "Addons",
+        "price": 400,
+        "tag": "repair_addon"
+    },
+    "cut_down_addon": {
+        "name": "Cut Down",
+        "category": "Addons",
+        "price": 300,
+        "tag": "cut_down_addon"
+    },
+    "take_off_gel_addon": {
+        "name": "Take Off Gel (With Services)",
+        "category": "Addons",
+        "price": 500,
+        "tag": "take_off_gel_addon"
+    },
+    "soak_off_acrylic_addon": {
+        "name": "Soak Off Acrylic",
+        "category": "Addons",
+        "price": 1500,
+        "tag": "soak_off_acrylic_addon"
+    },
+    "pop_off_acrylic_addon": {
+        "name": "Pop Off Acrylic",
+        "category": "Addons",
+        "price": 1000,
+        "tag": "pop_off_acrylic_addon"
+    },
+    "shine_buff_addon": {
+        "name": "Shine Buff",
+        "category": "Addons",
+        "price": 500,
+        "tag": "shine_buff_addon"
+    },
+    "art_design_addon": {
+        "name": "Art Design",
+        "category": "Addons",
+        "price": 200,
+        "tag": "art_design_addon"
+    },
+    "other_services_addon": {
+        "name": "Other Services",
+        "category": "Addons",
+        "price": 300,
+        "tag": "other_services_addon"
+    }
+}
