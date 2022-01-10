@@ -1,4 +1,6 @@
-# A-1 Checking Client
+# A-1 Checking Client 
+
+Deprecated - migrating to Vue 3
 
 Vue application built for employees to log transactions, intended for usage on a Raspberry Pi running Raspbian. The entirety of the application works out of box without the need to touch deployment, as it is built offline-first with sync to remote CouchDB/Cloudant using PouchDB and packaged via Electron.
 
